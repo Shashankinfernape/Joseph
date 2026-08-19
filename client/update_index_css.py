@@ -1,0 +1,95 @@
+import re
+
+css_content = """@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource/sora";
+@import "@fontsource/plus-jakarta-sans";
+@import "@fontsource/fraunces";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply font-sans;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--dark);
+  }
+
+  :root {
+    --primary: #2563EB;
+    --primary-foreground: #FFFFFF;
+    --primary-container: #DBEAFE;
+    
+    --warm: #F59E0B;
+    --success: #10B981;
+    --accent: #8B5CF6;
+    
+    --surface: #FFFBF5;
+    --surface-container: #F3F4F6;
+    --surface-container-high: #E5E7EB;
+    
+    --dark: #1E1B4B;
+    --on-surface: #1E1B4B;
+    --on-surface-variant: #4B5563;
+
+    --background: var(--surface);
+    --foreground: var(--dark);
+    --card: #FFFFFF;
+    --card-foreground: var(--dark);
+    --popover: #FFFFFF;
+    --popover-foreground: var(--dark);
+    --secondary: #F3F4F6;
+    --secondary-container: #E5E7EB;
+    --secondary-foreground: var(--dark);
+    --muted: #F3F4F6;
+    --muted-foreground: #6B7280;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    --border: #E5E7EB;
+    --outline: #D1D5DB;
+    --outline-variant: #E5E7EB;
+    --input: #E5E7EB;
+    --ring: var(--primary);
+    --radius: 1rem;
+    
+    --elevation-1: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --elevation-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --elevation-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, var(--warm) 0%, var(--primary) 100%);
+}
+.gradient-photo-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(30,27,75,0.8) 100%);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-soft {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+"""
+
+with open('src/index.css', 'w') as f:
+    f.write(css_content)
+
+"""
+
+with open('src/index.css', 'w') as f:
+    f.write(css_content)
+"""

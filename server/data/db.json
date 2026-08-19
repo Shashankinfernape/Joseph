@@ -1,0 +1,944 @@
+{
+  "schoolInfo": {
+    "name": "Vidya Mandir International School",
+    "kannadaName": "ವಿದ್ಯಾ ಮಂದಿರ ಇಂಟರ್ನ್ಯಾಷನಲ್ ಶಾಲೆ",
+    "tagline": "Empowering Minds, Inspiring Character & Fostering Global Excellence",
+    "affiliation": "CBSE (Central Board of Secondary Education)",
+    "affiliationNo": "830942",
+    "schoolCode": "45891",
+    "society": "Vidya Mandir Educational & Charitable Trust (Regd. 2004)",
+    "establishedYear": 2004,
+    "principal": "Dr. Suniti Krishnan, Ph.D. (Ed), M.Sc. (Physics), B.Ed.",
+    "vicePrincipal": "Shri M. R. Chandrashekar, M.A. (English), B.Ed.",
+    "address": "Survey No. 48/2, Varthur Main Road, Near ITPL, Whitefield, Bengaluru, Karnataka 560066",
+    "phone": "+91 80 2845 7890",
+    "altPhone": "+91 98801 23456",
+    "email": "info@vidyamandir-bengaluru.edu.in",
+    "admissionsEmail": "admissions@vidyamandir-bengaluru.edu.in",
+    "emergencyHelpline": "+91 80 2845 7899 / 1098 (Child Helpline)",
+    "stats": {
+      "totalStudents": 1480,
+      "totalFaculty": 84,
+      "campusAcres": 12.5,
+      "passRate": "100%",
+      "distinctionRate": "92.4%",
+      "smartClassrooms": 56,
+      "sportsClubs": 24,
+      "busFleetCount": 18
+    }
+  },
+  "cbseDisclosures": [
+    {
+      "id": "DOC-01",
+      "category": "A. GENERAL INFORMATION",
+      "field": "NAME OF THE SCHOOL",
+      "details": "VIDYA MANDIR INTERNATIONAL SCHOOL, BENGALURU",
+      "docUrl": "#"
+    },
+    {
+      "id": "DOC-02",
+      "category": "A. GENERAL INFORMATION",
+      "field": "AFFILIATION NO. & SCHOOL CODE",
+      "details": "AFFILIATION NO: 830942 | SCHOOL CODE: 45891 (Valid up to March 31, 2029)",
+      "docUrl": "#"
+    },
+    {
+      "id": "DOC-03",
+      "category": "A. GENERAL INFORMATION",
+      "field": "COMPLETE ADDRESS WITH PIN CODE",
+      "details": "Sy. No. 48/2, Varthur Main Road, Whitefield, Bengaluru, Karnataka - 560066",
+      "docUrl": "#"
+    },
+    {
+      "id": "DOC-04",
+      "category": "A. GENERAL INFORMATION",
+      "field": "PRINCIPAL NAME & QUALIFICATION",
+      "details": "Dr. Suniti Krishnan (Ph.D., M.Sc. Physics, B.Ed.) - 22 Years Exp.",
+      "docUrl": "#"
+    },
+    {
+      "id": "DOC-05",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPIES OF AFFILIATION / UPGRADATION LETTER AND RECENT EXTENSION",
+      "details": "CBSE/AFF/830942/EX-0248-2425/2024 - Extension granted up to 31/03/2029",
+      "status": "Verified",
+      "expiryDate": "2029-03-31",
+      "docUrl": "/documents/cbse-affiliation-extension.pdf"
+    },
+    {
+      "id": "DOC-06",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPIES OF SOCIETIES / TRUST REGISTRATION CERTIFICATE",
+      "details": "Karnataka Societies Registration Act, No. DRB-3/SOR/512/2004-05",
+      "status": "Verified",
+      "expiryDate": "Permanent",
+      "docUrl": "/documents/trust-registration-certificate.pdf"
+    },
+    {
+      "id": "DOC-07",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED BY STATE GOVT.",
+      "details": "Govt of Karnataka Dept of School Education NOC No. ED 148 PGC 2005",
+      "status": "Verified",
+      "expiryDate": "Permanent",
+      "docUrl": "/documents/state-govt-noc.pdf"
+    },
+    {
+      "id": "DOC-08",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPIES OF RECOGNITION CERTIFICATE UNDER RTE ACT, 2009",
+      "details": "DDPI Bangalore South Recognition No. RTE/RECOG/BS/412/2023-26",
+      "status": "Valid",
+      "expiryDate": "2026-12-31",
+      "docUrl": "/documents/rte-recognition-certificate.pdf"
+    },
+    {
+      "id": "DOC-09",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER NATIONAL BUILDING CODE",
+      "details": "BBMP / PWD Executive Engineer Certified Safe Structural Fitness Ref: PWD/BLD/2024/89",
+      "status": "Valid",
+      "expiryDate": "2027-08-15",
+      "docUrl": "/documents/building-safety-certificate.pdf"
+    },
+    {
+      "id": "DOC-10",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY COMPETENT AUTHORITY",
+      "details": "Karnataka State Fire & Emergency Services NOC No. KSFES/CC/FSNOC/349/2025",
+      "status": "Valid",
+      "expiryDate": "2027-02-28",
+      "docUrl": "/documents/fire-safety-noc.pdf"
+    },
+    {
+      "id": "DOC-11",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPY OF THE DEO CERTIFICATE SUBMITTED BY SCHOOL FOR AFFILIATION",
+      "details": "Certificate of compliance by Deputy Director of Public Instruction (DDPI)",
+      "status": "Verified",
+      "expiryDate": "2029-03-31",
+      "docUrl": "/documents/deo-verification-certificate.pdf"
+    },
+    {
+      "id": "DOC-12",
+      "category": "B. DOCUMENTS AND INFORMATION",
+      "field": "COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES",
+      "details": "BWSSB & BBMP Health Officer Tested & Certified Potable Water & Hygienic Sanitation",
+      "status": "Valid",
+      "expiryDate": "2027-05-10",
+      "docUrl": "/documents/water-sanitation-certificate.pdf"
+    },
+    {
+      "id": "DOC-13",
+      "category": "C. RESULT AND ACADEMICS",
+      "field": "FEE STRUCTURE OF THE SCHOOL (ANNUAL 2026-27)",
+      "details": "Published as per Karnataka Educational Institutions Rules & CBSE Mandate",
+      "docUrl": "/documents/fee-structure-2026-27.pdf"
+    },
+    {
+      "id": "DOC-14",
+      "category": "C. RESULT AND ACADEMICS",
+      "field": "ANNUAL ACADEMIC CALENDAR 2026-27",
+      "details": "220 Working Days with Term Schedules, Summative Assessments & Gazetted Holidays",
+      "docUrl": "/documents/academic-calendar-2026-27.pdf"
+    },
+    {
+      "id": "DOC-15",
+      "category": "C. RESULT AND ACADEMICS",
+      "field": "SCHOOL MANAGEMENT COMMITTEE (SMC) & PARENT TEACHER ASSOCIATION (PTA)",
+      "details": "Full 15-Member SMC with Parent, Teacher, Educationist & CBSE Nominees",
+      "docUrl": "/documents/smc-pta-members-list.pdf"
+    },
+    {
+      "id": "DOC-16",
+      "category": "C. RESULT AND ACADEMICS",
+      "field": "LAST 3-YEAR CBSE BOARD EXAM RESULTS (CLASS 10 & 12)",
+      "details": "2024, 2025, 2026: 100% Pass Percentage with 128 Distinctions and School Average 86.8%",
+      "docUrl": "/documents/cbse-board-results-summary.pdf"
+    },
+    {
+      "id": "DOC-17",
+      "category": "D. STAFF (TEACHING)",
+      "field": "STAFF DETAILS & PUPIL TEACHER RATIO (PTR)",
+      "details": "Total 84 Teachers: Principal (1), PGT (18), TGT (32), PRT (26), NTT (7). Special Educator (1), Counselor (2). PTR = 1:18",
+      "docUrl": "/documents/staff-statement-ptr.pdf"
+    }
+  ],
+  "boardResults": {
+    "class10": [
+      { "year": "2025-26", "registered": 142, "passed": 142, "passPercent": 100, "above90": 58, "schoolTopper": "Sanya Kulkarni (98.6%)" },
+      { "year": "2024-25", "registered": 138, "passed": 138, "passPercent": 100, "above90": 52, "schoolTopper": "Aditya Hegde (98.2%)" },
+      { "year": "2023-24", "registered": 130, "passed": 130, "passPercent": 100, "above90": 49, "schoolTopper": "Niharika Rao (97.8%)" }
+    ],
+    "class12": [
+      { "year": "2025-26", "registered": 115, "passed": 115, "passPercent": 100, "above90": 46, "schoolTopper": "Rohan Verma (98.4% - Science)" },
+      { "year": "2024-25", "registered": 108, "passed": 108, "passPercent": 100, "above90": 41, "schoolTopper": "Kavya Menon (97.6% - Commerce)" },
+      { "year": "2023-24", "registered": 98, "passed": 98, "passPercent": 100, "above90": 38, "schoolTopper": "Pranav Deshmukh (97.4% - Science)" }
+    ]
+  },
+  "users": [
+    {
+      "id": "USR-STU-001",
+      "username": "aarav.sharma",
+      "name": "Aarav Sharma",
+      "role": "student",
+      "email": "aarav.sharma@student.vidyamandir.edu.in",
+      "studentId": "VMIS-STU-2021-084",
+      "rollNo": "10104",
+      "grade": "Class 10",
+      "section": "A",
+      "house": "Ganga (Blue House)",
+      "bloodGroup": "O+",
+      "busRoute": "Route 2 (Indiranagar / Koramangala)",
+      "dob": "2010-09-14",
+      "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80",
+      "parentId": "USR-PAR-001",
+      "attendanceRate": 94.8
+    },
+    {
+      "id": "USR-STU-002",
+      "username": "ananya.sharma",
+      "name": "Ananya Sharma",
+      "role": "student",
+      "email": "ananya.sharma@student.vidyamandir.edu.in",
+      "studentId": "VMIS-STU-2023-192",
+      "rollNo": "06208",
+      "grade": "Class 6",
+      "section": "B",
+      "house": "Cauvery (Green House)",
+      "bloodGroup": "B+",
+      "busRoute": "Route 2 (Indiranagar / Koramangala)",
+      "dob": "2014-04-22",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80",
+      "parentId": "USR-PAR-001",
+      "attendanceRate": 96.2
+    },
+    {
+      "id": "USR-STU-003",
+      "username": "rohan.verma",
+      "name": "Rohan Verma",
+      "role": "student",
+      "email": "rohan.verma@student.vidyamandir.edu.in",
+      "studentId": "VMIS-STU-2019-012",
+      "rollNo": "12015",
+      "grade": "Class 12",
+      "section": "A (Science - PCMC)",
+      "house": "Yamuna (Red House)",
+      "bloodGroup": "A+",
+      "busRoute": "Route 1 (Whitefield / ITPL)",
+      "dob": "2008-11-03",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80",
+      "parentId": "USR-PAR-002",
+      "attendanceRate": 98.1
+    },
+    {
+      "id": "USR-PAR-001",
+      "username": "rajesh.sharma",
+      "name": "Mr. Rajesh Sharma & Dr. Neha Sharma",
+      "role": "parent",
+      "email": "rajesh.sharma@gmail.com",
+      "phone": "+91 98450 11223",
+      "childrenIds": ["USR-STU-001", "USR-STU-002"],
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
+      "address": "B-402, Prestige Palms, Whitefield, Bengaluru - 560066"
+    },
+    {
+      "id": "USR-TCH-001",
+      "username": "radhika.nair",
+      "name": "Smt. Radhika Nair",
+      "role": "teacher",
+      "email": "radhika.nair@faculty.vidyamandir.edu.in",
+      "employeeId": "VMIS-FAC-2016-042",
+      "designation": "PGT Mathematics & Class 10A Class Teacher",
+      "qualification": "M.Sc. (Applied Mathematics), B.Ed. (Gold Medalist)",
+      "department": "Mathematics",
+      "experienceYears": 14,
+      "classesAssigned": ["Class 10-A", "Class 10-B", "Class 12-A"],
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "USR-TCH-002",
+      "username": "ramesh.kulkarni",
+      "name": "Shri Ramesh Kulkarni",
+      "role": "teacher",
+      "email": "ramesh.kulkarni@faculty.vidyamandir.edu.in",
+      "employeeId": "VMIS-FAC-2012-019",
+      "designation": "PGT Physics & STEM Coordinator",
+      "qualification": "M.Sc. (Physics), M.Phil., B.Ed.",
+      "department": "Sciences",
+      "experienceYears": 18,
+      "classesAssigned": ["Class 10-A", "Class 11-A", "Class 12-A"],
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "USR-TCH-003",
+      "username": "kavitha.hegde",
+      "name": "Smt. Kavitha Hegde",
+      "role": "teacher",
+      "email": "kavitha.hegde@faculty.vidyamandir.edu.in",
+      "employeeId": "VMIS-FAC-2018-067",
+      "designation": "TGT Kannada & Cultural Affairs Head",
+      "qualification": "M.A. (Kannada Sahitya), B.Ed.",
+      "department": "Languages (Kannada)",
+      "experienceYears": 11,
+      "classesAssigned": ["Class 6-B", "Class 8-A", "Class 10-A"],
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "USR-ADM-001",
+      "username": "admin.principal",
+      "name": "Dr. Suniti Krishnan",
+      "role": "admin",
+      "email": "principal@vidyamandir-bengaluru.edu.in",
+      "employeeId": "VMIS-EXEC-001",
+      "designation": "Principal & Head of School",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "USR-ALM-001",
+      "username": "vikram.rao",
+      "name": "Vikramaditya Rao",
+      "role": "alumni",
+      "email": "vikram.rao@alumni.vidyamandir.edu.in",
+      "batch": "2018",
+      "currentRole": "Senior AI Research Engineer @ Google DeepMind",
+      "location": "Bengaluru / Mountain View",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&auto=format&fit=crop&q=80"
+    }
+  ],
+  "classes": [
+    { "id": "CLS-10A", "grade": "Class 10", "section": "A", "classTeacher": "Smt. Radhika Nair", "room": "Room 304 - Aryabhata Block", "studentCount": 38 },
+    { "id": "CLS-10B", "grade": "Class 10", "section": "B", "classTeacher": "Shri Ramesh Kulkarni", "room": "Room 305 - Aryabhata Block", "studentCount": 36 },
+    { "id": "CLS-06B", "grade": "Class 6", "section": "B", "classTeacher": "Smt. Kavitha Hegde", "room": "Room 108 - Ramanujan Block", "studentCount": 34 },
+    { "id": "CLS-12A", "grade": "Class 12", "section": "A (Science)", "classTeacher": "Dr. V. Srinivasan", "room": "Room 401 - C.V. Raman Block", "studentCount": 40 }
+  ],
+  "class10Timetable": {
+    "Monday": [
+      { "period": 1, "time": "08:30 - 09:15", "subject": "Mathematics", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 2, "time": "09:15 - 10:00", "subject": "Physics (Optics Lab)", "teacher": "Shri Ramesh Kulkarni", "room": "Physics Lab 2" },
+      { "period": 3, "time": "10:15 - 11:00", "subject": "English Language & Lit.", "teacher": "Shri M. R. Chandrashekar", "room": "Room 304" },
+      { "period": 4, "time": "11:00 - 11:45", "subject": "Chemistry (Organic)", "teacher": "Dr. Deepa Swaminathan", "room": "Chemistry Lab" },
+      { "period": 5, "time": "12:15 - 01:00", "subject": "Kannada (2nd Lang)", "teacher": "Smt. Kavitha Hegde", "room": "Room 304" },
+      { "period": 6, "time": "01:00 - 01:45", "subject": "Social Science (Civics)", "teacher": "Shri Anand Murthy", "room": "Room 304" },
+      { "period": 7, "time": "01:55 - 02:40", "subject": "AI & Robotics / ATL", "teacher": "Smt. Priya Raman", "room": "Atal Tinkering Lab" },
+      { "period": 8, "time": "02:40 - 03:20", "subject": "Physical Education / Yoga", "teacher": "Shri David Fernandez", "room": "Sports Ground" }
+    ],
+    "Tuesday": [
+      { "period": 1, "time": "08:30 - 09:15", "subject": "Biology (Genetics)", "teacher": "Smt. Shalini Kurup", "room": "Bio Lab" },
+      { "period": 2, "time": "09:15 - 10:00", "subject": "Mathematics", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 3, "time": "10:15 - 11:00", "subject": "Social Science (History)", "teacher": "Shri Anand Murthy", "room": "Room 304" },
+      { "period": 4, "time": "11:00 - 11:45", "subject": "Physics", "teacher": "Shri Ramesh Kulkarni", "room": "Room 304" },
+      { "period": 5, "time": "12:15 - 01:00", "subject": "English Language", "teacher": "Shri M. R. Chandrashekar", "room": "Room 304" },
+      { "period": 6, "time": "01:00 - 01:45", "subject": "Kannada", "teacher": "Smt. Kavitha Hegde", "room": "Room 304" },
+      { "period": 7, "time": "01:55 - 02:40", "subject": "Computer Applications / Coding", "teacher": "Smt. Priya Raman", "room": "Computer Lab 1" },
+      { "period": 8, "time": "02:40 - 03:20", "subject": "Library & Reading", "teacher": "Shri K. R. Prasad", "room": "Central Library" }
+    ],
+    "Wednesday": [
+      { "period": 1, "time": "08:30 - 09:15", "subject": "Mathematics", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 2, "time": "09:15 - 10:00", "subject": "Chemistry", "teacher": "Dr. Deepa Swaminathan", "room": "Room 304" },
+      { "period": 3, "time": "10:15 - 11:00", "subject": "Kannada", "teacher": "Smt. Kavitha Hegde", "room": "Room 304" },
+      { "period": 4, "time": "11:00 - 11:45", "subject": "English Literature", "teacher": "Shri M. R. Chandrashekar", "room": "Room 304" },
+      { "period": 5, "time": "12:15 - 01:00", "subject": "Social Science (Geography)", "teacher": "Shri Anand Murthy", "room": "Room 304" },
+      { "period": 6, "time": "01:00 - 01:45", "subject": "Physics", "teacher": "Shri Ramesh Kulkarni", "room": "Room 304" },
+      { "period": 7, "time": "01:55 - 02:40", "subject": "Performing Arts / Music", "teacher": "Vidushi Girija Devi", "room": "Auditorium Annex" },
+      { "period": 8, "time": "02:40 - 03:20", "subject": "Club Activities (Robotics/Eco/Debate)", "teacher": "Faculty Mentors", "room": "Respective Activity Rooms" }
+    ],
+    "Thursday": [
+      { "period": 1, "time": "08:30 - 09:15", "subject": "Physics (Electricity)", "teacher": "Shri Ramesh Kulkarni", "room": "Room 304" },
+      { "period": 2, "time": "09:15 - 10:00", "subject": "Mathematics", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 3, "time": "10:15 - 11:00", "subject": "Chemistry Lab Practical", "teacher": "Dr. Deepa Swaminathan", "room": "Chemistry Lab" },
+      { "period": 4, "time": "11:00 - 11:45", "subject": "Social Science (Economics)", "teacher": "Shri Anand Murthy", "room": "Room 304" },
+      { "period": 5, "time": "12:15 - 01:00", "subject": "Kannada", "teacher": "Smt. Kavitha Hegde", "room": "Room 304" },
+      { "period": 6, "time": "01:00 - 01:45", "subject": "English Language", "teacher": "Shri M. R. Chandrashekar", "room": "Room 304" },
+      { "period": 7, "time": "01:55 - 02:40", "subject": "Mathematics (Problem Solving)", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 8, "time": "02:40 - 03:20", "subject": "Sports & Games (Basketball/Badminton)", "teacher": "Shri David Fernandez", "room": "Indoor Sports Complex" }
+    ],
+    "Friday": [
+      { "period": 1, "time": "08:30 - 09:15", "subject": "Mathematics (Trigonometry)", "teacher": "Smt. Radhika Nair", "room": "Room 304" },
+      { "period": 2, "time": "09:15 - 10:00", "subject": "Biology (Life Processes)", "teacher": "Smt. Shalini Kurup", "room": "Room 304" },
+      { "period": 3, "time": "10:15 - 11:00", "subject": "Social Science Map Work", "teacher": "Shri Anand Murthy", "room": "Room 304" },
+      { "period": 4, "time": "11:00 - 11:45", "subject": "Kannada Grammer & Essay", "teacher": "Smt. Kavitha Hegde", "room": "Room 304" },
+      { "period": 5, "time": "12:15 - 01:00", "subject": "English Speaking & Listening (ASL)", "teacher": "Shri M. R. Chandrashekar", "room": "Language Lab" },
+      { "period": 6, "time": "01:00 - 01:45", "subject": "Physics Numerical Workshop", "teacher": "Shri Ramesh Kulkarni", "room": "Room 304" },
+      { "period": 7, "time": "01:55 - 02:40", "subject": "General Knowledge & Quiz", "teacher": "Smt. Priya Raman", "room": "Room 304" },
+      { "period": 8, "time": "02:40 - 03:20", "subject": "House Assembly & Mentorship", "teacher": "House Masters", "room": "Main Auditorium" }
+    ]
+  },
+  "assignments": [
+    {
+      "id": "ASN-2026-101",
+      "title": "Quadratic Equations & Applications in Kinematics",
+      "subject": "Mathematics",
+      "grade": "Class 10-A",
+      "teacher": "Smt. Radhika Nair",
+      "assignedDate": "2026-08-14",
+      "dueDate": "2026-08-22",
+      "maxMarks": 25,
+      "description": "Solve NCERT Exemplar Chapter 4 Exercises 4.3 & 4.4 along with 5 real-world projectile trajectory word problems. Show step-by-step discriminant calculations.",
+      "attachmentUrl": "/lms/materials/math-ch4-exemplar-problems.pdf",
+      "submissionsCount": 34,
+      "totalStudents": 38,
+      "status": "Active"
+    },
+    {
+      "id": "ASN-2026-102",
+      "title": "Ray Optics: Spherical Mirrors & Lens Maker Formula Lab Report",
+      "subject": "Physics",
+      "grade": "Class 10-A",
+      "teacher": "Shri Ramesh Kulkarni",
+      "assignedDate": "2026-08-10",
+      "dueDate": "2026-08-18",
+      "maxMarks": 20,
+      "description": "Submit a formal scientific lab report on determining focal length of a concave mirror using u-v method with optical bench error calculations and ray diagrams.",
+      "attachmentUrl": "/lms/materials/physics-optics-lab-rubric.pdf",
+      "submissionsCount": 38,
+      "totalStudents": 38,
+      "status": "Graded"
+    },
+    {
+      "id": "ASN-2026-103",
+      "title": "Kannada Prabandha: 'ಬೆಂಗಳೂರಿನ ಪರಿಸರ ಸಂರಕ್ಷಣೆ ಮತ್ತು ಯುವಜನರ ಪಾತ್ರ'",
+      "subject": "Kannada (2nd Language)",
+      "grade": "Class 10-A",
+      "teacher": "Smt. Kavitha Hegde",
+      "assignedDate": "2026-08-12",
+      "dueDate": "2026-08-24",
+      "maxMarks": 15,
+      "description": "Write a 350-word essay on environmental conservation of Bengaluru lakes and green corridors with relevant quotes from Rashtrakavi Kuvempu and D.V.G.",
+      "attachmentUrl": "/lms/materials/kannada-essay-guidelines.pdf",
+      "submissionsCount": 29,
+      "totalStudents": 38,
+      "status": "Active"
+    },
+    {
+      "id": "ASN-2026-104",
+      "title": "Python Data Analysis with Matplotlib: Weather Trends in Karnataka",
+      "subject": "AI & Computer Applications",
+      "grade": "Class 10-A",
+      "teacher": "Smt. Priya Raman",
+      "assignedDate": "2026-08-05",
+      "dueDate": "2026-08-15",
+      "maxMarks": 30,
+      "description": "Create a Jupyter notebook analyzing Karnataka rainfall dataset (2015-2025). Plot district-wise precipitation histograms and temperature moving averages.",
+      "attachmentUrl": "/lms/materials/python-weather-starter.ipynb",
+      "submissionsCount": 38,
+      "totalStudents": 38,
+      "status": "Graded"
+    }
+  ],
+  "studentSubmissions": [
+    {
+      "id": "SUB-101-01",
+      "assignmentId": "ASN-2026-101",
+      "studentId": "USR-STU-001",
+      "studentName": "Aarav Sharma",
+      "rollNo": "10104",
+      "submittedAt": "2026-08-17T18:40:00Z",
+      "fileName": "Aarav_Sharma_Math_Quadratic_Assignment.pdf",
+      "fileSize": "2.4 MB",
+      "status": "Submitted",
+      "marksObtained": null,
+      "teacherFeedback": null
+    },
+    {
+      "id": "SUB-102-01",
+      "assignmentId": "ASN-2026-102",
+      "studentId": "USR-STU-001",
+      "studentName": "Aarav Sharma",
+      "rollNo": "10104",
+      "submittedAt": "2026-08-16T14:15:00Z",
+      "fileName": "Aarav_Sharma_Physics_Optics_Lab.pdf",
+      "fileSize": "3.8 MB",
+      "status": "Graded",
+      "marksObtained": 19,
+      "teacherFeedback": "Excellent precision in u-v graphs and error tolerance calculations! Keep up this rigorous lab discipline."
+    },
+    {
+      "id": "SUB-104-01",
+      "assignmentId": "ASN-2026-104",
+      "studentId": "USR-STU-001",
+      "studentName": "Aarav Sharma",
+      "rollNo": "10104",
+      "submittedAt": "2026-08-12T20:10:00Z",
+      "fileName": "Aarav_Karnataka_Weather_Analysis.ipynb",
+      "fileSize": "1.1 MB",
+      "status": "Graded",
+      "marksObtained": 29,
+      "teacherFeedback": "Outstanding code hygiene and insightful seaborn heatmaps on monsoonal variations."
+    }
+  ],
+  "studentGrades": {
+    "USR-STU-001": {
+      "studentName": "Aarav Sharma",
+      "grade": "Class 10-A",
+      "academicYear": "2026-27",
+      "term1": {
+        "subjects": [
+          { "code": "041", "name": "Mathematics Standard", "pt1": 19, "pt2": 20, "halfYearly": 76, "internal": 19, "total": 95, "grade": "A1", "remarks": "Outstanding conceptual problem solving" },
+          { "code": "086", "name": "Science (Phy/Chem/Bio)", "pt1": 18, "pt2": 19, "halfYearly": 74, "internal": 19, "total": 93, "grade": "A1", "remarks": "Very strong in experimental applications" },
+          { "code": "184", "name": "English Language & Lit.", "pt1": 18, "pt2": 18, "halfYearly": 72, "internal": 18, "total": 90, "grade": "A1", "remarks": "Eloquent expression and rich vocabulary" },
+          { "code": "015", "name": "Kannada (2nd Language)", "pt1": 17, "pt2": 18, "halfYearly": 71, "internal": 18, "total": 89, "grade": "A2", "remarks": "Command over literary prose is commendable" },
+          { "code": "087", "name": "Social Science", "pt1": 19, "pt2": 19, "halfYearly": 75, "internal": 19, "total": 94, "grade": "A1", "remarks": "Thorough analytical grasp of civics & history" },
+          { "code": "417", "name": "Artificial Intelligence (Skill)", "pt1": 20, "pt2": 20, "halfYearly": 78, "internal": 20, "total": 98, "grade": "A1", "remarks": "Exemplary coding and algorithmic logic" }
+        ],
+        "scholasticTotal": 559,
+        "maxMarks": 600,
+        "percentage": 93.17,
+        "overallGrade": "A1",
+        "rankInClass": 3,
+        "coScholastic": {
+          "workEducation": "A",
+          "artEducation": "A",
+          "healthAndPE": "A",
+          "discipline": "A"
+        },
+        "attendance": "182 / 192 Days (94.8%)",
+        "classTeacherRemarks": "Aarav is a highly driven and disciplined scholar who balances academic excellence with active participation in robotics and inter-house debates."
+      }
+    }
+  },
+  "feeStructures": [
+    {
+      "category": "Pre-Primary (Nursery, LKG, UKG)",
+      "tuitionPerTerm": 22000,
+      "terms": 3,
+      "annualTotal": 66000,
+      "activityFee": 8000,
+      "transportPerAnnum": 24000
+    },
+    {
+      "category": "Primary (Class 1 to 5)",
+      "tuitionPerTerm": 28000,
+      "terms": 3,
+      "annualTotal": 84000,
+      "activityFee": 10000,
+      "transportPerAnnum": 26000
+    },
+    {
+      "category": "Middle School (Class 6 to 8)",
+      "tuitionPerTerm": 32000,
+      "terms": 3,
+      "annualTotal": 96000,
+      "activityFee": 12000,
+      "transportPerAnnum": 28000
+    },
+    {
+      "category": "Secondary (Class 9 & 10)",
+      "tuitionPerTerm": 36000,
+      "terms": 3,
+      "annualTotal": 108000,
+      "activityFee": 14000,
+      "transportPerAnnum": 30000
+    },
+    {
+      "category": "Senior Secondary (Class 11 & 12 - Science/Commerce/Humanities)",
+      "tuitionPerTerm": 42000,
+      "terms": 3,
+      "annualTotal": 126000,
+      "activityFee": 16000,
+      "transportPerAnnum": 30000
+    }
+  ],
+  "studentInvoices": [
+    {
+      "id": "INV-2026-T2-084",
+      "studentId": "USR-STU-001",
+      "studentName": "Aarav Sharma",
+      "grade": "Class 10-A",
+      "term": "Term 2 (Oct 2026 - Jan 2027)",
+      "dueDate": "2026-10-15",
+      "items": [
+        { "name": "Tuition Fee (Term 2)", "amount": 36000 },
+        { "name": "Smart Class & STEM / AI Lab Fee", "amount": 4500 },
+        { "name": "Transport Fee (Route 2 - Indiranagar/Koramangala)", "amount": 10000 },
+        { "name": "CBSE Board Examination & Registration Fee", "amount": 2500 }
+      ],
+      "totalAmount": 53000,
+      "status": "Pending",
+      "paidDate": null,
+      "paymentMode": null,
+      "transactionId": null,
+      "receiptNo": null
+    },
+    {
+      "id": "INV-2026-T1-084",
+      "studentId": "USR-STU-001",
+      "studentName": "Aarav Sharma",
+      "grade": "Class 10-A",
+      "term": "Term 1 (Jun 2026 - Sep 2026)",
+      "dueDate": "2026-06-15",
+      "items": [
+        { "name": "Tuition Fee (Term 1)", "amount": 36000 },
+        { "name": "Smart Class & STEM / AI Lab Fee", "amount": 4500 },
+        { "name": "Transport Fee (Route 2)", "amount": 10000 },
+        { "name": "Annual Activity & Sports Amenities Fee", "amount": 7000 }
+      ],
+      "totalAmount": 57500,
+      "status": "Paid",
+      "paidDate": "2026-06-12",
+      "paymentMode": "Razorpay (UPI - Google Pay)",
+      "transactionId": "pay_O7N1z8qKd9eL3w",
+      "receiptNo": "VMIS/REC/2026/0149"
+    },
+    {
+      "id": "INV-2026-T2-192",
+      "studentId": "USR-STU-002",
+      "studentName": "Ananya Sharma",
+      "grade": "Class 6-B",
+      "term": "Term 2 (Oct 2026 - Jan 2027)",
+      "dueDate": "2026-10-15",
+      "items": [
+        { "name": "Tuition Fee (Term 2)", "amount": 32000 },
+        { "name": "Library & Computer Lab Fee", "amount": 3500 },
+        { "name": "Transport Fee (Route 2)", "amount": 10000 }
+      ],
+      "totalAmount": 45500,
+      "status": "Pending",
+      "paidDate": null,
+      "paymentMode": null,
+      "transactionId": null,
+      "receiptNo": null
+    }
+  ],
+  "transportRoutes": [
+    {
+      "routeId": "RT-02",
+      "name": "Route 2 - Central & South-East Bengaluru",
+      "busNumber": "KA-01-F-9821",
+      "busModel": "Tata Starbus 42-Seater (GPS & CCTV Fitted)",
+      "driverName": "Shri Manjunath Swamy",
+      "driverPhone": "+91 98440 33412",
+      "attendantName": "Smt. Shobha",
+      "currentLocation": {
+        "lat": 12.9352,
+        "lng": 77.6245,
+        "address": "Near Koramangala 5th Block Sony Signal Junction, Bengaluru",
+        "speed": "28 km/h",
+        "status": "On Route - Morning Pickup"
+      },
+      "stops": [
+        { "stopName": "Indiranagar 100ft Road Metro", "time": "07:15 AM", "lat": 12.9719, "lng": 77.6412, "status": "Passed" },
+        { "stopName": "Domlur Flyover Junction", "time": "07:25 AM", "lat": 12.9610, "lng": 77.6387, "status": "Passed" },
+        { "stopName": "Koramangala Sony Signal (Aarav's Stop)", "time": "07:38 AM", "lat": 12.9352, "lng": 77.6245, "status": "Current Stop" },
+        { "stopName": "HSR Layout BDA Complex", "time": "07:50 AM", "lat": 12.9116, "lng": 77.6389, "status": "Upcoming" },
+        { "stopName": "Bellandur Outer Ring Road", "time": "08:05 AM", "lat": 12.9260, "lng": 77.6762, "status": "Upcoming" },
+        { "stopName": "Marathahalli Multiplex", "time": "08:18 AM", "lat": 12.9591, "lng": 77.6974, "status": "Upcoming" },
+        { "stopName": "Vidya Mandir School Campus, Whitefield", "time": "08:30 AM", "lat": 12.9698, "lng": 77.7499, "status": "Destination" }
+      ]
+    },
+    {
+      "routeId": "RT-01",
+      "name": "Route 1 - East Bengaluru & Whitefield Suburbs",
+      "busNumber": "KA-01-F-4589",
+      "busModel": "Ashok Leyland Sunshine 36-Seater",
+      "driverName": "Shri Basavaraj Patil",
+      "driverPhone": "+91 97410 88231",
+      "attendantName": "Smt. Kamala",
+      "currentLocation": {
+        "lat": 12.9863,
+        "lng": 77.7289,
+        "address": "Near ITPL Main Gate, Whitefield",
+        "speed": "22 km/h",
+        "status": "On Route"
+      },
+      "stops": [
+        { "stopName": "Hoodi Junction", "time": "07:30 AM", "lat": 12.9912, "lng": 77.7161, "status": "Passed" },
+        { "stopName": "ITPL Metro Station", "time": "07:45 AM", "lat": 12.9863, "lng": 77.7289, "status": "Current Stop" },
+        { "stopName": "Kadugodi Tree Park", "time": "08:00 AM", "lat": 12.9985, "lng": 77.7601, "status": "Upcoming" },
+        { "stopName": "Hope Farm Circle", "time": "08:12 AM", "lat": 12.9839, "lng": 77.7518, "status": "Upcoming" },
+        { "stopName": "Vidya Mandir School Campus", "time": "08:25 AM", "lat": 12.9698, "lng": 77.7499, "status": "Destination" }
+      ]
+    }
+  ],
+  "libraryBooks": [
+    { "id": "LIB-001", "title": "NCERT Mathematics Class 10 with Exemplar Solutions", "author": "NCERT", "category": "Academic / CBSE", "available": 14, "total": 20, "isDigital": true, "digitalUrl": "#" },
+    { "id": "LIB-002", "title": "Concepts of Physics (Vol 1 & 2)", "author": "Dr. H. C. Verma", "category": "Sciences", "available": 8, "total": 15, "isDigital": true, "digitalUrl": "#" },
+    { "id": "LIB-003", "title": "Wings of Fire: An Autobiography", "author": "Dr. A. P. J. Abdul Kalam", "category": "Biography / Inspiration", "available": 6, "total": 10, "isDigital": true, "digitalUrl": "#" },
+    { "id": "LIB-004", "title": "Python for Artificial Intelligence & Data Science", "author": "Guido van Rossum / O'Reilly", "category": "Computer Science / STEM", "available": 11, "total": 12, "isDigital": true, "digitalUrl": "#" },
+    { "id": "LIB-005", "title": "ಮಲೆಗಳಲ್ಲಿ ಮದುಮಗಳು (Malegalalli Madumagalu)", "author": "Rashtrakavi Kuvempu", "category": "Kannada Literature", "available": 5, "total": 8, "isDigital": false, "digitalUrl": null },
+    { "id": "LIB-006", "title": "A Brief History of Time", "author": "Prof. Stephen Hawking", "category": "Cosmology / Science", "available": 4, "total": 6, "isDigital": true, "digitalUrl": "#" }
+  ],
+  "newsArticles": [
+    {
+      "id": "NEWS-2026-01",
+      "title": "Vidya Mandir Robotics Team Wins 1st Place at National STEM Olympiad 2026",
+      "kannadaTitle": "ರಾಷ್ಟ್ರೀಯ ರೋಬೋಟಿಕ್ಸ್ ಒಲಿಂಪಿಯಾಡ್ 2026 ರಲ್ಲಿ ವಿದ್ಯಾ ಮಂದಿರ ತಂಡಕ್ಕೆ ಪ್ರಥಮ ಸ್ಥಾನ",
+      "category": "Achievements",
+      "date": "2026-08-10",
+      "author": "Department of STEM & Innovation",
+      "summary": "Our Class 10 & 11 Atal Tinkering Lab team built an autonomous flood-rescue rover utilizing computer vision and edge AI, competing against 320 schools nationwide.",
+      "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+      "tags": ["Robotics", "ATL", "STEM", "National Champions"]
+    },
+    {
+      "id": "NEWS-2026-02",
+      "title": "CBSE Class 10 & 12 Board Results 2026: 100% Pass Percentage with 104 School Distinctions",
+      "kannadaTitle": "ಸಿಬಿಎಸ್‌ಇ 10 ಮತ್ತು 12ನೇ ತರಗತಿ ಫಲಿತಾಂಶ 2026: ಶೇಕಡಾ 100 ರಷ್ಟು ತೇರ್ಗಡೆ",
+      "category": "Academics",
+      "date": "2026-07-28",
+      "author": "Office of the Principal",
+      "summary": "Heartiest congratulations to our brilliant batches of Class 10 and 12 for continuing our 20-year legacy of 100% board pass results. Rohan Verma topped Class 12 Science with 98.4%.",
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
+      "tags": ["CBSE Results", "Toppers", "Academic Excellence"]
+    },
+    {
+      "id": "NEWS-2026-03",
+      "title": "Annual Inter-School Sports Meet 'Khel Utsav 2026' Inaugurated by Olympian Ashwini Nachappa",
+      "kannadaTitle": "ವಾರ್ಷಿಕ ಕ್ರೀಡಾಕೂಟ 'ಖೇಲ್ ಉತ್ಸವ 2026' ಉದ್ಘಾಟನೆ",
+      "category": "Sports",
+      "date": "2026-08-02",
+      "author": "Physical Education Department",
+      "summary": "Over 1,200 student athletes from 35 premier CBSE schools across Bengaluru participated in Track & Field, Basketball, Badminton, Chess, and Swimming events.",
+      "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
+      "tags": ["Sports Meet", "Athletics", "Champions"]
+    }
+  ],
+  "urgentAlert": {
+    "enabled": true,
+    "text": "Admissions Open for Academic Year 2026-27 (Pre-Nursery to Class XI) | CBSE Board Examination Schedule Released | RTE 25% Free Seat Applications Open",
+    "kannadaText": "2026-27 ಶೈಕ್ಷಣಿಕ ವರ್ಷದ ಪ್ರವೇಶಾತಿಗಳು ಆರಂಭವಾಗಿವೆ | RTE 25% ಮೀಸಲಾತಿ ಅರ್ಜಿಗಳು ಲಭ್ಯವಿದೆ",
+    "link": "/admissions"
+  },
+  "upcomingEvents": [
+    {
+      "id": "EVT-01",
+      "title": "CBSE Mid-Term Summative Assessments (Class 6 to 12)",
+      "date": "2026-09-15 to 2026-09-26",
+      "time": "09:00 AM - 12:30 PM",
+      "venue": "Academic Examination Halls",
+      "category": "Exams"
+    },
+    {
+      "id": "EVT-02",
+      "title": "Parent-Teacher Conference (PTM) - Term 1 Progress Review",
+      "date": "2026-10-03",
+      "time": "08:30 AM - 02:00 PM",
+      "venue": "Respective Homerooms & Aryabhata Block",
+      "category": "Parent Meet"
+    },
+    {
+      "id": "EVT-03",
+      "title": "Kalarava 2026 - Annual Cultural Fest & Kannada Rajyotsava Celebrations",
+      "date": "2026-11-01",
+      "time": "04:30 PM - 09:00 PM",
+      "venue": "Sir M. Visvesvaraya Open Air Amphitheatre",
+      "category": "Cultural"
+    },
+    {
+      "id": "EVT-04",
+      "title": "Annual National Science & Atal Tinkering Innovation Expo",
+      "date": "2026-11-20",
+      "time": "10:00 AM - 04:00 PM",
+      "venue": "STEM & Robotics Labs",
+      "category": "Exhibition"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "GAL-2026-01",
+      "academicYear": "2026-27",
+      "eventName": "National STEM & Robotics Expo 2026",
+      "date": "2026-08-10",
+      "coverImage": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+      "photos": [
+        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80"
+      ],
+      "tags": ["STEM", "Robotics", "Science Expo"]
+    },
+    {
+      "id": "GAL-2026-02",
+      "academicYear": "2026-27",
+      "eventName": "Investiture Ceremony & Student Council Badging 2026",
+      "date": "2026-06-25",
+      "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
+      "photos": [
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&auto=format&fit=crop&q=80"
+      ],
+      "tags": ["Leadership", "Investiture", "Student Council"]
+    },
+    {
+      "id": "GAL-2025-01",
+      "academicYear": "2025-26",
+      "eventName": "Annual Cultural Extravaganza 'Tarang 2025'",
+      "date": "2025-12-18",
+      "coverImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
+      "photos": [
+        "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1469488865564-c2de10f69f96?w=800&auto=format&fit=crop&q=80"
+      ],
+      "tags": ["Annual Day", "Dance", "Drama", "Music"]
+    },
+    {
+      "id": "GAL-2025-02",
+      "academicYear": "2025-26",
+      "eventName": "Inter-House Athletics & Swimming Championship",
+      "date": "2025-11-14",
+      "coverImage": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
+      "photos": [
+        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&auto=format&fit=crop&q=80"
+      ],
+      "tags": ["Sports", "Athletics", "Swimming"]
+    },
+    {
+      "id": "GAL-2024-01",
+      "academicYear": "2024-25",
+      "eventName": "Founder's Day & Silver Jubilee Memorial",
+      "date": "2024-09-05",
+      "coverImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+      "photos": [
+        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80"
+      ],
+      "tags": ["Founders Day", "Milestone"]
+    }
+  ],
+  "admissions": [
+    {
+      "id": "ADM-2026-001",
+      "trackingId": "VMIS-2026-0491",
+      "studentName": "Karan Singhania",
+      "applyingGrade": "Class 11 - Science (PCMC)",
+      "academicYear": "2026-27",
+      "dob": "2010-03-15",
+      "gender": "Male",
+      "parentName": "Suresh Singhania",
+      "parentEmail": "suresh.singhania@yahoo.co.in",
+      "parentPhone": "+91 98860 44556",
+      "isRTEQuota": false,
+      "parentalConsentGiven": true,
+      "previousSchool": "Delhi Public School, Bangalore East",
+      "previousMarksPercent": 94.2,
+      "status": "Approved & Enrolled",
+      "submittedDate": "2026-08-01",
+      "documents": {
+        "birthCertificate": "uploaded_birth_cert.pdf",
+        "marksSheet": "class10_term1_marks.pdf",
+        "transferCertificate": "tc_previous_school.pdf"
+      },
+      "adminRemarks": "Document verification completed. Entrance aptitude test cleared with distinction (Score: 92/100). Allotted Section 11-A."
+    },
+    {
+      "id": "ADM-2026-002",
+      "trackingId": "VMIS-2026-0504",
+      "studentName": "Pooja Basavaraj",
+      "applyingGrade": "Class 1",
+      "academicYear": "2026-27",
+      "dob": "2020-07-11",
+      "gender": "Female",
+      "parentName": "Basavaraj M.",
+      "parentEmail": "basavaraj.m@outlook.com",
+      "parentPhone": "+91 94480 12890",
+      "isRTEQuota": true,
+      "parentalConsentGiven": true,
+      "previousSchool": "Government Primary Anganwadi, Varthur",
+      "previousMarksPercent": null,
+      "status": "RTE 25% Quota Verified",
+      "submittedDate": "2026-08-05",
+      "documents": {
+        "birthCertificate": "pooja_birth_cert.pdf",
+        "incomeCertificate": "tahsildar_income_cert.pdf",
+        "casteCertificate": "caste_cert_cat1.pdf"
+      },
+      "adminRemarks": "Eligible under RTE Section 12(1)(c) 25% disadvantaged group quota. Income and local resident proof verified."
+    },
+    {
+      "id": "ADM-2026-003",
+      "trackingId": "VMIS-2026-0518",
+      "studentName": "Divya Nambiar",
+      "applyingGrade": "Class 6",
+      "academicYear": "2026-27",
+      "dob": "2015-02-18",
+      "gender": "Female",
+      "parentName": "Rajan Nambiar",
+      "parentEmail": "rajan.nambiar@gmail.com",
+      "parentPhone": "+91 97310 99881",
+      "isRTEQuota": false,
+      "parentalConsentGiven": true,
+      "previousSchool": "National Public School, Indiranagar",
+      "previousMarksPercent": 89.5,
+      "status": "Under Review",
+      "submittedDate": "2026-08-14",
+      "documents": {
+        "birthCertificate": "divya_birth_cert.pdf",
+        "marksSheet": "class5_final_report.pdf"
+      },
+      "adminRemarks": "Application received. Verification in progress."
+    }
+  ],
+  "ptmSlots": [
+    {
+      "id": "PTM-01",
+      "teacherId": "USR-TCH-001",
+      "teacherName": "Smt. Radhika Nair (Maths & Class Teacher 10-A)",
+      "date": "2026-10-03",
+      "slot": "09:00 AM - 09:15 AM",
+      "bookedBy": "USR-PAR-001",
+      "studentName": "Aarav Sharma",
+      "agenda": "Discussing Class 10 CBSE Board exam strategy & Math Olympiad prep",
+      "status": "Confirmed"
+    },
+    {
+      "id": "PTM-02",
+      "teacherId": "USR-TCH-001",
+      "teacherName": "Smt. Radhika Nair (Maths & Class Teacher 10-A)",
+      "date": "2026-10-03",
+      "slot": "09:20 AM - 09:35 AM",
+      "bookedBy": null,
+      "studentName": null,
+      "agenda": null,
+      "status": "Available"
+    },
+    {
+      "id": "PTM-03",
+      "teacherId": "USR-TCH-002",
+      "teacherName": "Shri Ramesh Kulkarni (Physics)",
+      "date": "2026-10-03",
+      "slot": "10:00 AM - 10:15 AM",
+      "bookedBy": null,
+      "studentName": null,
+      "agenda": null,
+      "status": "Available"
+    }
+  ],
+  "consentForms": [
+    {
+      "id": "CNS-2026-01",
+      "title": "Educational Field Trip to Visvesvaraya Industrial & Technological Museum (VITM)",
+      "targetGrade": "Class 10 (All Sections)",
+      "dateOfEvent": "2026-09-08",
+      "costPerStudent": "₹650 (Includes AC Volvo Transport & Museum Entry)",
+      "description": "Interactive physics & space technology field study aligned with CBSE Chapter 10 Light and Space Exploration syllabus.",
+      "signedBy": [
+        { "parentId": "USR-PAR-001", "studentId": "USR-STU-001", "signedAt": "2026-08-15T11:20:00Z", "parentName": "Rajesh Sharma", "status": "Consent Approved" }
+      ]
+    },
+    {
+      "id": "CNS-2026-02",
+      "title": "Consent for Publishing Student Academic & Sports Photographs on School Website & Annual Magazine",
+      "targetGrade": "All Classes (Annual DPDP Verifiable Consent)",
+      "dateOfEvent": "Academic Year 2026-27",
+      "costPerStudent": "Free",
+      "description": "In accordance with India's Digital Personal Data Protection (DPDP) Act 2023, verifiable parental consent is required before publishing photos of minor students.",
+      "signedBy": [
+        { "parentId": "USR-PAR-001", "studentId": "USR-STU-001", "signedAt": "2026-06-05T09:10:00Z", "parentName": "Rajesh Sharma", "status": "Consent Approved" },
+        { "parentId": "USR-PAR-001", "studentId": "USR-STU-002", "signedAt": "2026-06-05T09:10:00Z", "parentName": "Rajesh Sharma", "status": "Consent Approved" }
+      ]
+    }
+  ],
+  "staffLeaveRequests": [
+    {
+      "id": "LEV-001",
+      "teacherId": "USR-TCH-001",
+      "teacherName": "Smt. Radhika Nair",
+      "leaveType": "Casual Leave (CL)",
+      "fromDate": "2026-08-28",
+      "toDate": "2026-08-29",
+      "days": 2,
+      "reason": "Attending CBSE Mathematics Pedagogy Workshop at CBSE Regional Office Bengaluru",
+      "status": "Approved by Principal"
+    }
+  ]
+}
