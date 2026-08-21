@@ -8,58 +8,72 @@ export default function HeroSection() {
   return (
     <section
       aria-label='Welcome to St. Joseph English High School'
-      className='w-full mt-[80px] md:mt-[96px] bg-[#071A2B] relative flex items-center justify-center'
+      className='w-full min-h-[90svh] md:min-h-0 bg-[#071A2B] relative flex items-center justify-center overflow-hidden'
     >
-      {/* Background Image - Natural aspect ratio prevents cropping */}
-      <div className="w-full relative">
+      {/* Background Image - Responsive full cover on mobile, natural aspect ratio on desktop */}
+      <div className="w-full h-full min-h-[90svh] md:min-h-0 relative">
         <motion.img
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          src='/images/hero-campus-wide.jpg'
+          src='/images/hero-campus-chatgpt.png'
           alt='St. Joseph English High School campus'
           loading='eager'
-          fetchPriority='high'
-          className='w-full h-auto object-contain md:object-cover md:max-h-[85vh]'
+          className='w-full h-full min-h-[90svh] md:min-h-0 md:h-auto object-cover object-center md:block'
         />
 
         {/* Improved Cinematic Overlay for better UI text contrast */}
         <div
           className='absolute inset-0 z-10 pointer-events-none'
           style={{
-            background: 'radial-gradient(circle at top, rgba(5, 24, 43, 0.15) 0%, rgba(5, 24, 43, 0.7) 100%)'
+            background: 'radial-gradient(circle at top, rgba(255, 255, 255, 0.1) 0%, rgba(5, 24, 43, 0.4) 100%)'
           }}
         />
 
         {/* Top-Aligned Content over Image */}
-        <div className='absolute inset-0 z-30 flex flex-col items-center justify-start text-center px-4 md:px-8 pt-8 md:pt-16'>
+        <div className='absolute inset-0 z-30 flex flex-col items-center justify-start text-center px-3 sm:px-6 md:px-8 pt-20 md:pt-24'>
           
           {/* Identity Group */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className='font-cormorant font-bold text-white uppercase drop-shadow-2xl'
-            style={{ fontSize: 'clamp(36px, 5.5vw, 84px)', letterSpacing: '-0.02em', lineHeight: 1.1 }}
+            className='font-montserrat font-semibold uppercase flex flex-col items-center w-full'
+            style={{ 
+              color: '#F7F5EF',
+              textShadow: '0 2px 14px rgba(7, 29, 45, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)'
+            }}
           >
-            St. Joseph <span className="block md:inline">English High School</span>
+            <span 
+              className='tracking-[-0.01em] w-full' 
+              style={{ fontSize: 'clamp(27px, 6.5vw, 76px)', lineHeight: 1.15 }}
+            >
+              ST. JOSEPH ENGLISH HIGH
+            </span>
+            <span 
+              className='font-medium tracking-[0.22em]'
+              style={{ fontSize: 'clamp(18px, 4.2vw, 48px)', lineHeight: 1.25, marginTop: '4px', opacity: 0.95 }}
+            >
+              SCHOOL
+            </span>
           </motion.h1>
 
-          {/* Action Buttons */}
-          <motion.div
-            className='mt-6 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Link
-              to='/admissions'
-              className='bg-white text-black text-[12px] md:text-[14px] font-bold rounded-full px-8 py-3.5 md:px-10 md:py-4 hover:bg-brand-blue-600 hover:text-white shadow-xl transition-all duration-300 uppercase tracking-widest'
-            >
-              Apply for 2026–2027
-            </Link>
-          </motion.div>
         </div>
+
+        {/* Action Button - Bottom Right */}
+        <motion.div
+          className='absolute bottom-6 right-6 md:bottom-10 md:right-10 z-40'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <Link
+            to='/admissions'
+            className='bg-white text-black text-[12px] md:text-[14px] font-bold rounded-full px-8 py-3.5 md:px-10 md:py-4 hover:bg-brand-blue-600 hover:text-white shadow-2xl transition-all duration-300 uppercase tracking-widest block'
+          >
+            Apply for 2026–2027
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

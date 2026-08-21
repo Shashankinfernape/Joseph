@@ -48,36 +48,40 @@ export default function Header() {
     { path: '/infrastructure', label: 'Campus Life' },
   ];
 
-  // Clean white header with black text
-  const headerBg = 'bg-white shadow-sm border-b border-gray-100';
+  // Dynamic header background based on scroll position
+  const headerBg = isAtTop 
+    ? 'bg-transparent border-transparent shadow-none' 
+    : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100';
   const textColor = 'text-black font-bold tracking-wide';
-  const iconHover = 'hover:bg-gray-100 hover:text-brand-blue-600';
+  const iconHover = isAtTop 
+    ? 'hover:bg-black/5 hover:text-brand-blue-600' 
+    : 'hover:bg-gray-100 hover:text-brand-blue-600';
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ease-in-out ${headerBg}`}>
-        <div className="w-full px-4 md:px-8 flex items-center justify-between max-w-[1600px] mx-auto h-20 md:h-24">
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${headerBg}`}>
+        <div className="w-full px-4 md:px-8 flex items-center justify-between max-w-[1600px] mx-auto h-14 md:h-16">
           
           {/* Left Column (Logo) */}
-          <div className="flex-1 flex justify-start items-center">
-            <Link to="/" className="flex items-center gap-4 group">
+          <div className="flex-1 flex justify-start items-center relative h-full">
+            <Link to="/" className="flex items-center absolute top-1 md:top-2 w-16 md:w-24 group">
               <img 
                 src="/images/school-crest-transparent.png" 
                 alt="St. Joseph" 
-                className="w-12 h-12 md:w-16 md:h-16 object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-md"
+                className="w-14 h-14 md:w-20 md:h-20 object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
               />
             </Link>
           </div>
 
-          {/* Center Column (Navigation - Desktop) */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Center Column (Navigation - Visible until phone mode) */}
+          <div className="hidden md:flex items-center gap-3 lg:gap-7">
             {navLinks.map((link) => {
               const active = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-[13px] font-semibold tracking-[0.1em] uppercase transition-colors relative group ${textColor}`}
+                  className={`text-[11px] lg:text-[13px] font-semibold tracking-[0.08em] lg:tracking-[0.1em] uppercase transition-colors relative group whitespace-nowrap ${textColor}`}
                 >
                   <span className={active ? '' : 'opacity-80 group-hover:opacity-100'}>{link.label}</span>
                   {active && (
@@ -175,9 +179,9 @@ export default function Header() {
               </div>
             )}
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle (Only on phone screens) */}
             <button 
-              className={`lg:hidden flex items-center p-2 ml-2 rounded-full transition-colors shrink-0 ${textColor} ${iconHover}`}
+              className={`md:hidden flex items-center p-2 ml-2 rounded-full transition-colors shrink-0 ${textColor} ${iconHover}`}
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <List size={26} weight="bold" />

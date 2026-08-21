@@ -60,6 +60,8 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        montserrat: ['"Montserrat"', '"Avenir Next"', 'sans-serif'],
+        manrope: ['"Manrope"', 'sans-serif'],
         display: ['"Sora"', 'sans-serif'],
         accent: ['"Fraunces"', 'serif'],
         cormorant: ['"Cormorant Garamond"', 'serif']
