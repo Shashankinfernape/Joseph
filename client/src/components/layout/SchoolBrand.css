@@ -1,0 +1,140 @@
+/* ── Container ── */
+.school-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 48px);
+  width: auto;
+  padding: 16px 0;
+}
+
+/* ── Crest ── */
+.school-logo {
+  flex: 0 0 auto;
+  width: clamp(100px, 9vw, 125px);
+}
+
+.school-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Info block ── */
+.school-info {
+  min-width: 0;
+  max-width: 700px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Main heading ── */
+.school-info h1 {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px; /* Natural space between the words */
+  white-space: nowrap;
+}
+
+.school-info h1 .title-primary,
+.school-info h1 .title-secondary {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(24px, 3.5vw, 42px);
+  color: #172554;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Hairline Gold Rule ── */
+.gold-rule {
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 168, 90, 0.7), transparent);
+  margin: 6px 0 8px; /* Tighter spacing */
+}
+
+/* ── Affiliation line ── */
+.school-info .affiliation {
+  margin: 0 0 3px; /* Tighter spacing */
+  color: #536174;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.school-info .affiliation span {
+  margin: 0 6px;
+  color: #8a96a8;
+}
+
+/* ── Location line ── */
+.school-info .location {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(12px, 1.3vw, 15px);
+  font-weight: 500;
+  color: #159BD3;
+  letter-spacing: 0.02em;
+}
+
+.school-info .location span {
+  margin: 0 6px;
+  color: #76b8d2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .school-info h1 {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    white-space: normal;
+  }
+  
+  .school-info h1 .title-primary {
+    font-size: clamp(28px, 6vw, 42px);
+  }
+  
+  .school-info h1 .title-secondary {
+    font-size: clamp(15px, 3.5vw, 24px);
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 768px) {
+  .school-brand {
+    gap: 16px;
+    padding: 12px 0;
+  }
+
+  .school-logo {
+    width: 85px;
+  }
+  
+  .gold-rule {
+    margin: 6px 0 8px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 500px) {
+  .school-brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .school-logo {
+    width: 75px;
+  }
+}

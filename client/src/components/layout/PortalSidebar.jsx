@@ -32,7 +32,6 @@ const ROLE_CONFIG = {
       { to: '/my/timetable', label: 'Timetable', icon: CalendarBlank },
       { to: '/my/attendance', label: 'Attendance', icon: CheckSquare },
       { to: '/my/grades', label: 'Grades', icon: ChartBar },
-      { to: '/my/fees', label: 'Fees', icon: CurrencyInr },
       { to: '/my/library', label: 'Library', icon: Books },
       { to: '/my/transport', label: 'Transport', icon: Bus },
     ]
@@ -41,7 +40,6 @@ const ROLE_CONFIG = {
     label: 'Parent Portal',
     links: [
       { to: '/dashboard', label: 'Dashboard', icon: House, exact: true },
-      { to: '/my/fees', label: 'Fees & Payments', icon: CurrencyInr },
       { to: '/my/ptm', label: 'Book PTM', icon: CalendarCheck },
       { to: '/my/consent', label: 'Consent Forms', icon: Signature },
     ]
@@ -62,7 +60,6 @@ const ROLE_CONFIG = {
     links: [
       { to: '/dashboard', label: 'Dashboard', icon: House, exact: true },
       { to: '/admin/admissions', label: 'Admissions', icon: GraduationCap },
-      { to: '/admin/finance', label: 'Finance', icon: Wallet },
       { to: '/admin/timetable', label: 'Timetable', icon: CalendarBlank },
       { to: '/admin/users', label: 'Users', icon: UsersThree },
       { to: '/admin/cms', label: 'CMS', icon: Newspaper },

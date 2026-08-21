@@ -10,30 +10,69 @@ import { cn } from '../../lib/utils';
 export default function Academics() {
   const { t } = useLanguage();
   const { role } = useAuth();
-  const [activeTab, setActiveTab] = useState('foundational');
+  const [activeTab, setActiveTab] = useState('pre-primary');
 
   const STAGES = [
-    { id: 'foundational', name: 'Foundational', detail: 'Pre-K to Class 2', age: 'Ages 3–8', icon: Sparkle },
-    { id: 'preparatory', name: 'Preparatory', detail: 'Class 3 to 5', age: 'Ages 8–11', icon: BookOpen },
-    { id: 'middle', name: 'Middle', detail: 'Class 6 to 8', age: 'Ages 11–14', icon: Target },
-    { id: 'secondary', name: 'Secondary', detail: 'Class 9 & 10', age: 'Ages 14–16', icon: Certificate },
-    { id: 'senior', name: 'Senior', detail: 'Class 11 & 12', age: 'Ages 16–18', icon: Books }
+    { id: 'pre-primary', name: 'Pre-Primary', detail: 'Nursery to UKG', icon: Sparkle },
+    { id: 'primary', name: 'Primary School', detail: 'Grades 1 to 5', icon: BookOpen },
+    { id: 'middle', name: 'Middle School', detail: 'Grades 6 to 8', icon: Target },
+    { id: 'secondary', name: 'Secondary School', detail: 'Grades 9 & 10', icon: Certificate }
   ];
+
+  const curriculumData = {
+    'pre-primary': {
+      title: 'Pre-Primary',
+      description: 'A nurturing environment focusing on foundational skills, sensory development, and early learning.',
+      grades: [
+        { grade: 'Nursery', subjects: ['English', 'Numbers & Early Math', 'General Awareness', 'Rhymes & Storytelling', 'Art & Craft', 'Music & Movement', 'Physical Activities'] },
+        { grade: 'LKG', subjects: ['English', 'Numbers & Early Math', 'Kannada', 'General Awareness', 'Rhymes & Storytelling', 'Art & Craft', 'Music & Movement', 'Physical Activities'] },
+        { grade: 'UKG', subjects: ['English', 'Mathematics', 'Kannada', 'Hindi (Introduction)', 'Environmental Awareness', 'Art & Craft', 'Music', 'Physical Education'] }
+      ]
+    },
+    'primary': {
+      title: 'Primary School',
+      description: 'Building a strong foundation in core subjects while encouraging curiosity and creative expression.',
+      grades: [
+        { grade: 'Grade 1', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Environmental Studies', 'Computer Science', 'General Knowledge', 'Art & Craft', 'Physical Education', 'Music'] },
+        { grade: 'Grade 2', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Environmental Studies', 'Computer Science', 'General Knowledge', 'Art & Craft', 'Physical Education', 'Music'] },
+        { grade: 'Grade 3', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Environmental Studies', 'Computer Science', 'General Knowledge', 'Art & Craft', 'Physical Education', 'Music'] },
+        { grade: 'Grade 4', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Studies', 'Computer Science', 'General Knowledge', 'Art & Craft', 'Physical Education'] },
+        { grade: 'Grade 5', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Studies', 'Computer Science', 'General Knowledge', 'Art & Craft', 'Physical Education'] }
+      ]
+    },
+    'middle': {
+      title: 'Middle School',
+      description: 'Fostering analytical thinking, deeper subject knowledge, and essential life skills.',
+      grades: [
+        { grade: 'Grade 6', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Science', 'General Knowledge', 'Art Education', 'Physical Education'] },
+        { grade: 'Grade 7', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Science', 'General Knowledge', 'Art Education', 'Physical Education'] },
+        { grade: 'Grade 8', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Science', 'Art Education', 'Physical Education', 'Life Skills'] }
+      ]
+    },
+    'secondary': {
+      title: 'Secondary School',
+      description: 'Rigorous preparation for board examinations with specialized subject choices.',
+      grades: [
+        { grade: 'Grade 9', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Information Technology / Computer Applications', 'Physical Education', 'Art Education'] },
+        { grade: 'Grade 10', subjects: ['English', 'Kannada', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Information Technology / Computer Applications', 'Physical Education', 'Art Education'] }
+      ]
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
       
-      {/* Header Section (Linear/Stripe style: Clean, precise, large typography) */}
+      {/* Header Section */}
       <section className="pt-24 pb-16 px-4 sm:px-8 max-w-[1024px] mx-auto text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius-full)] bg-secondary-container text-secondary text-[var(--text-label-small)] font-bold uppercase tracking-widest mb-6">
           <BookOpen weight="duotone" size={16} />
-          NEP 2020 Framework
+          Academic Framework
         </div>
         <h1 className="font-display text-5xl md:text-6xl font-bold tracking-tight text-on-surface mb-6">
-          Academic Excellence.
+          Curriculum & Subjects
         </h1>
         <p className="text-[var(--text-title-medium)] text-on-surface-variant max-w-2xl mx-auto">
-          Our curriculum is engineered to ignite curiosity, encourage interdisciplinary problem solving, and prepare students for CBSE Board distinctions and competitive examinations.
+          Explore our structured academic progression from early years through secondary education, designed to nurture well-rounded individuals.
         </p>
       </section>
 
@@ -89,101 +128,40 @@ export default function Academics() {
           {/* Content Area */}
           <div className="lg:w-3/4 min-h-[400px]">
             <AnimatePresence mode="wait">
-              {activeTab === 'foundational' && (
-                <motion.div 
-                  key="foundational"
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8"
-                >
-                  <div>
-                    <h2 className="font-display text-4xl font-bold text-on-surface mb-4">Foundational Stage</h2>
-                    <p className="text-[var(--text-body-large)] text-on-surface-variant leading-relaxed">
-                      Emphasizes activity-based, play-centric learning with sensorial development, Jolly Phonics for English reading, bilingual oral competency, early mathematical logic through manipulative toys, and value education.
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <PremiumCard hoverEffect={false}>
-                      <PremiumCardHeader>
-                        <Translate size={32} weight="duotone" className="text-primary mb-2" />
-                        <PremiumCardTitle>Language & Phonics</PremiumCardTitle>
-                        <PremiumCardDescription>Jolly Phonics framework, bilingual oral competency in Kannada and Hindi.</PremiumCardDescription>
-                      </PremiumCardHeader>
-                    </PremiumCard>
-                    <PremiumCard hoverEffect={false}>
-                      <PremiumCardHeader>
-                        <Atom size={32} weight="duotone" className="text-secondary mb-2" />
-                        <PremiumCardTitle>Cognitive Skills</PremiumCardTitle>
-                        <PremiumCardDescription>Manipulative toys, sensorial development, and foundational mathematical logic.</PremiumCardDescription>
-                      </PremiumCardHeader>
-                    </PremiumCard>
-                  </div>
-                </motion.div>
-              )}
-              
-              {activeTab === 'senior' && (
-                <motion.div 
-                  key="senior"
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8"
-                >
-                  <div>
-                    <h2 className="font-display text-4xl font-bold text-on-surface mb-4">Senior Secondary (Classes 11 & 12)</h2>
-                    <p className="text-[var(--text-body-large)] text-on-surface-variant leading-relaxed">
-                      Rigorous senior secondary education offering Science, Commerce, and Humanities streams with integrated coaching for competitive examinations.
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <PremiumCard hoverEffect>
-                      <PremiumCardHeader>
-                        <div className="w-10 h-10 rounded-[var(--radius-small)] bg-primary-container text-primary flex items-center justify-center mb-4">
-                          <Atom size={24} weight="duotone" />
-                        </div>
-                        <PremiumCardTitle>Science</PremiumCardTitle>
-                        <PremiumCardDescription>Physics, Chemistry, Math/Biology, CS. Integrated JEE/NEET prep.</PremiumCardDescription>
-                      </PremiumCardHeader>
-                    </PremiumCard>
-                    <PremiumCard hoverEffect>
-                      <PremiumCardHeader>
-                        <div className="w-10 h-10 rounded-[var(--radius-small)] bg-secondary-container text-secondary flex items-center justify-center mb-4">
-                          <Graph size={24} weight="duotone" />
-                        </div>
-                        <PremiumCardTitle>Commerce</PremiumCardTitle>
-                        <PremiumCardDescription>Accountancy, Business Studies, Economics, Applied Math.</PremiumCardDescription>
-                      </PremiumCardHeader>
-                    </PremiumCard>
-                    <PremiumCard hoverEffect>
-                      <PremiumCardHeader>
-                        <div className="w-10 h-10 rounded-[var(--radius-small)] bg-tertiary-container text-tertiary flex items-center justify-center mb-4">
-                          <Books size={24} weight="duotone" />
-                        </div>
-                        <PremiumCardTitle>Humanities</PremiumCardTitle>
-                        <PremiumCardDescription>History, Pol. Science, Economics/Psychology, Legal Studies.</PremiumCardDescription>
-                      </PremiumCardHeader>
-                    </PremiumCard>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Similar blocks would go here for preparatory, middle, secondary, omitted for brevity but keeping structure */}
-              {(activeTab === 'preparatory' || activeTab === 'middle' || activeTab === 'secondary') && (
-                <motion.div 
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                  className="space-y-8"
-                >
-                  <div>
-                    <h2 className="font-display text-4xl font-bold text-on-surface mb-4 capitalize">{activeTab} Stage</h2>
-                    <p className="text-[var(--text-body-large)] text-on-surface-variant leading-relaxed">
-                      Subject-specialized instruction with rigorous conceptual depth. Students engage deeply with the curriculum through active learning and modern laboratory access.
-                    </p>
-                  </div>
-                  <PremiumCard hoverEffect={false}>
-                    <PremiumCardContent className="pt-6">
-                      <div className="text-on-surface-variant">Detailed curriculum mapping available in the syllabus repository.</div>
-                    </PremiumCardContent>
-                  </PremiumCard>
-                </motion.div>
-              )}
+              {Object.entries(curriculumData).map(([key, data]) => (
+                activeTab === key && (
+                  <motion.div 
+                    key={key}
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                    className="space-y-8"
+                  >
+                    <div>
+                      <h2 className="font-display text-4xl font-bold text-on-surface mb-4">{data.title}</h2>
+                      <p className="text-[var(--text-body-large)] text-on-surface-variant leading-relaxed">
+                        {data.description}
+                      </p>
+                    </div>
+                    <div className="space-y-6">
+                      {data.grades.map((gradeData, idx) => (
+                        <PremiumCard key={idx} hoverEffect={false}>
+                          <PremiumCardHeader>
+                            <PremiumCardTitle>{gradeData.grade}</PremiumCardTitle>
+                          </PremiumCardHeader>
+                          <PremiumCardContent>
+                            <div className="flex flex-wrap gap-2 pt-2">
+                              {gradeData.subjects.map((subject, sIdx) => (
+                                <span key={sIdx} className="px-3 py-1 bg-surface-container text-on-surface rounded-md text-[var(--text-label-medium)] font-medium border border-[var(--outline-variant)]">
+                                  {subject}
+                                </span>
+                              ))}
+                            </div>
+                          </PremiumCardContent>
+                        </PremiumCard>
+                      ))}
+                    </div>
+                  </motion.div>
+                )
+              ))}
             </AnimatePresence>
           </div>
         </div>

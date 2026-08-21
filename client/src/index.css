@@ -1,83 +1,60 @@
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource/sora";
-@import "@fontsource/plus-jakarta-sans";
-@import "@fontsource/fraunces";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    @apply font-sans;
+  :root {
+    --brand-blue-500: #19B5F1;
+    --brand-blue-600: #009FE3;
+    
+    --brand-navy-900: #071A2B;
+    --brand-navy-800: #0B2942;
+    
+    --brand-yellow-400: #FFD43B;
+    --brand-yellow-500: #F7C948;
+    
+    --brand-orange-500: #FF9F1C;
+    --brand-coral-500: #F05A47;
+    --brand-green-500: #35B779;
+    
+    --brand-surface: #FFFFFF;
+    --brand-surface-blue: #EAF8FE;
+    --brand-surface-yellow: #FFF8D9;
+    --brand-surface-green: #ECFAF2;
+    --brand-surface-dark: #0B2942;
+    
+    --brand-text-primary: #102A43;
+    --brand-text-secondary: #475569;
+    --brand-text-muted: #64748B;
   }
 
   body {
-    background-color: var(--surface);
-    color: var(--dark);
-  }
-
-  :root {
-    --primary: #2563EB;
-    --primary-foreground: #FFFFFF;
-    --primary-container: #DBEAFE;
-    
-    --warm: #F59E0B;
-    --success: #10B981;
-    --accent: #8B5CF6;
-    
-    --surface: #FFFBF5;
-    --surface-container: #F3F4F6;
-    --surface-container-high: #E5E7EB;
-    
-    --dark: #1E1B4B;
-    --on-surface: #1E1B4B;
-    --on-surface-variant: #4B5563;
-
-    --background: var(--surface);
-    --foreground: var(--dark);
-    --card: #FFFFFF;
-    --card-foreground: var(--dark);
-    --popover: #FFFFFF;
-    --popover-foreground: var(--dark);
-    --secondary: #F3F4F6;
-    --secondary-container: #E5E7EB;
-    --secondary-foreground: var(--dark);
-    --muted: #F3F4F6;
-    --muted-foreground: #6B7280;
-    --destructive: #EF4444;
-    --destructive-foreground: #FFFFFF;
-    --border: #E5E7EB;
-    --outline: #D1D5DB;
-    --outline-variant: #E5E7EB;
-    --input: #E5E7EB;
-    --ring: var(--primary);
-    --radius: 1rem;
-    
-    --elevation-1: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --elevation-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --elevation-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    @apply antialiased text-[color:var(--brand-text-primary)] bg-[color:var(--brand-surface)];
   }
 }
 
-.gradient-warm {
-  background: linear-gradient(135deg, var(--warm) 0%, var(--primary) 100%);
-}
-.gradient-photo-overlay {
-  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(30,27,75,0.8) 100%);
+.ambient-glow {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(25, 181, 241, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(255, 212, 59, 0.08), transparent 25%),
+    radial-gradient(circle at 20% 80%, rgba(53, 183, 121, 0.08), transparent 26%),
+    radial-gradient(circle at 85% 80%, rgba(240, 90, 71, 0.06), transparent 25%),
+    var(--brand-surface);
+
+  filter: blur(70px);
+  animation: ambientDrift 24s ease-in-out infinite alternate;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes pulse-soft {
-  0% { opacity: 1; }
-  50% { opacity: 0.8; }
-  100% { opacity: 1; }
+@keyframes ambientDrift {
+  from {
+    transform: scale(1) translate3d(-1%, -1%, 0);
+  }
+  to {
+    transform: scale(1.05) translate3d(1%, 1%, 0);
+  }
 }

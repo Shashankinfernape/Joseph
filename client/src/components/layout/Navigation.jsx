@@ -34,7 +34,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="w-full bg-white font-sans border-b-[3px] border-black sticky top-20 z-40 shadow-sm">
+    <nav className="hidden md:block w-full bg-white font-sans border-b-[3px] border-black sticky top-20 z-40 shadow-sm">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         <div className="flex items-center overflow-x-auto no-scrollbar py-3 md:py-4 gap-6 md:gap-8">
           

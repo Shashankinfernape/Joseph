@@ -7,7 +7,7 @@ import { ToastProvider } from './context/ToastContext';
 
 // Layout
 import Header from './components/layout/Header';
-import Navigation from './components/layout/Navigation';
+
 import Footer from './components/layout/Footer';
 import PortalSidebar from './components/layout/PortalSidebar';
 import PortalRightRail from './components/layout/PortalRightRail';
@@ -32,7 +32,6 @@ import Accessibility from './pages/public/Accessibility';
 
 // Dashboard Views (Role-Aware)
 import DashboardResolver from './components/auth/DashboardResolver';
-import SharedFees from './pages/portals/SharedFees';
 
 // Student Pages
 import StudentAttendance from './pages/portals/student/StudentAttendance';
@@ -55,7 +54,6 @@ import TeacherHR from './pages/portals/teacher/TeacherHR';
 // Admin Pages
 import AdminAdmissions from './pages/portals/admin/AdminAdmissions';
 import AdminCMS from './pages/portals/admin/AdminCMS';
-import AdminFinance from './pages/portals/admin/AdminFinance';
 import AdminTimetable from './pages/portals/admin/AdminTimetable';
 import AdminCompliance from './pages/portals/admin/AdminCompliance';
 import AdminUsers from './pages/portals/admin/AdminUsers';
@@ -70,6 +68,7 @@ function LayoutWrapper({ children }) {
   if (isDashboardMode) {
     return (
       <div className="min-h-screen flex flex-col bg-white text-black font-sans">
+        <div className="ambient-glow"></div>
         <Header />
         <div className="flex-1 flex w-full max-w-[1600px] mx-auto">
           <PortalSidebar />
@@ -84,9 +83,9 @@ function LayoutWrapper({ children }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-cbse-gold selection:text-cbse-navy">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-cbse-gold selection:text-cbse-navy">
+      <div className="ambient-glow"></div>
       <Header />
-      <Navigation />
       <main className="flex-1">
         {children}
       </main>
@@ -123,9 +122,6 @@ export default function App() {
                   {/* Universal Dashboard Route */}
                   <Route path="/dashboard" element={<ProtectedRoute><DashboardResolver /></ProtectedRoute>} />
 
-                  {/* Shared Role Routes */}
-                  <Route path="/my/fees" element={<ProtectedRoute requiredRoles={['student', 'parent']}><SharedFees /></ProtectedRoute>} />
-
                   {/* Student Routes */}
                   <Route path="/my/grades" element={<ProtectedRoute requiredRole="student"><StudentGrades /></ProtectedRoute>} />
                   <Route path="/my/attendance" element={<ProtectedRoute requiredRole="student"><StudentAttendance /></ProtectedRoute>} />
@@ -147,7 +143,6 @@ export default function App() {
 
                   {/* Admin Routes */}
                   <Route path="/admin/admissions" element={<ProtectedRoute requiredRole="admin"><AdminAdmissions /></ProtectedRoute>} />
-                  <Route path="/admin/finance" element={<ProtectedRoute requiredRole="admin"><AdminFinance /></ProtectedRoute>} />
                   <Route path="/admin/timetable" element={<ProtectedRoute requiredRole="admin"><AdminTimetable /></ProtectedRoute>} />
                   <Route path="/admin/users" element={<ProtectedRoute requiredRole="admin"><AdminUsers /></ProtectedRoute>} />
                   <Route path="/admin/cms" element={<ProtectedRoute requiredRole="admin"><AdminCMS /></ProtectedRoute>} />

@@ -1,132 +1,92 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../../context/LanguageContext';
-import { 
-  ShieldCheck, 
-  MapPin, 
-  Phone, 
-  EnvelopeSimple, 
-  FacebookLogo,
-  InstagramLogo,
-  TwitterLogo,
-  YoutubeLogo,
-  GooglePlayLogo,
-  AppStoreLogo,
-  Bird as Owl
-} from '@phosphor-icons/react';
 
-export default function Footer() {
-  const { t } = useLanguage();
-
+const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white pt-16 pb-8 text-sm border-t-4 border-primary">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-slate-700">
-          
-          {/* Col 1: School Info & Mascot */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg animate-bounce">
-                <Owl weight="duotone" size={32} />
-              </div>
-              <span className="font-display font-bold text-2xl">
-                St. Joseph English High School CBSE School
-              </span>
-            </div>
-            
-            <p className="leading-relaxed text-slate-300">
-              An elite educational institution fostering academic excellence and holistic growth for the next generation of leaders.
-            </p>
+    <footer 
+      className='relative border-t border-brand-navy-800 text-white overflow-hidden'
+      style={{
+        background: `
+          radial-gradient(circle at 15% 30%, rgba(25,181,241,.18), transparent 30%),
+          radial-gradient(circle at 85% 70%, rgba(255,212,59,.08), transparent 25%),
+          #071A2B
+        `
+      }}
+    >
+      <div className='relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-20'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8'>
 
-            <div className="p-4 rounded-xl bg-slate-800 border border-slate-700">
-              <div className="flex items-center gap-2 font-semibold text-blue-400 mb-2">
-                <ShieldCheck size={20} weight="duotone" />
-                <span>CBSE Compliance</span>
-              </div>
-              <p className="text-xs text-slate-400 space-y-1">
-                <span className="block">Affiliation No: <strong className="text-slate-200">830942</strong></span>
-                <span className="block">School Code: <strong className="text-slate-200">45891</strong></span>
-                <span className="block">Valid until: <strong className="text-slate-200">31-03-2029</strong></span>
+          {/* Column 1: Brand */}
+          <div className='flex flex-col space-y-5'>
+            <div>
+              <h2 className='font-cormorant font-bold text-2xl text-white leading-tight uppercase'>St. Joseph</h2>
+              <p className='font-cormorant font-normal text-sm text-brand-blue-500 tracking-wider uppercase'>English High School</p>
+              <p className='font-sans text-xs text-brand-text-muted mt-3 leading-relaxed max-w-[220px]'>
+                CBSE Affiliated co-education institution. Classes I – XII. Est. 1985.
               </p>
+            </div>
+            <div className='text-sm font-sans text-brand-text-secondary space-y-1.5 flex flex-col'>
+              <p className='leading-relaxed text-slate-300'>Kothanur, Bengaluru<br />Karnataka, India</p>
+              <a href='tel:+918028445500' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>+91 80 2844 5500</a>
+              <a href='mailto:info@stjoseph.edu.in' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>info@stjoseph.edu.in</a>
             </div>
           </div>
 
-          {/* Col 2: Quick Links */}
-          <div className="space-y-6 md:pl-8">
-            <h3 className="font-semibold text-lg tracking-wide text-white">
-              Quick Links
-            </h3>
-            <ul className="space-y-3 font-medium text-slate-300">
-              <li><Link to="/admissions" className="hover:text-primary transition-colors flex items-center gap-2"><span className="text-primary/70">›</span> Admissions 2026-27</Link></li>
-              <li><Link to="/academics" className="hover:text-primary transition-colors flex items-center gap-2"><span className="text-primary/70">›</span> Curriculum & Streams</Link></li>
-              <li><Link to="/infrastructure" className="hover:text-primary transition-colors flex items-center gap-2"><span className="text-primary/70">›</span> Campus Facilities</Link></li>
-              <li><Link to="/mandatory-disclosure" className="hover:text-primary transition-colors flex items-center gap-2"><span className="text-primary/70">›</span> Mandatory Public Disclosures</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-primary transition-colors flex items-center gap-2"><span className="text-primary/70">›</span> Privacy Policy</Link></li>
+          {/* Column 2: Explore */}
+          <div className='flex flex-col space-y-5'>
+            <h3 className='font-sans font-semibold tracking-wider text-xs uppercase text-brand-blue-500'>Explore</h3>
+            <ul className='flex flex-col space-y-3 font-sans text-slate-300 text-sm'>
+              <li><Link to='/' className='hover:text-brand-blue-500 transition-colors'>Home</Link></li>
+              <li><Link to='/about-us' className='hover:text-brand-blue-500 transition-colors'>Our School</Link></li>
+              <li><Link to='/academics' className='hover:text-brand-blue-500 transition-colors'>Academics</Link></li>
+              <li><Link to='/admissions' className='hover:text-brand-blue-500 transition-colors'>Admissions</Link></li>
+              <li><Link to='/faculty' className='hover:text-brand-blue-500 transition-colors'>Our Teachers</Link></li>
+              <li><Link to='/gallery' className='hover:text-brand-blue-500 transition-colors'>Gallery</Link></li>
             </ul>
           </div>
 
-          {/* Col 3: Contact & Apps */}
-          <div className="space-y-6">
-            <h3 className="font-semibold text-lg tracking-wide text-white">
-              Contact & Social
-            </h3>
-            <div className="space-y-4 font-medium text-slate-300">
-              <div className="flex items-start gap-3">
-                <MapPin size={20} weight="duotone" className="text-primary shrink-0 mt-0.5" />
-                <span>Survey No. 48/2, Varthur Main Road, Whitefield, Bengaluru 560066</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={20} weight="duotone" className="text-primary shrink-0" />
-                <span>+91 80 2845 7890</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <EnvelopeSimple size={20} weight="duotone" className="text-primary shrink-0" />
-                <span>info@vidyamandir.edu.in</span>
-              </div>
-            </div>
+          {/* Column 3: Connect */}
+          <div className='flex flex-col space-y-5'>
+            <h3 className='font-sans font-semibold tracking-wider text-xs uppercase text-brand-blue-500'>Connect</h3>
+            <ul className='flex flex-col space-y-3 font-sans text-slate-300 text-sm'>
+              <li><Link to='/news-events' className='hover:text-brand-blue-500 transition-colors'>News &amp; Events</Link></li>
+              <li><Link to='/contact-us' className='hover:text-brand-blue-500 transition-colors'>Contact Us</Link></li>
+              <li><Link to='/infrastructure' className='hover:text-brand-blue-500 transition-colors'>Infrastructure</Link></li>
+              <li><Link to='/mandatory-disclosure' className='hover:text-brand-blue-500 transition-colors'>Mandatory Disclosure</Link></li>
+              <li><Link to='/privacy-policy' className='hover:text-brand-blue-500 transition-colors'>Privacy Policy</Link></li>
+              <li><Link to='/accessibility' className='hover:text-brand-blue-500 transition-colors'>Accessibility</Link></li>
+            </ul>
+          </div>
 
-            <div className="pt-4 flex flex-wrap gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors"><FacebookLogo size={20} weight="fill" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors"><TwitterLogo size={20} weight="fill" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors"><InstagramLogo size={20} weight="fill" /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-primary hover:text-white transition-colors"><YoutubeLogo size={20} weight="fill" /></a>
-            </div>
-
-            <div className="pt-2 flex flex-wrap gap-3">
-              <a href="#" className="flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors text-white">
-                <GooglePlayLogo size={20} weight="fill" />
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] leading-none text-slate-400">GET IT ON</span>
-                  <span className="text-xs font-bold leading-none">Google Play</span>
-                </div>
-              </a>
-              <a href="#" className="flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-lg hover:bg-slate-700 transition-colors text-white">
-                <AppStoreLogo size={20} weight="fill" />
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] leading-none text-slate-400">Download on the</span>
-                  <span className="text-xs font-bold leading-none">App Store</span>
-                </div>
-              </a>
+          {/* Column 4: Portal Access */}
+          <div className='flex flex-col space-y-5'>
+            <h3 className='font-sans font-semibold tracking-wider text-xs uppercase text-brand-blue-500'>Portal Access</h3>
+            <div className='flex flex-col items-start gap-3'>
+              <Link to='/login' className='text-sm text-slate-300 hover:text-brand-yellow-400 transition-colors flex items-center gap-2'>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue-500"></span> Student Portal
+              </Link>
+              <Link to='/login' className='text-sm text-slate-300 hover:text-brand-yellow-400 transition-colors flex items-center gap-2'>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-green-500"></span> Parent Portal
+              </Link>
+              <Link to='/login' className='text-sm text-slate-300 hover:text-brand-yellow-400 transition-colors flex items-center gap-2'>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-orange-500"></span> Teacher Portal
+              </Link>
+              <Link to='/login' className='text-sm text-slate-300 hover:text-brand-yellow-400 transition-colors flex items-center gap-2'>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-navy-900 border border-brand-navy-800"></span> Admin Portal
+              </Link>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-medium text-slate-400 text-xs sm:text-sm">
-          <div>
-            © {new Date().getFullYear()} St. Joseph English High School. {t('allRightsReserved')}
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors">{t('privacyPolicy')}</Link>
-            <span className="text-slate-700 hidden sm:inline">•</span>
-            <Link to="/accessibility" className="hover:text-white transition-colors">{t('accessibilityStatement')}</Link>
-            <span className="text-slate-700 hidden sm:inline">•</span>
-            <Link to="/contact-us" className="hover:text-white transition-colors">{t('navContact')}</Link>
-          </div>
+        {/* Bottom bar */}
+        <div className='border-t border-brand-navy-800 mt-16 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-brand-text-muted'>
+          <p>© {new Date().getFullYear()} St. Joseph English High School, Bengaluru. All rights reserved.</p>
+          <p>Designed with restraint.</p>
         </div>
-
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
