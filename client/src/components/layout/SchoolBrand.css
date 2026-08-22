@@ -34,22 +34,31 @@
 .school-info h1 {
   margin: 0;
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 8px; /* Natural space between the words */
+  gap: 2px;
   white-space: nowrap;
 }
 
-.school-info h1 .title-primary,
-.school-info h1 .title-secondary {
+.school-info h1 .title-primary {
   font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px);
   color: #172554;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1;
+}
+
+.school-info h1 .title-secondary {
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: clamp(12px, 1.6vw, 18px);
+  color: #172554;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 /* ── Hairline Gold Rule ── */

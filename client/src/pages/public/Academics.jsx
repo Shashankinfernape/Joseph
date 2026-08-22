@@ -102,22 +102,22 @@ export default function Academics() {
           <div className="lg:w-1/4 shrink-0">
             <div className="sticky top-24">
               <h3 className="text-[var(--text-label-medium)] font-bold text-on-surface-variant uppercase tracking-wider mb-4">Learning Journey</h3>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
                 {STAGES.map(stage => (
                   <button
                     key={stage.id}
                     onClick={() => setActiveTab(stage.id)}
                     className={cn(
-                      "flex items-center gap-3 text-left p-3 rounded-[var(--radius-small)] transition-all",
+                      "flex items-center gap-2 sm:gap-3 text-left p-2.5 sm:p-3 rounded-[var(--radius-small)] transition-all shrink-0 whitespace-nowrap lg:whitespace-normal",
                       activeTab === stage.id 
-                        ? "bg-primary-container text-primary font-medium" 
-                        : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
+                        ? "bg-primary-container text-primary font-medium shadow-sm" 
+                        : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface bg-surface-container-low lg:bg-transparent"
                     )}
                   >
                     <stage.icon size={20} weight={activeTab === stage.id ? "duotone" : "regular"} />
                     <div>
                       <div className="text-[var(--text-body-medium)]">{stage.name}</div>
-                      <div className="text-[var(--text-label-small)] opacity-80">{stage.detail}</div>
+                      <div className="text-[var(--text-label-small)] opacity-80 hidden sm:block lg:block">{stage.detail}</div>
                     </div>
                   </button>
                 ))}

@@ -58,3 +58,141 @@
     transform: scale(1.05) translate3d(1%, 1%, 0);
   }
 }
+
+/* ── Premium Institutional Header Brand Lockup ── */
+:root {
+  --crest-size-desktop: 44px;
+  --crest-size-tablet: 40px;
+  --crest-size-mobile: 36px;
+  
+  --lockup-gap: 12px;
+  
+  --primary-size: 20.5px;
+  --primary-tracking: 0.165em;
+  --primary-weight: 700;
+  
+  --secondary-size: 9.15px;
+  --secondary-tracking: 0.185em;
+  --secondary-weight: 600;
+  
+  --lockup-color: #071A2B;
+  --lockup-subcolor: #334155;
+}
+
+.school-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lockup-gap);
+  text-decoration: none;
+  user-select: none;
+}
+
+.school-crest-img {
+  width: var(--crest-size-desktop);
+  height: var(--crest-size-desktop);
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(7, 26, 43, 0.12));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.school-logo-lockup:hover .school-crest-img {
+  transform: scale(1.05);
+}
+
+.school-name-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  line-height: 1;
+}
+
+.school-name-primary {
+  font-family: 'Cinzel', serif;
+  font-weight: var(--primary-weight);
+  font-size: var(--primary-size);
+  letter-spacing: var(--primary-tracking);
+  color: var(--lockup-color);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 3.5px;
+  transition: color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+}
+
+.school-logo-lockup:hover .school-name-primary {
+  color: var(--brand-blue-600);
+}
+
+.school-name-secondary {
+  font-family: 'Cinzel', serif;
+  font-weight: var(--secondary-weight);
+  font-size: var(--secondary-size);
+  letter-spacing: var(--secondary-tracking);
+  color: var(--lockup-subcolor);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  display: block;
+  transition: color 0.25s ease-in-out, text-shadow 0.25s ease-in-out;
+}
+
+/* Light / Dark Header States */
+.header-transparent .school-name-primary {
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(7, 26, 43, 0.5);
+}
+
+.header-transparent .school-name-secondary {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.header-scrolled .school-name-primary {
+  color: #071A2B;
+  text-shadow: none;
+}
+
+.header-scrolled .school-name-secondary {
+  color: #334155;
+  text-shadow: none;
+}
+
+/* Localized optical kerning for abbreviation period */
+.tight-period {
+  display: inline-block;
+  margin-right: -0.11em;
+  letter-spacing: 0;
+}
+
+@media (max-width: 1024px) {
+  .school-crest-img {
+    width: var(--crest-size-tablet);
+    height: var(--crest-size-tablet);
+  }
+  .school-name-primary {
+    font-size: 18.5px;
+    letter-spacing: 0.16em;
+  }
+  .school-name-secondary {
+    font-size: 8.25px;
+    letter-spacing: 0.18em;
+  }
+}
+
+@media (max-width: 640px) {
+  .school-crest-img {
+    width: var(--crest-size-mobile);
+    height: var(--crest-size-mobile);
+  }
+  .school-name-primary {
+    font-size: 16.5px;
+    letter-spacing: 0.155em;
+  }
+  .school-name-secondary {
+    font-size: 7.35px;
+    letter-spacing: 0.175em;
+  }
+}

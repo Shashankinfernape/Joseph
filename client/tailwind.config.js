@@ -64,7 +64,9 @@ export default {
         manrope: ['"Manrope"', 'sans-serif'],
         display: ['"Sora"', 'sans-serif'],
         accent: ['"Fraunces"', 'serif'],
-        cormorant: ['"Cormorant Garamond"', 'serif']
+        cormorant: ['"Cormorant Garamond"', 'serif'],
+        lora: ['"Lora"', 'serif'],
+        baskerville: ['"Libre Baskerville"', 'serif']
       },
       borderRadius: {
         lg: "var(--radius)",

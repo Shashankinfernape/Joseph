@@ -30,35 +30,7 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Top-Aligned Content over Image */}
-        <div className='absolute inset-0 z-30 flex flex-col items-center justify-start text-center px-3 sm:px-6 md:px-8 pt-20 md:pt-24'>
-          
-          {/* Identity Group */}
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className='font-montserrat font-semibold uppercase flex flex-col items-center w-full'
-            style={{ 
-              color: '#F7F5EF',
-              textShadow: '0 2px 14px rgba(7, 29, 45, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)'
-            }}
-          >
-            <span 
-              className='tracking-[-0.01em] w-full' 
-              style={{ fontSize: 'clamp(27px, 6.5vw, 76px)', lineHeight: 1.15 }}
-            >
-              ST. JOSEPH ENGLISH HIGH
-            </span>
-            <span 
-              className='font-medium tracking-[0.22em]'
-              style={{ fontSize: 'clamp(18px, 4.2vw, 48px)', lineHeight: 1.25, marginTop: '4px', opacity: 0.95 }}
-            >
-              SCHOOL
-            </span>
-          </motion.h1>
 
-        </div>
 
         {/* Action Button - Bottom Right */}
         <motion.div

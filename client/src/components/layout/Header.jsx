@@ -19,7 +19,8 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  const [isAtTop, setIsAtTop] = useState(true);
+  const isHomePage = location.pathname === '/';
+  const [isScrolled, setIsScrolled] = useState(!isHomePage);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
@@ -27,13 +28,19 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
+    if (!isHomePage) {
+      setIsScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
-      setIsAtTop(window.scrollY < 20);
+      setIsScrolled(window.scrollY > 30);
     };
-    
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage, location.pathname]);
 
   const handleLogout = () => {
     if (logout) logout();
@@ -48,116 +55,162 @@ export default function Header() {
     { path: '/infrastructure', label: 'Campus Life' },
   ];
 
-  // Dynamic header background based on scroll position
-  const headerBg = isAtTop 
-    ? 'bg-transparent border-transparent shadow-none' 
-    : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100';
-  const textColor = 'text-black font-bold tracking-wide';
-  const iconHover = isAtTop 
-    ? 'hover:bg-black/5 hover:text-brand-blue-600' 
-    : 'hover:bg-gray-100 hover:text-brand-blue-600';
+  // Clean Header State
+  const headerStateClass = isScrolled
+    ? 'header-scrolled bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
+    : 'header-transparent bg-transparent border-transparent shadow-none';
+
+  const linkTextColor = isScrolled
+    ? 'text-black hover:text-brand-blue-600'
+    : 'text-white hover:text-brand-blue-300 drop-shadow-sm';
+
+  const iconHover = isScrolled 
+    ? 'text-black hover:bg-gray-100 hover:text-brand-blue-600' 
+    : 'text-white hover:bg-white/10 hover:text-brand-blue-300';
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${headerBg}`}>
-        <div className="w-full px-4 md:px-8 flex items-center justify-between max-w-[1600px] mx-auto h-14 md:h-16">
+      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${headerStateClass}`}>
+        <div className="w-full px-3 sm:px-4 md:px-6 flex items-center justify-between h-14 md:h-16">
           
-          {/* Left Column (Logo) */}
-          <div className="flex-1 flex justify-start items-center relative h-full">
-            <Link to="/" className="flex items-center absolute top-1 md:top-2 w-16 md:w-24 group">
+          {/* Left Column (Corner Logo & Typographic Lockup) */}
+          <div className="flex-1 flex justify-start items-center">
+            <Link to="/" className="school-logo-lockup group" aria-label="St. Joseph English High School Home">
               <img 
                 src="/images/school-crest-transparent.png" 
-                alt="St. Joseph" 
-                className="w-14 h-14 md:w-20 md:h-20 object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
+                alt="St. Joseph English High School Crest" 
+                className="school-crest-img"
               />
+              <div className="school-name-block">
+                <span className="school-name-primary">
+                  ST<span className="tight-period">.</span> JOSEPH
+                </span>
+                <span className="school-name-secondary">
+                  ENGLISH HIGH SCHOOL
+                </span>
+              </div>
             </Link>
           </div>
 
-          {/* Center Column (Navigation - Visible until phone mode) */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-7">
+          {/* Center Column (Navigation - Centered with crisp contrast) */}
+          <div className="hidden md:flex items-center justify-center gap-3 lg:gap-7">
             {navLinks.map((link) => {
               const active = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-[11px] lg:text-[13px] font-semibold tracking-[0.08em] lg:tracking-[0.1em] uppercase transition-colors relative group whitespace-nowrap ${textColor}`}
+                  className={`text-[11px] lg:text-[13px] font-bold tracking-[0.08em] lg:tracking-[0.1em] uppercase transition-colors relative group whitespace-nowrap ${linkTextColor}`}
                 >
-                  <span className={active ? '' : 'opacity-80 group-hover:opacity-100'}>{link.label}</span>
+                  <span className={active ? '' : 'opacity-90 group-hover:opacity-100'}>{link.label}</span>
                   {active && (
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-black"></span>
+                    <span 
+                      className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full transition-colors duration-300 ${
+                        isScrolled ? 'bg-black' : 'bg-white shadow-sm'
+                      }`}
+                    ></span>
                   )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Right Column (Auth/User) */}
-          <div className="flex-1 flex justify-end items-center gap-1 md:gap-3">
+          {/* Right Column (YouTube Style Auth/User) */}
+          <div className="flex-1 flex justify-end items-center gap-1 sm:gap-2">
             {!isAuthenticated ? (
               <div className="hidden md:flex items-center">
                 <Link 
                   to="/login" 
-                  className="px-5 py-2 text-[13px] font-semibold tracking-wide rounded-full flex items-center gap-2 transition-all bg-black text-white hover:bg-brand-blue-600"
+                  className={`px-4 py-1.5 text-[13px] font-semibold tracking-wide rounded-full flex items-center gap-2 transition-all duration-300 shadow-sm border ${
+                    isScrolled
+                      ? 'border-brand-blue-600/40 text-brand-blue-600 hover:bg-brand-blue-600/10 hover:border-brand-blue-600'
+                      : 'border-white/60 text-white hover:bg-white/20 hover:border-white'
+                  }`}
                 >
-                  <User size={16} weight="bold" />
-                  Log In
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                  </svg>
+                  Sign in
                 </Link>
               </div>
             ) : (
-              <div className="flex items-center gap-1 md:gap-3">
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                {/* YouTube-style 9-Dots Grid (App Launcher) */}
                 <Link 
                   to="/dashboard"
-                  className={`p-2 rounded-full transition-colors hidden md:flex items-center justify-center ${textColor} ${iconHover}`}
-                  title="Dashboard"
+                  className={`w-10 h-10 rounded-full transition-all hidden md:flex items-center justify-center active:scale-95 ${iconHover}`}
+                  title="School Apps & Portals"
                 >
-                  <DotsNine size={22} weight="bold" />
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                    <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
+                  </svg>
                 </Link>
 
+                {/* YouTube-style Notification Bell */}
                 <div className="relative flex items-center">
                   <button 
                     onClick={() => setNotificationsOpen(!notificationsOpen)}
-                    className={`relative p-2 rounded-full transition-colors flex items-center justify-center ${textColor} ${iconHover}`}
+                    className={`relative w-10 h-10 rounded-full transition-all flex items-center justify-center active:scale-95 ${iconHover}`}
                     title="Notifications"
+                    aria-label="Toggle notifications"
                   >
-                    <Bell size={22} weight="bold" />
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                      <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
+                    </svg>
+                    <span className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-red-600 ring-2 ring-white"></span>
                   </button>
                   <AnimatePresence>
                     {notificationsOpen && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 4, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                        className="absolute right-0 top-full mt-2 w-80 bg-white border border-brand-navy-900/10 rounded-xl shadow-xl overflow-hidden z-50"
-                      >
-                        <div className="p-4 border-b border-neutral-100 font-semibold text-sm text-brand-navy-900">
-                          Notifications
-                        </div>
-                        <div className="p-8 text-center text-sm text-brand-text-muted">
-                          You're all caught up!
-                        </div>
-                      </motion.div>
+                      <>
+                        {/* Backdrop overlay for closing on outside touch */}
+                        <div 
+                          className="fixed inset-0 z-40 bg-black/10 sm:bg-transparent"
+                          onClick={() => setNotificationsOpen(false)}
+                        />
+                        <motion.div 
+                          initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                          transition={{ duration: 0.15 }}
+                          className="fixed sm:absolute top-16 sm:top-full left-3 right-3 sm:left-auto sm:right-0 w-auto sm:w-80 max-w-[360px] mx-auto sm:mx-0 sm:mt-2 bg-white border border-brand-navy-900/10 rounded-2xl shadow-2xl overflow-hidden z-50"
+                        >
+                          <div className="p-3.5 sm:p-4 border-b border-neutral-100 flex items-center justify-between font-semibold text-sm text-brand-navy-900">
+                            <span>Notifications</span>
+                            <button 
+                              onClick={() => setNotificationsOpen(false)} 
+                              className="text-gray-400 hover:text-gray-600 p-1 -mr-1 rounded-full"
+                              aria-label="Close notifications"
+                            >
+                              <X size={16} weight="bold" />
+                            </button>
+                          </div>
+                          <div className="p-6 sm:p-8 text-center text-sm text-brand-text-muted">
+                            You're all caught up!
+                          </div>
+                        </motion.div>
+                      </>
                     )}
                   </AnimatePresence>
                 </div>
 
+                {/* YouTube-style Profile Avatar */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className={`flex items-center justify-center p-1 rounded-full transition-colors focus:outline-none ml-1 ${iconHover}`}>
-                      <Avatar className="w-9 h-9 rounded-full border border-white/20 shadow-sm">
+                    <button className="flex items-center justify-center p-0.5 rounded-full transition-all focus:outline-none ml-1 active:scale-95 hover:ring-2 hover:ring-brand-blue-500" aria-label="Open profile menu">
+                      <Avatar className="w-8 h-8 rounded-full border border-black/10 shadow-sm overflow-hidden">
                         <AvatarImage src={currentUser?.avatar} />
-                        <AvatarFallback className="bg-brand-blue-500 text-white font-medium text-xs">
-                          {currentUser?.name?.substring(0,1).toUpperCase() || 'V'}
+                        <AvatarFallback className="bg-gradient-to-tr from-[#0b57d0] to-[#1a73e8] text-white font-bold text-xs flex items-center justify-center">
+                          {currentUser?.name?.substring(0,1).toUpperCase() || 'U'}
                         </AvatarFallback>
                       </Avatar>
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-64 rounded-xl border border-brand-navy-900/10 bg-white shadow-xl p-2 mt-2">
+                  <DropdownMenuContent align="end" className="w-[calc(100vw-24px)] sm:w-64 max-w-sm rounded-xl border border-brand-navy-900/10 bg-white shadow-xl p-2 mt-2 z-50">
                     <div className="px-2 py-3 mb-2 flex items-center gap-3 border-b border-neutral-100">
-                       <Avatar className="w-10 h-10 rounded-full">
+                       <Avatar className="w-10 h-10 rounded-full overflow-hidden">
                          <AvatarImage src={currentUser?.avatar} />
-                         <AvatarFallback className="bg-brand-blue-500 text-white font-medium text-sm">
-                           {currentUser?.name?.substring(0,1).toUpperCase() || 'V'}
+                         <AvatarFallback className="bg-gradient-to-tr from-[#0b57d0] to-[#1a73e8] text-white font-semibold text-sm flex items-center justify-center">
+                           {currentUser?.name?.substring(0,1).toUpperCase() || 'U'}
                          </AvatarFallback>
                        </Avatar>
                        <div className="flex flex-col">
@@ -169,6 +222,9 @@ export default function Header() {
                       <DropdownMenuItem onClick={() => navigate('/profile')} className="cursor-pointer rounded-lg hover:bg-brand-surface-blue focus:bg-brand-surface-blue text-brand-navy-900 text-sm transition-colors px-3 py-2.5">
                         Profile
                       </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => navigate('/dashboard')} className="cursor-pointer rounded-lg hover:bg-brand-surface-blue focus:bg-brand-surface-blue text-brand-navy-900 text-sm transition-colors px-3 py-2.5">
+                        Dashboard
+                      </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <div className="h-px bg-neutral-100 my-2 mx-1" />
                     <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-brand-coral-500 hover:bg-red-50 focus:bg-red-50 rounded-lg text-sm transition-colors px-3 py-2.5 font-medium">
@@ -179,12 +235,15 @@ export default function Header() {
               </div>
             )}
 
-            {/* Mobile Menu Toggle (Only on phone screens) */}
+            {/* YouTube-style Mobile Menu Toggle */}
             <button 
-              className={`md:hidden flex items-center p-2 ml-2 rounded-full transition-colors shrink-0 ${textColor} ${iconHover}`}
+              className={`md:hidden w-10 h-10 flex items-center justify-center rounded-full transition-colors shrink-0 ${iconHover}`}
               onClick={() => setIsMobileMenuOpen(true)}
+              title="Menu"
             >
-              <List size={26} weight="bold" />
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              </svg>
             </button>
           </div>
         </div>
