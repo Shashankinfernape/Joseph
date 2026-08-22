@@ -20,22 +20,27 @@ export default function AboutUs() {
       </section>
 
       {/* Principal Quote Full Bleed */}
-      <section className="w-full border-b border-foreground/10 flex flex-col md:flex-row h-auto md:h-[70vh]">
-        <div className="w-full md:w-1/2 h-[50vh] md:h-full grayscale bg-black">
-          <img 
-            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&auto=format&fit=crop&q=80" 
-            alt="Principal" 
-            className="w-full h-full object-cover opacity-80"
-          />
+      <section className="w-full border-b border-foreground/10 flex flex-col md:flex-row h-auto">
+        <div className="w-full md:w-1/2 bg-slate-900 flex items-center justify-center p-8 sm:p-12">
+          <div className="w-full max-w-[320px] aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10">
+            <img 
+              src="https://stjosephschoolbangalore.org/wp-content/uploads/2022/12/WhatsApp-Image-2022-12-22-at-1.00.26-PM.jpeg" 
+              alt="Sr. Arockia Vinotha CIC - Principal" 
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
         </div>
         <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-foreground text-background">
           <ArrowDownRight size={48} className="mb-12 opacity-50" />
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight mb-8">
-            "Education is the kindling of a flame, not the filling of a vessel."
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-8">
+            "Education is not the preparation of life, education is life itself."
           </h2>
+          <p className="text-sm text-background/80 leading-relaxed mb-8">
+            We strive to respect the unique individuality of each child, cultivating wisdom alongside intelligence so every student is empowered to lead a purposeful life.
+          </p>
           <div className="mt-auto pt-8 border-t border-background/20">
-            <p className="text-sm font-bold uppercase tracking-widest">Dr. Suniti Krishnan</p>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-50 mt-1">Principal / Visionary</p>
+            <p className="text-sm font-bold uppercase tracking-widest">Sr. Arockia Vinotha CIC</p>
+            <p className="text-xs font-bold uppercase tracking-widest opacity-50 mt-1">Principal &amp; Secretary • B.Sc., MCA, M.Phil., (Ph.D)</p>
           </div>
         </div>
       </section>
@@ -43,16 +48,16 @@ export default function AboutUs() {
       {/* Vision & Mission */}
       <section className="w-full border-b border-foreground/10">
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-foreground/10 max-w-[1600px] mx-auto">
-          <div className="p-8 md:p-16 flex flex-col gap-12 hover:bg-foreground/5 transition-colors">
+          <div className="p-8 md:p-16 flex flex-col gap-8 hover:bg-foreground/5 transition-colors">
             <h2 className="text-5xl font-black uppercase tracking-tighter">Vision</h2>
-            <p className="text-lg font-bold uppercase tracking-widest leading-loose text-foreground/80">
-              To be a beacon of transformative schooling where intellectual curiosity, moral fortitude, and scientific temper converge to develop responsible global citizens who contribute to nation-building with a touch of brilliance.
+            <p className="text-base font-bold uppercase tracking-widest leading-loose text-foreground/80">
+              To be a beacon of transformative education under the guidance of the Congregation of the Immaculate Conception (CIC), nurturing spiritually rooted, intellectually curious, and morally upright students.
             </p>
           </div>
-          <div className="p-8 md:p-16 flex flex-col gap-12 hover:bg-foreground/5 transition-colors">
+          <div className="p-8 md:p-16 flex flex-col gap-8 hover:bg-foreground/5 transition-colors">
             <h2 className="text-5xl font-black uppercase tracking-tighter">Mission</h2>
-            <p className="text-lg font-bold uppercase tracking-widest leading-loose text-foreground/80">
-              To provide child-centric, experiential education, fostering critical thinking, coding & robotics literacy, multilingual fluency, and sportsman spirit in a state-of-the-art campus that feels like a second home.
+            <p className="text-base font-bold uppercase tracking-widest leading-loose text-foreground/80">
+              To provide child-centric experiential education, fostering critical thinking, sportsmanship, and values in a disciplined, compassionate environment that feels like a second home.
             </p>
           </div>
         </div>
@@ -62,13 +67,13 @@ export default function AboutUs() {
       <section className="w-full border-b border-foreground/10">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-foreground/10 max-w-[1600px] mx-auto">
           {[
-            { value: "100%", label: "Board Pass Rate" },
-            { value: "50+", label: "Sports Medals" },
-            { value: "12K+", label: "Global Alumni" },
-            { value: "#01", label: "Eco-Campus" }
+            { value: "100%", label: "CBSE Board Pass Rate" },
+            { value: "41+", label: "Years of Excellence (Est. 1985)" },
+            { value: "1,800+", label: "Enrolled Students" },
+            { value: "CIC", label: "Congregation (Est. 1911)" }
           ].map((stat, i) => (
-             <div key={i} className="p-8 md:p-12 flex flex-col gap-4 text-center items-center justify-center min-h-[250px]">
-               <div className="text-6xl md:text-8xl font-black tracking-tighter">{stat.value}</div>
+             <div key={i} className="p-8 md:p-12 flex flex-col gap-4 text-center items-center justify-center min-h-[220px]">
+               <div className="text-5xl md:text-7xl font-black tracking-tighter">{stat.value}</div>
                <div className="text-xs font-bold uppercase tracking-widest text-foreground/50">{stat.label}</div>
              </div>
           ))}
@@ -80,23 +85,23 @@ export default function AboutUs() {
         <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-foreground/10">
           <div className="w-full md:w-1/3 p-8 md:p-16">
             <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter sticky top-24">
-              Governing<br/>Board.
+              School<br/>Leadership.
             </h2>
           </div>
           <div className="w-full md:w-2/3 flex flex-col divide-y divide-foreground/10">
             {[
-              { name: "Shri M. R. Chandrashekar", role: "Chairman", year: "Est. 2004" },
-              { name: "Smt. Radhika Nair", role: "Managing Trustee", year: "Est. 2004" },
-              { name: "Dr. Anil Kumar", role: "Academic Advisor", year: "Est. 2012" },
-              { name: "Mrs. Sarah Thomas", role: "Parent Representative", year: "Est. 2020" }
+              { name: "Sr. Arockia Vinotha CIC", role: "Principal & Secretary", qualification: "B.Sc., MCA, M.Phil., (Ph.D)" },
+              { name: "Sr. Arul Jency CIC", role: "Vice Principal", qualification: "M.Sc., B.Ed." },
+              { name: "Sr. Sudha CIC", role: "Bursar & Finance", qualification: "M.Com., B.Ed." },
+              { name: "Sisters of CIC", role: "Patrons & Managing Society", qualification: "Origin 1911 • Global Educational Ministry" }
             ].map((member, i) => (
               <div key={i} className="p-8 md:p-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group hover:bg-foreground/5 transition-colors cursor-pointer">
                 <div>
-                  <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">{member.name}</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tighter mb-1">{member.name}</h3>
                   <p className="text-sm font-bold uppercase tracking-widest text-foreground/50">{member.role}</p>
                 </div>
-                <div className="text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                  {member.year}
+                <div className="text-xs font-bold uppercase tracking-widest opacity-80 text-foreground/60">
+                  {member.qualification}
                 </div>
               </div>
             ))}

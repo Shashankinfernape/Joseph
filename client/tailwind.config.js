@@ -56,6 +56,13 @@ export default {
           'text-primary': 'var(--brand-text-primary)',
           'text-secondary': 'var(--brand-text-secondary)',
           'text-muted': 'var(--brand-text-muted)'
+        },
+        cbse: {
+          navy: '#071A2B',
+          blue: '#009FE3',
+          gold: '#FFD43B',
+          light: '#EAF8FE',
+          accent: '#19B5F1',
         }
       },
       fontFamily: {

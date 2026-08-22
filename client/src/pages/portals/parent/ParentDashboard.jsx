@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { fetchAPI } from '../../../utils/api';
-import { formatINR } from '../../../utils/helpers';
 import { 
-  Users, CalendarCheck, Medal as Award, CreditCard, CalendarBlank, FileText, ArrowRight,
-  ShieldCheck, Student, CurrencyInr, Notebook as Exam, Megaphone, ClockCounterClockwise, Receipt,
-  UserCircle, Info, CalendarPlus
+  Users, CalendarCheck, Medal as Award, CalendarBlank, FileText, ArrowRight,
+  ShieldCheck, Student, Notebook as Exam, Megaphone,
+  UserCircle, Info, CalendarPlus, GraduationCap
 } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
@@ -29,12 +28,9 @@ const itemVariants = {
 export default function ParentDashboard() {
   const { currentUser } = useAuth();
   const [selectedChild, setSelectedChild] = useState('USR-STU-001');
-  const [invoices, setInvoices] = useState([]);
   const [consentForms, setConsentForms] = useState([]);
   
-  // Fetch real data (placeholder effect for consistency with old file)
   useEffect(() => {
-    fetchAPI(`/finance/invoices/${selectedChild}`).then(res => res.success && setInvoices(res.invoices)).catch(() => {});
     fetchAPI('/communications/consent-forms').then(res => res.success && setConsentForms(res.forms)).catch(() => {});
   }, [selectedChild]);
 
@@ -48,10 +44,7 @@ export default function ParentDashboard() {
       rollNo: '10104',
       attendance: '94.8%',
       recentGrade: '93.2%',
-      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80',
-      feeStatus: 'Pending',
-      nextFee: 15000,
-      nextFeeDate: '15 Nov 2026'
+      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80'
     },
     {
       id: 'USR-STU-002',
@@ -61,17 +54,8 @@ export default function ParentDashboard() {
       rollNo: '06208',
       attendance: '96.2%',
       recentGrade: '95.4%',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80',
-      feeStatus: 'Paid',
-      nextFee: 0,
-      nextFeeDate: 'N/A'
+      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&auto=format&fit=crop&q=80'
     }
-  ];
-
-  const paymentHistory = [
-    { id: 'TXN-001', date: '05 Sep 2026', amount: 15000, term: 'Term 1 Fees' },
-    { id: 'TXN-002', date: '10 Aug 2026', amount: 2500, term: 'Transport Fees' },
-    { id: 'TXN-003', date: '01 Jun 2026', amount: 10000, term: 'Admission Fees' },
   ];
 
   const schoolEvents = [
@@ -194,69 +178,64 @@ export default function ParentDashboard() {
             </Card>
           </motion.div>
 
-          {/* Fee Summary section */}
+          {/* Academic & Co-Scholastic Progress Section */}
           <motion.div variants={itemVariants}>
             <Card className="border-0 shadow-sm bg-white dark:bg-slate-900 rounded-3xl ring-1 ring-slate-100 dark:ring-slate-800">
               <CardHeader className="pb-4 flex flex-row justify-between items-center border-b border-slate-100 dark:border-slate-800">
                 <CardTitle className="flex items-center gap-2 text-lg font-bold text-slate-800 dark:text-white">
-                  <CreditCard weight="duotone" className="w-6 h-6 text-emerald-600" />
-                  Fee Summary
+                  <GraduationCap weight="duotone" className="w-6 h-6 text-emerald-600" />
+                  Academic Mentorship &amp; Progress
                 </CardTitle>
-                <Link to="/portals/parent/finance" className="text-sm font-semibold text-emerald-600 hover:underline">
-                  All Invoices →
+                <Link to="/my/consent" className="text-sm font-semibold text-emerald-600 hover:underline">
+                  Digital Consent Forms →
                 </Link>
               </CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Current Due */}
+                  {/* Class Mentor Details */}
                   <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-5 border border-slate-100 dark:border-slate-700/50 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start mb-2">
-                        <span className="text-sm font-medium text-slate-500">Next Fee Due</span>
-                        {currentChild.feeStatus === 'Pending' ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 uppercase">Pending</span>
-                        ) : (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 uppercase">Cleared</span>
-                        )}
+                        <span className="text-sm font-medium text-slate-500">Class Mentor</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 uppercase">Active</span>
                       </div>
-                      <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-                        {currentChild.nextFee > 0 ? formatINR(currentChild.nextFee) : '₹0'}
+                      <div className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+                        {currentChild.grade === 'Class 10' ? 'Mrs. Mary Stella' : 'Smt. Radhika Nair'}
                       </div>
                       <div className="text-xs text-slate-500 mt-2 flex items-center gap-1.5">
                         <CalendarBlank className="w-4 h-4" />
-                        Due by: <span className="font-semibold text-slate-700 dark:text-slate-300">{currentChild.nextFeeDate}</span>
+                        <span>Available for PTM Interactions on Saturdays</span>
                       </div>
                     </div>
-                    {currentChild.nextFee > 0 && (
-                      <Button className="w-full mt-5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl py-5 shadow-sm shadow-emerald-200 dark:shadow-none">
-                        Pay Now Securely
+                    <Link to="/my/ptm">
+                      <Button className="w-full mt-5 bg-cbse-navy hover:bg-slate-800 text-white font-semibold rounded-xl py-5 shadow-sm">
+                        Schedule Mentor Interaction
                       </Button>
-                    )}
+                    </Link>
                   </div>
 
-                  {/* Payment History */}
+                  {/* Scholastic Highlights */}
                   <div>
                     <h4 className="text-sm font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                      <ClockCounterClockwise className="w-4 h-4 text-slate-400" />
-                      Recent Transactions
+                      <Award className="w-4 h-4 text-amber-500" />
+                      Term-1 Scholastic Highlights
                     </h4>
                     <div className="space-y-3">
-                      {paymentHistory.map(txn => (
-                        <div key={txn.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-700">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                              <Receipt weight="duotone" className="w-5 h-5" />
-                            </div>
-                            <div>
-                              <p className="text-sm font-bold text-slate-800 dark:text-white">{txn.term}</p>
-                              <p className="text-xs text-slate-500">{txn.date}</p>
-                            </div>
-                          </div>
-                          <div className="text-sm font-bold text-slate-700 dark:text-slate-300">
-                            {formatINR(txn.amount)}
-                          </div>
+                      <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                        <div>
+                          <strong className="block text-slate-800 dark:text-slate-200">English Language &amp; Literature (184)</strong>
+                          <span className="text-slate-500">Periodic Assessment 1: 96/100 (A1)</span>
                         </div>
-                      ))}
+                        <span className="text-emerald-600 font-bold">Excellent</span>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 flex justify-between items-center text-xs">
+                        <div>
+                          <strong className="block text-slate-800 dark:text-slate-200">Science Practical Journal (086)</strong>
+                          <span className="text-slate-500">Composite Lab Record Verified</span>
+                        </div>
+                        <span className="text-emerald-600 font-bold">Signed</span>
+                      </div>
                     </div>
                   </div>
                 </div>

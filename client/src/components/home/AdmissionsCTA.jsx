@@ -85,7 +85,7 @@ export default function AdmissionsCTA() {
               <ArrowRight size={14} className='group-hover:translate-x-0.5 transition-transform duration-200' />
             </Link>
             <Link
-              to='/contact'
+              to='/contact-us'
               className='inline-flex items-center gap-2 border border-white/25 text-white/80 px-8 py-4 rounded-full font-sans text-sm hover:border-white/50 hover:text-white transition-all duration-200'
             >
               Get in touch

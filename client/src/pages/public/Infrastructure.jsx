@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapTrifold, 
   Books, 
@@ -9,202 +10,352 @@ import {
   ShieldCheck, 
   FirstAid, 
   Plant,
-  Sparkle
+  Sparkle,
+  ChalkboardTeacher,
+  Desktop,
+  Drop,
+  Bus,
+  Buildings,
+  CheckCircle,
+  Eye,
+  X,
+  Compass,
+  TreeEvergreen,
+  WifiHigh
 } from '@phosphor-icons/react';
+import { cn } from '../../lib/utils';
 
-const PremiumCard = ({ icon: Icon, title, description, images }) => {
+// Resilient Image Component with Fallback
+const SafeImage = ({ src, alt, className, fallbackText = 'St. Joseph Campus' }) => {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  if (error || !src) {
+    return (
+      <div className={cn("bg-gradient-to-br from-slate-900 via-cbse-navy to-slate-800 flex flex-col items-center justify-center text-white p-6 text-center", className)}>
+        <Buildings size={40} className="text-cbse-gold mb-2 opacity-80" weight="duotone" />
+        <span className="text-xs font-bold font-serif uppercase tracking-wider">{fallbackText}</span>
+        <span className="text-[10px] text-slate-400 mt-1">Hennur Main Road Campus, Bengaluru</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full h-full">
+      {loading && (
+        <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoading(false)}
+        onError={() => setError(true)}
+        className={cn(className, loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500')}
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
+const CATEGORIES = [
+  'All Facilities',
+  'Academic Blocks & Smart Labs',
+  'Science & Technology',
+  'Sports & Assembly Grounds',
+  'Library & Arts',
+  'Safety & Transport'
+];
+
+const FACILITIES = [
+  {
+    id: 'high-school-block',
+    title: 'High School & Senior Academic Block',
+    category: 'Academic Blocks & Smart Labs',
+    icon: Buildings,
+    tag: 'Main Campus',
+    description: 'Spacious, well-ventilated, and naturally lit classrooms equipped with interactive audio-visual smartboards, ergonomic seating, and individual student lockers.',
+    specs: ['Airy Classrooms with Natural Light', 'CBSE Smart Teaching Boards', 'Dual PA & Emergency Broadcast System', 'Dedicated Subject Faculty Rooms'],
+    images: [
+      'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
+      'https://stjosephschoolbangalore.org/wp-content/uploads/wppa/179.jpg',
+      'https://stjosephschoolbangalore.org/wp-content/uploads/wppa/182.jpg'
+    ]
+  },
+  {
+    id: 'science-labs',
+    title: 'Composite Science Laboratories',
+    category: 'Science & Technology',
+    icon: Flask,
+    tag: 'Experiential Learning',
+    description: 'Fully equipped Physics, Chemistry, and Biology demonstration stations with high-grade optical microscopes, chemical apparatus, safety eye-wash units, and fire dampeners.',
+    specs: ['Physics & Mechanics Apparatus', 'Chemistry Safe-Fume Pods', 'Biological Specimen Observation Pods', 'Strict Safety & First-Aid Protocols'],
+    images: [
+      'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg',
+      'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
+      'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=800&q=80'
+    ]
+  },
+  {
+    id: 'it-lab',
+    title: 'Computer Science & Digital Lab',
+    category: 'Science & Technology',
+    icon: Desktop,
+    tag: 'Future-Ready IT',
+    description: 'Modern computing lab with 1:1 desktop terminals, dedicated gigabit fiber broadband, SAFAL assessment infrastructure, and Python/Scratch coding workstations.',
+    specs: ['1:1 Student to PC Workstation Ratio', 'High-Speed Dedicated Fiber Internet', 'SAFAL Digital Exam Ready', 'Smart Interactive Projector'],
+    images: [
+      'https://stjosephschoolbangalore.org/wp-content/uploads/wppa/182.jpg',
+      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80'
+    ]
+  },
+  {
+    id: 'sports-ground',
+    title: 'Sports Quadrangle & Athletics Ground',
+    category: 'Sports & Assembly Grounds',
+    icon: Basketball,
+    tag: 'Physical Wellness',
+    description: 'Expansive outdoor athletic grounds for track events, football, cricket nets, volleyball, and daily morning assemblies and International Yoga Day exhibitions.',
+    specs: ['Regulation Football & Athletic Tracks', 'Volleyball & Badminton Courts', 'Cricket Practice Net Facilities', 'Morning Assembly & Yoga Pavilion'],
+    images: [
+      'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/20230815_084503-scaled.jpg',
+      'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg',
+      'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&q=80'
+    ]
+  },
+  {
+    id: 'library-center',
+    title: 'Knowledge Resource Center & Library',
+    category: 'Library & Arts',
+    icon: Books,
+    tag: '10,000+ Titles',
+    description: 'A quiet, inspiring sanctuary housing over 10,000 reference books, encyclopedias, CBSE curriculum supplements, daily newspapers, and quiet reading zones.',
+    specs: ['Over 10,000 Fiction & Academic Books', 'National & Regional Periodicals', 'Digital Reference Catalog', 'Quiet Study & Research Desks'],
+    images: [
+      'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80',
+      'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80',
+      'https://images.unsplash.com/photo-1568667256549-094345857637?w=800&q=80'
+    ]
+  },
+  {
+    id: 'safety-transport',
+    title: 'GPS-Enabled Safe Bus Fleet & Security',
+    category: 'Safety & Transport',
+    icon: Bus,
+    tag: 'Safety First',
+    description: 'Comprehensive fleet of buses equipped with real-time GPS tracking, speed governors, trained lady attendants, and campus-wide 24/7 CCTV surveillance cameras.',
+    specs: ['GPS Live Tracking on all Routes', 'Speed Governors & Lady Bus Attendants', 'Campus-wide CCTV Coverage', 'RO UV Water Stations on Each Floor'],
+    images: [
+      'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
+      'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80',
+      'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80'
+    ]
+  }
+];
+
+const FacilityCard = ({ facility, onSelectImage }) => {
   const [activeImage, setActiveImage] = useState(0);
 
   return (
-    <div className="bg-white rounded-3xl border border-amber-100/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 overflow-hidden flex flex-col group">
-      {/* Photo Gallery */}
-      <div className="relative h-64 overflow-hidden bg-amber-50">
-        <img 
-          src={images[activeImage]} 
-          alt={title} 
+    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between group">
+      
+      {/* Photo Showcase Container */}
+      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-800">
+        <SafeImage
+          src={facility.images[activeImage]}
+          alt={facility.title}
+          fallbackText={facility.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        {/* Gallery Controls */}
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
-          {images.map((_, idx) => (
+        
+        {/* Top Badges */}
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
+          <span className="px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-cbse-gold text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+            {facility.tag}
+          </span>
+          <div className="w-10 h-10 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-cbse-navy dark:text-cbse-gold flex items-center justify-center shadow-md">
+            <facility.icon weight="duotone" className="w-5 h-5" />
+          </div>
+        </div>
+
+        {/* Thumbnail Carousel Dots */}
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
+          {facility.images.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setActiveImage(idx)}
-              aria-label={`View image ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${activeImage === idx ? 'bg-amber-500 w-6' : 'bg-white/70 w-2 hover:bg-white'}`}
+              aria-label={`View photo ${idx + 1}`}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                activeImage === idx ? "bg-cbse-gold w-6" : "bg-white/60 w-1.5 hover:bg-white"
+              )}
             />
           ))}
         </div>
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-red-900 p-3 rounded-2xl shadow-sm">
-          <Icon weight="duotone" className="w-6 h-6" />
+      </div>
+
+      {/* Description & Technical Specs */}
+      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue-500 font-mono">
+            {facility.category}
+          </span>
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
+            {facility.title}
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {facility.description}
+          </p>
+        </div>
+
+        {/* Specs Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+          {facility.specs.map((spec, i) => (
+            <div key={i} className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+              <CheckCircle size={15} weight="fill" className="text-emerald-500 shrink-0" />
+              <span className="text-[11px] font-medium truncate">{spec}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="p-8 flex-1 flex flex-col justify-center">
-        <h3 className="text-2xl font-bold font-serif text-slate-800 mb-3">{title}</h3>
-        <p className="text-slate-600 line-clamp-2 leading-relaxed text-sm sm:text-base">
-          {description}
-        </p>
-      </div>
     </div>
   );
 };
 
 export default function Infrastructure() {
-  const FACILITIES = [
-    {
-      id: 'labs',
-      title: 'Advanced Innovation Labs',
-      icon: Flask,
-      description: 'State-of-the-art physics, chemistry, and biology laboratories equipped with digital microscopes and safety-first experimentation pods.',
-      images: [
-        'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
-        'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=800&q=80',
-        'https://images.unsplash.com/photo-1574169208507-84376144848b?w=800&q=80'
-      ]
-    },
-    {
-      id: 'library',
-      title: 'The Grand Atrium Library',
-      icon: Books,
-      description: 'A magical repository of over 12,000 volumes, cozy reading nooks, and interactive digital research stations for curious minds.',
-      images: [
-        'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80',
-        'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80',
-        'https://images.unsplash.com/photo-1568667256549-094345857637?w=800&q=80'
-      ]
-    },
-    {
-      id: 'sports',
-      title: 'Olympic Athletics Complex',
-      icon: Basketball,
-      description: 'FIFA-standard turf, indoor wooden courts, and a heated 25m swimming pool designed to nurture physical excellence and teamwork.',
-      images: [
-        'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&q=80',
-        'https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&q=80',
-        'https://images.unsplash.com/photo-1574629810360-7efbb6b49e35?w=800&q=80'
-      ]
-    },
-    {
-      id: 'arts',
-      title: 'Creative Arts & Studios',
-      icon: Palette,
-      description: 'Sunlit art studios, soundproofed music rooms, and a magnificent amphitheater for dramatic arts and cultural expression.',
-      images: [
-        'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80',
-        'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80',
-        'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80'
-      ]
-    }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState('All Facilities');
+
+  const filteredFacilities = FACILITIES.filter(f => 
+    selectedCategory === 'All Facilities' || f.category === selectedCategory
+  );
 
   return (
-    <div className="bg-[#FAF9F6] min-h-screen pb-24">
-      {/* Hero Section */}
-      <div className="pt-24 pb-16 px-4 text-center max-w-4xl mx-auto space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-900/10 text-red-900 text-sm font-bold tracking-widest uppercase">
-          <Sparkle weight="fill" className="w-4 h-4 text-amber-500" />
-          <span>A World of Wonder Awaits</span>
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 pb-28">
+      
+      {/* Header Section */}
+      <section className="pt-24 pb-16 px-4 sm:px-8 max-w-5xl mx-auto text-center space-y-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface-blue dark:bg-brand-navy-900 text-brand-blue-500 text-xs font-bold uppercase tracking-widest border border-brand-blue-500/20">
+          <Sparkle weight="fill" size={15} />
+          <span>Campus &amp; Learning Spaces</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-extrabold font-serif text-slate-900 leading-tight">
-          Spaces Crafted for <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-amber-600">Brilliance</span>
+        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
+          State-of-the-Art Learning Spaces
         </h1>
-        <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Where cutting-edge technology meets timeless architectural elegance. Every corner of our campus is designed to inspire, protect, and empower young minds.
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Explore the modern academic blocks, advanced innovation laboratories, spacious sports grounds, and safety-focused infrastructure at St. Joseph English High School, Kothanur.
         </p>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
         
-        {/* 360 Virtual Tour Placeholder */}
-        <div className="relative rounded-[3rem] overflow-hidden bg-slate-900 shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80" alt="Campus aerial" className="w-full h-[60vh] object-cover opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent flex flex-col items-center justify-center p-8 text-center">
-            <div className="w-20 h-20 bg-amber-500 text-slate-900 rounded-full flex items-center justify-center mb-6 cursor-pointer hover:scale-110 transition-transform shadow-[0_0_40px_rgba(245,158,11,0.4)]">
-              <VideoCamera weight="fill" className="w-10 h-10 ml-2" />
+        {/* ========================================================================= */}
+        {/* 1. CAMPUS HERO CARD                                                       */}
+        {/* ========================================================================= */}
+        <div className="relative rounded-3xl overflow-hidden bg-slate-900 shadow-2xl border border-slate-800">
+          <div className="relative w-full aspect-[21/9] min-h-[320px]">
+            <SafeImage
+              src="https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg"
+              alt="St. Joseph Campus View"
+              className="w-full h-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent flex flex-col items-center justify-center p-6 text-center space-y-4">
+              <div className="w-16 h-16 bg-cbse-gold text-slate-950 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/20">
+                <Buildings weight="fill" className="w-8 h-8" />
+              </div>
+              <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white max-w-2xl leading-tight">
+                Designed for Safety, Curiosity &amp; Excellence
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
+                Located on Hennur Bagalur Main Road, Kothanur, our campus combines serene green surroundings with 21st-century educational technology.
+              </p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Step Inside the Magic</h2>
-            <p className="text-amber-100/90 text-lg max-w-2xl">Experience our campus from the comfort of your home with our immersive 360° virtual tour. Walk through halls of innovation.</p>
           </div>
         </div>
 
-        {/* Facilities Grid */}
-        <div className="space-y-8">
-          <div className="flex items-center gap-4">
-            <h2 className="text-3xl font-serif font-bold text-slate-900">Elite Facilities</h2>
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-200 to-transparent"></div>
+        {/* ========================================================================= */}
+        {/* 2. CATEGORY PILLS & FACILITIES GRID                                       */}
+        {/* ========================================================================= */}
+        <section className="space-y-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div>
+              <span className="text-[11px] uppercase tracking-wider text-brand-blue-500 font-extrabold font-mono">Infrastructure Overview</span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Campus Highlights</h2>
+            </div>
+            <span className="text-xs font-bold text-slate-500">{filteredFacilities.length} Core Facilities</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {FACILITIES.map(fac => (
-              <PremiumCard key={fac.id} {...fac} />
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {CATEGORIES.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "px-4 py-2.5 rounded-xl text-xs font-bold transition-all",
+                  selectedCategory === category
+                    ? "bg-cbse-navy text-white shadow-md"
+                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+                )}
+              >
+                {category}
+              </button>
             ))}
           </div>
-        </div>
 
-        {/* Interactive Campus Map SVG Placeholder */}
-        <div className="bg-amber-50/50 rounded-[3rem] p-8 md:p-12 border border-amber-100/60 shadow-sm">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
-            <div>
-              <h2 className="text-3xl font-serif font-bold text-slate-900 flex items-center gap-3">
-                <MapTrifold className="text-amber-600" weight="duotone" />
-                Interactive Campus Map
-              </h2>
-              <p className="text-slate-600 mt-2 text-lg">Discover secret corridors and learning hubs across our 12.5-acre estate.</p>
-            </div>
-            <button className="px-8 py-3.5 bg-red-900 text-amber-50 rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg shadow-red-900/20 whitespace-nowrap tracking-wide">
-              Download PDF Guide
-            </button>
+          {/* Facilities Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredFacilities.map(facility => (
+              <FacilityCard key={facility.id} facility={facility} />
+            ))}
           </div>
-          <div className="w-full aspect-[21/9] bg-white rounded-3xl border-2 border-dashed border-amber-200 flex flex-col items-center justify-center text-amber-700/50 relative overflow-hidden group cursor-crosshair hover:border-amber-400 hover:bg-amber-50/30 transition-colors">
-            <MapTrifold weight="thin" className="w-24 h-24 mb-4 group-hover:scale-110 transition-transform duration-500" />
-            <p className="font-serif text-xl text-amber-900">Campus Map SVG Placeholder</p>
-            <p className="text-sm font-sans mt-2 text-amber-700">Interactive zones · Building details · Pathfinding</p>
-          </div>
-        </div>
+        </section>
 
-        {/* Hogwarts meets Apple Safety Banner */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-3xl text-amber-50 shadow-xl flex gap-5 relative overflow-hidden group">
-            <div className="absolute -right-6 -top-6 text-white/5 w-32 h-32 group-hover:scale-110 transition-transform duration-500">
-              <ShieldCheck weight="fill" className="w-full h-full" />
-            </div>
-            <div className="relative z-10">
-              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-5 backdrop-blur-sm border border-white/10">
-                <ShieldCheck weight="duotone" className="w-6 h-6 text-amber-300" />
+        {/* ========================================================================= */}
+        {/* 3. SAFETY, HEALTH & HYGIENE PILLARS                                      */}
+        {/* ========================================================================= */}
+        <section className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-[11px] uppercase tracking-wider text-brand-blue-500 font-extrabold font-mono">Campus Security &amp; Care</span>
+            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">Student Safety Standards</h2>
+            <p className="text-xs sm:text-sm text-slate-500">Every measure in place to ensure a nurturing, protected environment for every student.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-brand-blue-500 flex items-center justify-center">
+                <ShieldCheck size={26} weight="duotone" />
               </div>
-              <h4 className="text-xl font-serif font-bold mb-3">Impenetrable Security</h4>
-              <p className="text-slate-300 text-sm leading-relaxed">24/7 CCTV surveillance, biometric access gates, and highly trained security personnel ensuring a safe haven.</p>
+              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">24/7 Monitored Campus</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                High-definition CCTV coverage across all corridors, entry gates, laboratories, and perimeter boundaries with trained security officers on duty.
+              </p>
             </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 rounded-3xl text-slate-900 shadow-xl flex gap-5 relative overflow-hidden group">
-            <div className="absolute -right-6 -top-6 text-orange-900/10 w-32 h-32 group-hover:scale-110 transition-transform duration-500">
-              <FirstAid weight="fill" className="w-full h-full" />
-            </div>
-            <div className="relative z-10">
-              <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center mb-5 backdrop-blur-sm border border-white/20">
-                <FirstAid weight="duotone" className="w-6 h-6 text-slate-900" />
+            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center">
+                <FirstAid size={26} weight="duotone" />
               </div>
-              <h4 className="text-xl font-serif font-bold mb-3">Campus Infirmary</h4>
-              <p className="text-slate-900/80 text-sm leading-relaxed">Full-time pediatric nurse, emergency response protocols, and tie-ups with top-tier hospitals nearby.</p>
+              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">Infirmary &amp; Medical Desk</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Equipped with emergency first-aid beds, regular health checkups, and immediate on-call emergency tie-ups with leading hospitals nearby.
+              </p>
             </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-red-900 to-red-950 p-8 rounded-3xl text-red-50 shadow-xl flex gap-5 relative overflow-hidden group">
-            <div className="absolute -right-6 -top-6 text-red-500/10 w-32 h-32 group-hover:scale-110 transition-transform duration-500">
-              <Plant weight="fill" className="w-full h-full" />
-            </div>
-            <div className="relative z-10">
-              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-5 backdrop-blur-sm border border-white/10">
-                <Plant weight="duotone" className="w-6 h-6 text-amber-300" />
+            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 flex items-center justify-center">
+                <Drop size={26} weight="duotone" />
               </div>
-              <h4 className="text-xl font-serif font-bold mb-3">Eco-Magic Campus</h4>
-              <p className="text-red-200/90 text-sm leading-relaxed">100% solar-powered zones, zero-waste composting, and lush green botanical gardens for outdoor learning.</p>
+              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">RO Pure Water &amp; Sanitation</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Multi-stage RO UV drinking water dispensing units on every floor, tested regularly, alongside sanitized, gender-segregated washroom facilities.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
       </div>
+
     </div>
   );
 }

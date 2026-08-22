@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import SectionLabel from '../ui/SectionLabel';
 
@@ -32,8 +32,8 @@ export default function CampusSection() {
           {...reveal}
         >
           <img
-            src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&auto=format&fit=crop&q=80'
-            alt='Students walking through campus corridor'
+            src='https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg'
+            alt='St. Joseph English High School campus block and activities'
             className='w-full h-full object-cover hover:scale-[1.04] transition-transform duration-700'
             loading='lazy'
             decoding='async'
@@ -48,8 +48,8 @@ export default function CampusSection() {
             transition={{ ...reveal.transition, delay: 0.15 }}
           >
             <img
-              src='https://images.unsplash.com/photo-1532094349884-543290eb0ba8?w=900&auto=format&fit=crop&q=80'
-              alt='Modern science laboratory'
+              src='https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg'
+              alt='Classroom and smart lab activities at St. Joseph'
               className='w-full h-full object-cover hover:scale-[1.04] transition-transform duration-700'
               loading='lazy'
               decoding='async'
@@ -61,8 +61,8 @@ export default function CampusSection() {
             transition={{ ...reveal.transition, delay: 0.3 }}
           >
             <img
-              src='https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=900&auto=format&fit=crop&q=80'
-              alt='Students engaged in classroom learning'
+              src='https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg'
+              alt='Morning assembly & Yoga day at St. Joseph English High School'
               className='w-full h-full object-cover hover:scale-[1.04] transition-transform duration-700'
               loading='lazy'
               decoding='async'
@@ -78,8 +78,8 @@ export default function CampusSection() {
         transition={{ ...reveal.transition, delay: 0.1 }}
       >
         <img
-          src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&auto=format&fit=crop&q=80'
-          alt='St. Joseph English High School campus panoramic view'
+          src='https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/20230815_084503-scaled.jpg'
+          alt='St. Joseph English High School campus sports & Independence Day'
           className='w-full h-full object-cover hover:scale-[1.04] transition-transform duration-700'
           loading='lazy'
           decoding='async'

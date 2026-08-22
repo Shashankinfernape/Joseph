@@ -1,30 +1,40 @@
 {
   "schoolInfo": {
-    "name": "Vidya Mandir International School",
-    "kannadaName": "ವಿದ್ಯಾ ಮಂದಿರ ಇಂಟರ್ನ್ಯಾಷನಲ್ ಶಾಲೆ",
-    "tagline": "Empowering Minds, Inspiring Character & Fostering Global Excellence",
+    "name": "St. Joseph English High School",
+    "kannadaName": "ಸೇಂಟ್ ಜೋಸೆಫ್ ಇಂಗ್ಲಿಷ್ ಹೈಸ್ಕೂಲ್, ಕೊತ್ತನೂರು",
+    "tagline": "Where Individuality is Respected & Wisdom is Cultivated",
     "affiliation": "CBSE (Central Board of Secondary Education)",
     "affiliationNo": "830942",
     "schoolCode": "45891",
-    "society": "Vidya Mandir Educational & Charitable Trust (Regd. 2004)",
-    "establishedYear": 2004,
-    "principal": "Dr. Suniti Krishnan, Ph.D. (Ed), M.Sc. (Physics), B.Ed.",
-    "vicePrincipal": "Shri M. R. Chandrashekar, M.A. (English), B.Ed.",
-    "address": "Survey No. 48/2, Varthur Main Road, Near ITPL, Whitefield, Bengaluru, Karnataka 560066",
-    "phone": "+91 80 2845 7890",
-    "altPhone": "+91 98801 23456",
-    "email": "info@vidyamandir-bengaluru.edu.in",
-    "admissionsEmail": "admissions@vidyamandir-bengaluru.edu.in",
-    "emergencyHelpline": "+91 80 2845 7899 / 1098 (Child Helpline)",
+    "society": "Congregation of the Immaculate Conception (CIC) (Est. 1911)",
+    "establishedYear": 1985,
+    "principal": "Sr. Arockia Vinotha CIC, B.Sc., MCA, M.Phil., (Ph.D)",
+    "vicePrincipal": "Sr. Arul Jency CIC, M.Sc., B.Ed.",
+    "bursar": "Sr. Sudha CIC, M.Com., B.Ed.",
+    "address": "21/10, Hennur Bagalur Main Road, Kothanur, Bangalore – 560 077, Karnataka, India",
+    "phone": "+91 8296761288",
+    "altPhone": "+91 80 2844 5500",
+    "email": "stjosephschoolkothanur@gmail.com",
+    "admissionsEmail": "stjosephschoolkothanur@gmail.com",
+    "website": "https://stjosephschoolbangalore.org",
+    "emergencyHelpline": "+91 8296761288 / 1098 (Child Helpline)",
+    "bankDetails": {
+      "bankName": "State Bank of India (SBI)",
+      "accountName": "St. Joseph English High School",
+      "accountNumber": "38491029481",
+      "ifscCode": "SBIN0015632",
+      "branch": "Kothanur Branch, Bengaluru",
+      "counterHours": "Monday to Friday: 9:00 AM – 2:00 PM, Saturday: 9:00 AM – 12:30 PM"
+    },
     "stats": {
-      "totalStudents": 1480,
-      "totalFaculty": 84,
-      "campusAcres": 12.5,
+      "totalStudents": 1847,
+      "totalFaculty": 78,
+      "campusAcres": 8.5,
       "passRate": "100%",
-      "distinctionRate": "92.4%",
-      "smartClassrooms": 56,
-      "sportsClubs": 24,
-      "busFleetCount": 18
+      "distinctionRate": "94.2%",
+      "smartClassrooms": 48,
+      "sportsClubs": 18,
+      "busFleetCount": 14
     }
   },
   "cbseDisclosures": [
@@ -32,7 +42,7 @@
       "id": "DOC-01",
       "category": "A. GENERAL INFORMATION",
       "field": "NAME OF THE SCHOOL",
-      "details": "VIDYA MANDIR INTERNATIONAL SCHOOL, BENGALURU",
+      "details": "ST. JOSEPH ENGLISH HIGH SCHOOL, KOTHANUR, BENGALURU",
       "docUrl": "#"
     },
     {
@@ -46,14 +56,14 @@
       "id": "DOC-03",
       "category": "A. GENERAL INFORMATION",
       "field": "COMPLETE ADDRESS WITH PIN CODE",
-      "details": "Sy. No. 48/2, Varthur Main Road, Whitefield, Bengaluru, Karnataka - 560066",
+      "details": "21/10, Hennur Bagalur Main Road, Kothanur, Bangalore - 560 077, Karnataka",
       "docUrl": "#"
     },
     {
       "id": "DOC-04",
       "category": "A. GENERAL INFORMATION",
       "field": "PRINCIPAL NAME & QUALIFICATION",
-      "details": "Dr. Suniti Krishnan (Ph.D., M.Sc. Physics, B.Ed.) - 22 Years Exp.",
+      "details": "Sr. Arockia Vinotha CIC (B.Sc., MCA, M.Phil., Ph.D) - Principal",
       "docUrl": "#"
     },
     {
@@ -69,7 +79,7 @@
       "id": "DOC-06",
       "category": "B. DOCUMENTS AND INFORMATION",
       "field": "COPIES OF SOCIETIES / TRUST REGISTRATION CERTIFICATE",
-      "details": "Karnataka Societies Registration Act, No. DRB-3/SOR/512/2004-05",
+      "details": "Congregation of the Immaculate Conception (CIC) Charitable Society (Est. 1911)",
       "status": "Verified",
       "expiryDate": "Permanent",
       "docUrl": "/documents/trust-registration-certificate.pdf"
@@ -1205,55 +1215,116 @@
   ],
   "newsArticles": [
     {
-      "id": "NEWS-2026-01",
-      "title": "Vidya Mandir Robotics Team Wins 1st Place at National STEM Olympiad 2026",
-      "kannadaTitle": "ರಾಷ್ಟ್ರೀಯ ರೋಬೋಟಿಕ್ಸ್ ಒಲಿಂಪಿಯಾಡ್ 2026 ರಲ್ಲಿ ವಿದ್ಯಾ ಮಂದಿರ ತಂಡಕ್ಕೆ ಪ್ರಥಮ ಸ್ಥಾನ",
-      "category": "Achievements",
-      "date": "2026-08-10",
-      "author": "Department of STEM & Innovation",
-      "summary": "Our Class 10 & 11 Atal Tinkering Lab team built an autonomous flood-rescue rover utilizing computer vision and edge AI, competing against 320 schools nationwide.",
-      "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+      "id": "NEWS-978160",
+      "title": "Annual Harvest Festival & Pongal Celebrations",
+      "kannadaTitle": "ಸಂಕ್ರಾಂತಿ ಹಬ್ಬದ ಸಂಭ್ರಮಾಚರಣೆ",
+      "category": "Celebrations",
+      "date": "2026-08-22",
+      "author": "St. Joseph Principal's Desk",
+      "summary": "Special cultural assembly celebrating traditional harvest traditions, folk dances, and community harmony.",
+      "body": "St. Joseph English High School organized a vibrant cultural assembly to celebrate the traditional harvest festival. Students participated in traditional rangoli making, classical music performances, and shared sweet pongal treats.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg",
       "tags": [
-        "Robotics",
-        "ATL",
-        "STEM",
-        "National Champions"
-      ]
+        "School",
+        "Celebrations"
+      ],
+      "pinned": true,
+      "attachment": null
+    },
+    {
+      "id": "NEWS-2026-01",
+      "title": "78th Independence Day & Grand March-Past Parade Celebrated with Patriotic Fervor",
+      "kannadaTitle": "78ನೇ ಸ್ವಾತಂತ್ರ್ಯ ದಿನಾಚರಣೆ ಮತ್ತು ಭವ್ಯ ಪಥಸಂಚಲನ ಸಂಭ್ರಮಾಚರಣೆ",
+      "category": "Celebrations",
+      "date": "2026-08-15",
+      "author": "Physical Education & Cultural Desk",
+      "summary": "Students and faculty gathered in the school quadrangle for the unfurling of the National Tri-color, vibrant inter-house drill formations, and student address on constitutional values.",
+      "body": "The 78th Independence Day was commemorated with solemn pride and vibrant spirit at St. Joseph English High School. The National Flag was hoisted by Principal Sr. Arockia Vinotha CIC, followed by the National Anthem rendered by the school choir. All four houses demonstrated precision drill marching, patriotic cultural songs, and classical dance tributes. Students took a solemn pledge towards environmental stewardship and secular national brotherhood.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/20230815_084503-scaled.jpg",
+      "tags": [
+        "Independence Day",
+        "Celebrations",
+        "Patriotic",
+        "March Past"
+      ],
+      "pinned": true
     },
     {
       "id": "NEWS-2026-02",
-      "title": "CBSE Class 10 & 12 Board Results 2026: 100% Pass Percentage with 104 School Distinctions",
-      "kannadaTitle": "ಸಿಬಿಎಸ್‌ಇ 10 ಮತ್ತು 12ನೇ ತರಗತಿ ಫಲಿತಾಂಶ 2026: ಶೇಕಡಾ 100 ರಷ್ಟು ತೇರ್ಗಡೆ",
-      "category": "Academics",
-      "date": "2026-07-28",
-      "author": "Office of the Principal",
-      "summary": "Heartiest congratulations to our brilliant batches of Class 10 and 12 for continuing our 20-year legacy of 100% board pass results. Rohan Verma topped Class 12 Science with 98.4%.",
-      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
+      "title": "International Yoga Day: Mass Quadrangle Demonstration & Mindful Living Workshop",
+      "kannadaTitle": "ಅಂತರರಾಷ್ಟ್ರೀಯ ಯೋಗ ದಿನ: ಸಾಮೂಹಿಕ ಯೋಗ ಪ್ರದರ್ಶನ",
+      "category": "Sports",
+      "date": "2026-06-21",
+      "author": "Health & Physical Education Cell",
+      "summary": "Over 850 students from Primary to High School performed synchronized Suryanamaskar, Pranayama breathing exercises, and meditation under certified yoga instructors.",
+      "body": "In alignment with the CBSE Health & Physical Education mandate, St. Joseph English High School celebrated International Yoga Day in the main open quadrangle. Students engaged in structured Asanas designed to boost concentration, flexibility, and emotional balance. Sr. Principal highlighted the timeless value of inner discipline and daily mindfulness for academic excellence.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg",
       "tags": [
-        "CBSE Results",
-        "Toppers",
-        "Academic Excellence"
-      ]
+        "Yoga Day",
+        "Wellness",
+        "Health",
+        "CBSE PE"
+      ],
+      "pinned": false
     },
     {
       "id": "NEWS-2026-03",
-      "title": "Annual Inter-School Sports Meet 'Khel Utsav 2026' Inaugurated by Olympian Ashwini Nachappa",
-      "kannadaTitle": "ವಾರ್ಷಿಕ ಕ್ರೀಡಾಕೂಟ 'ಖೇಲ್ ಉತ್ಸವ 2026' ಉದ್ಘಾಟನೆ",
-      "category": "Sports",
-      "date": "2026-08-02",
-      "author": "Physical Education Department",
-      "summary": "Over 1,200 student athletes from 35 premier CBSE schools across Bengaluru participated in Track & Field, Basketball, Badminton, Chess, and Swimming events.",
-      "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
+      "title": "CBSE Class 10 Board Examinations 2026: 100% Pass Percentage with 58 Distinctions",
+      "kannadaTitle": "ಸಿಬಿಎಸ್ಇ 10ನೇ ತರಗತಿ ಪರೀಕ್ಷೆ 2026: 100% ಫಲಿತಾಂಶ",
+      "category": "Academics",
+      "date": "2026-05-18",
+      "author": "Office of the Principal",
+      "summary": "All 142 registered Class 10 students cleared the Central Board examinations with flying colors, continuing St. Joseph's multi-decade legacy of 100% academic results.",
+      "body": "St. Joseph English High School records another historic milestone with a 100% pass result in the Class X CBSE Board Exams 2026. 58 students secured above 90% aggregate scores with top distinctions in Mathematics, Science, and Kannada. The Management, Sisters of CIC, and teachers congratulate all students and supportive parents for their tireless dedication.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg",
       "tags": [
-        "Sports Meet",
-        "Athletics",
-        "Champions"
-      ]
+        "CBSE Board",
+        "Class 10",
+        "Toppers",
+        "Academic Excellence"
+      ],
+      "pinned": false
+    },
+    {
+      "id": "NEWS-2026-04",
+      "title": "Annual Science & Composite Lab Experiential Learning Exhibition Inaugurated",
+      "kannadaTitle": "ವಾರ್ಷಿಕ ವಿಜ್ಞಾನ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಕಲಿಕಾ ಪ್ರದರ್ಶನ",
+      "category": "Academics",
+      "date": "2026-07-12",
+      "author": "Department of Science & Innovation",
+      "summary": "Middle and High school students showcased working models on renewable hydro-power, smart eco-farming, organic chemistry crystallization, and optics.",
+      "body": "The Annual Science Innovation Expo transformed the school's composite laboratories into an interactive science hub. Students demonstrated practical hypotheses, robotic sensor circuits, and biological cell models before an esteemed jury of visiting educationists.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg",
+      "tags": [
+        "Science Expo",
+        "Laboratories",
+        "Innovation",
+        "CBSE AIL"
+      ],
+      "pinned": false
+    },
+    {
+      "id": "NEWS-2026-05",
+      "title": "Official Circular: Admissions Open for Academic Year 2026-27 & RTE Quota Allocations",
+      "kannadaTitle": "2026-27 ಶೈಕ್ಷಣಿಕ ವರ್ಷದ ಪ್ರವೇಶಾತಿ ಮತ್ತು RTE ಮೀಸಲಾತಿ ಸುತ್ತೋಲೆ",
+      "category": "Circulars",
+      "date": "2026-08-01",
+      "author": "Admissions Secretariat",
+      "summary": "Online applications and offline registration desks are now active for Pre-Nursery through Class IX. Parents can track application status online.",
+      "body": "The Admission Committee of St. Joseph English High School announces the commencement of the 2026-27 admissions cycle. 25% quota seats under the Right to Education (RTE) Act are open for eligible candidates as per Govt of Karnataka directives. Parents are encouraged to submit documents online or at the school reception desk.",
+      "image": "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/182.jpg",
+      "tags": [
+        "Admissions",
+        "Circular",
+        "RTE Quota",
+        "2026-27"
+      ],
+      "pinned": false
     }
   ],
   "urgentAlert": {
     "enabled": true,
-    "text": "Admissions Open for Academic Year 2026-27 (Pre-Nursery to Class XI) | CBSE Board Examination Schedule Released | RTE 25% Free Seat Applications Open",
+    "text": "Admissions Open for Academic Year 2026-27 (Pre-Nursery to Class X) | CBSE Affiliation 830942 | RTE 25% Free Seat Applications Active",
     "kannadaText": "2026-27 ಶೈಕ್ಷಣಿಕ ವರ್ಷದ ಪ್ರವೇಶಾತಿಗಳು ಆರಂಭವಾಗಿವೆ | RTE 25% ಮೀಸಲಾತಿ ಅರ್ಜಿಗಳು ಲಭ್ಯವಿದೆ",
     "link": "/admissions"
   },
@@ -1293,83 +1364,157 @@
   ],
   "gallery": [
     {
-      "id": "GAL-2026-01",
-      "academicYear": "2026-27",
-      "eventName": "National STEM & Robotics Expo 2026",
-      "date": "2026-08-10",
-      "coverImage": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
-      "photos": [
-        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop&q=80"
-      ],
-      "tags": [
-        "STEM",
-        "Robotics",
-        "Science Expo"
-      ]
-    },
-    {
-      "id": "GAL-2026-02",
-      "academicYear": "2026-27",
-      "eventName": "Investiture Ceremony & Student Council Badging 2026",
-      "date": "2026-06-25",
-      "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
-      "photos": [
-        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&auto=format&fit=crop&q=80"
-      ],
-      "tags": [
-        "Leadership",
-        "Investiture",
-        "Student Council"
-      ]
-    },
-    {
       "id": "GAL-2025-01",
       "academicYear": "2025-26",
-      "eventName": "Annual Cultural Extravaganza 'Tarang 2025'",
-      "date": "2025-12-18",
-      "coverImage": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
+      "eventName": "Independence Day & Sports Parade 2025",
+      "date": "2025-08-15",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/20230815_084503-scaled.jpg",
       "photos": [
-        "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1469488865564-c2de10f69f96?w=800&auto=format&fit=crop&q=80"
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/20230815_084503-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240614_150416-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240124-WA0049.jpg"
       ],
       "tags": [
-        "Annual Day",
-        "Dance",
-        "Drama",
-        "Music"
+        "Independence Day",
+        "Sports",
+        "March Past",
+        "Campus Life"
       ]
     },
     {
       "id": "GAL-2025-02",
       "academicYear": "2025-26",
-      "eventName": "Inter-House Athletics & Swimming Championship",
-      "date": "2025-11-14",
-      "coverImage": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
+      "eventName": "St. Joseph Feast & Inauguration of New High School Wing",
+      "date": "2025-03-19",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg",
       "photos": [
-        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&auto=format&fit=crop&q=80"
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0474-1.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_1189-2.jpg"
       ],
       "tags": [
-        "Sports",
-        "Athletics",
-        "Swimming"
+        "Feast Day",
+        "Inauguration",
+        "Campus Wing",
+        "Celebration"
+      ]
+    },
+    {
+      "id": "GAL-2025-03",
+      "academicYear": "2025-26",
+      "eventName": "Educational Study Tour & Field Research",
+      "date": "2025-10-18",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_1189-2.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_1189-2.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20230921-WA0100.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20231020-WA0126.jpg"
+      ],
+      "tags": [
+        "Education Tour",
+        "Experiential Learning",
+        "Science",
+        "Outing"
+      ]
+    },
+    {
+      "id": "GAL-2025-04",
+      "academicYear": "2025-26",
+      "eventName": "International Yoga Day & Mindful Assembly",
+      "date": "2025-06-21",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090249-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240621_090926-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg"
+      ],
+      "tags": [
+        "Yoga Day",
+        "Health & Wellness",
+        "Morning Assembly"
+      ]
+    },
+    {
+      "id": "GAL-2025-05",
+      "academicYear": "2025-26",
+      "eventName": "Science, Art & Innovation Integration Expo",
+      "date": "2025-09-24",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20231020-WA0126.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240124-WA0064.jpg"
+      ],
+      "tags": [
+        "Art Integration",
+        "Science Exhibition",
+        "Creativity"
       ]
     },
     {
       "id": "GAL-2024-01",
       "academicYear": "2024-25",
-      "eventName": "Founder's Day & Silver Jubilee Memorial",
-      "date": "2024-09-05",
-      "coverImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+      "eventName": "Abacus & Speed Arithmetic Championship",
+      "date": "2024-11-20",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240615-WA0050.jpg",
       "photos": [
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80"
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240615-WA0050.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240615-WA0053.jpg"
       ],
       "tags": [
-        "Founders Day",
-        "Milestone"
+        "Abacus",
+        "Mathematics",
+        "Competitions"
+      ]
+    },
+    {
+      "id": "GAL-2024-02",
+      "academicYear": "2024-25",
+      "eventName": "Teachers Day Felicitation & Cultural Program",
+      "date": "2024-09-05",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240124-WA0049.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240124-WA0049.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG-20240124-WA0064.jpg"
+      ],
+      "tags": [
+        "Teachers Day",
+        "Gratitude",
+        "Cultural"
+      ]
+    },
+    {
+      "id": "GAL-2024-03",
+      "academicYear": "2024-25",
+      "eventName": "SAFAL & CBSE Assessment Recognition Ceremony",
+      "date": "2024-12-10",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/MY-1.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/MY-1.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/MY-2.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/MY-3.jpg"
+      ],
+      "tags": [
+        "SAFAL Exam",
+        "CBSE Excellence",
+        "Awards"
+      ]
+    },
+    {
+      "id": "GAL-2023-01",
+      "academicYear": "2023-24",
+      "eventName": "Dignitary & Provincial Superior Campus Visit",
+      "date": "2023-07-27",
+      "coverImage": "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/1020.jpg",
+      "photos": [
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/1020.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/1032.jpg",
+        "https://stjosephschoolbangalore.org/wp-content/uploads/wppa/1227.jpg"
+      ],
+      "tags": [
+        "Provincial Visit",
+        "CIC Congregation",
+        "Campus Blessing"
       ]
     }
   ],

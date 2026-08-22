@@ -20,13 +20,13 @@ export default function ContactUs() {
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cbse-light text-cbse-blue text-xs font-bold uppercase tracking-wider">
           <MapPin className="w-4 h-4 text-cbse-gold" />
-          <span>Bengaluru Campus • Whitefield Technology Corridor</span>
+          <span>Bengaluru Campus • Hennur Bagalur Main Road, Kothanur</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold font-serif text-cbse-navy dark:text-white">
           Contact & Location Details
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          We welcome prospective families, educationists, and partners to visit our campus or connect with our administrative officers.
+          We welcome prospective families, educationists, and partners to visit our campus or connect with our administrative desk.
         </p>
       </div>
 
@@ -44,9 +44,9 @@ export default function ContactUs() {
                 <h4 className="font-bold text-sm text-slate-900 dark:text-white">Campus Address</h4>
                 <p className="text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
                   St. Joseph English High School<br />
-                  Survey No. 48/2, Varthur Main Road,<br />
-                  Near ITPL, Whitefield, Bengaluru,<br />
-                  Karnataka - 560066
+                  21/10, Hennur Bagalur Main Road,<br />
+                  Kothanur, Bangalore – 560 077,<br />
+                  Karnataka, India
                 </p>
               </div>
             </div>
@@ -58,8 +58,8 @@ export default function ContactUs() {
               <div>
                 <h4 className="font-bold text-sm text-slate-900 dark:text-white">Telephone & Admissions Desk</h4>
                 <p className="text-slate-600 dark:text-slate-300 mt-1 leading-relaxed font-mono">
-                  +91 80 2845 7890<br />
-                  +91 98801 23456 (Admissions Hotline)
+                  +91 8296761288 (Mobile / Admissions)<br />
+                  +91 80 2844 5500 (Office Desk)
                 </p>
               </div>
             </div>
@@ -69,11 +69,10 @@ export default function ContactUs() {
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Email Addresses</h4>
+                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Official Email & Website</h4>
                 <p className="text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                  General: info@vidyamandir-bengaluru.edu.in<br />
-                  Admissions: admissions@vidyamandir-bengaluru.edu.in<br />
-                  Principal: principal@vidyamandir-bengaluru.edu.in
+                  Email: stjosephschoolkothanur@gmail.com<br />
+                  Website: www.stjosephschoolbangalore.org
                 </p>
               </div>
             </div>
@@ -101,7 +100,7 @@ export default function ContactUs() {
               <span>Grievance Redressal & POCSO Helpline</span>
             </div>
             <p className="text-[11px] leading-relaxed">
-              For any urgent student safety or child rights grievances, contact our Child Protection Officer at <strong>+91 80 2845 7899</strong> or Govt Childline <strong>1098</strong>.
+              For student safety or child rights grievances, contact our Child Protection Officer at <strong>+91 8296761288</strong> or Govt Childline <strong>1098</strong>.
             </p>
           </div>
         </div>

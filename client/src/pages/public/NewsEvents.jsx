@@ -1,278 +1,828 @@
 import React, { useState, useEffect } from 'react';
-import { CalendarBlank, Bell, FileText, Tag, ArrowRight, X, Clock, MapPin } from '@phosphor-icons/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Bell, 
+  CalendarBlank, 
+  FileText, 
+  ArrowRight, 
+  X, 
+  Clock, 
+  MapPin, 
+  Plus, 
+  PencilSimple, 
+  Trash, 
+  ShareNetwork, 
+  DownloadSimple, 
+  CheckCircle, 
+  BookmarkSimple, 
+  Sparkle, 
+  Buildings,
+  MegaphoneSimple,
+  ShieldCheck,
+  Tag,
+  Newspaper
+} from '@phosphor-icons/react';
 import { fetchAPI } from '../../utils/api';
-import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
+import { cn } from '../../lib/utils';
+
+// Safe Fixed-Ratio Image Component
+const SafeNewsImage = ({ src, alt, className, fallbackText = 'St. Joseph Announcement' }) => {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  if (error || !src) {
+    return (
+      <div className={cn("bg-gradient-to-br from-slate-900 via-slate-800 to-slate-800 flex flex-col items-center justify-center text-white p-4 text-center", className)}>
+        <Buildings size={28} className="text-amber-500 mb-1 opacity-80" weight="duotone" />
+        <span className="text-[10px] font-bold font-serif uppercase tracking-wider">{fallbackText}</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full h-full">
+      {loading && (
+        <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoading(false)}
+        onError={() => setError(true)}
+        className={cn(className, loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500')}
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
+const CATEGORIES = [
+  'All Stories',
+  'Circulars',
+  'Academics',
+  'Sports',
+  'Celebrations',
+  'Achievements'
+];
 
 export default function NewsEvents() {
   const [news, setNews] = useState([]);
   const [events, setEvents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('All Stories');
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('News');
-  const { lang } = useLanguage();
+  const [savedArticles, setSavedArticles] = useState([]);
+  const [toastMessage, setToastMessage] = useState(null);
+
+  // Admin Management State
   const { role } = useAuth();
+  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [showAdminModal, setShowAdminModal] = useState(false);
+  const [editingArticle, setEditingArticle] = useState(null);
+  const [formData, setFormData] = useState({
+    title: '',
+    kannadaTitle: '',
+    category: 'Circulars',
+    author: "St. Joseph Principal's Desk",
+    date: new Date().toISOString().split('T')[0],
+    summary: '',
+    body: '',
+    image: 'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
+    pinned: false,
+    attachment: ''
+  });
+
+  const loadData = () => {
+    fetchAPI('/cms/news')
+      .then(res => res.success && setNews(res.news || []))
+      .catch(console.error);
+    fetchAPI('/cms/events')
+      .then(res => res.success && setEvents(res.events || []))
+      .catch(console.error);
+  };
 
   useEffect(() => {
-    fetchAPI('/cms/news').then(res => res.success && setNews(res.news)).catch(() => {});
-    fetchAPI('/cms/events').then(res => res.success && setEvents(res.events)).catch(() => {});
+    loadData();
   }, []);
 
-  const categories = ['News', 'Circulars', 'Sports', 'Cultural'];
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
 
-  const filteredNews = news.filter(n => n.category === selectedCategory || (selectedCategory === 'News' && !n.category));
-  
-  // fallback for UI display
-  const displayNews = filteredNews.length > 0 ? filteredNews : [
-    { id: '1', title: 'Annual Sports Meet 2026: Champions Crowned', image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=2070', category: 'Sports', date: '24 Aug 2026', summary: 'Get ready for the most awaited athletic event of the year. Students from all houses will compete for the championship trophy.', author: 'Sports Dept' },
-    { id: '2', title: 'Science Exhibition Winners Announced', image: 'https://images.unsplash.com/photo-1564325655926-286c1156f24a?auto=format&fit=crop&q=80&w=2070', category: 'News', date: '18 Aug 2026', summary: 'Our students secured first place in the National Science Exhibition for their innovative renewable energy project.', author: 'Science Club' },
-    { id: '3', title: 'Cultural Fest 2026 Highlights', image: 'https://images.unsplash.com/photo-1540304651347-160a2b5e28a5?auto=format&fit=crop&q=80&w=2070', category: 'Cultural', date: '10 Aug 2026', summary: 'A spectacular display of talent featuring classical dance, music, and theatrical performances by our middle school students.', author: 'Cultural Committee' }
-  ];
+  const handleOpenCreateModal = () => {
+    setEditingArticle(null);
+    setFormData({
+      title: '',
+      kannadaTitle: '',
+      category: 'Circulars',
+      author: "St. Joseph Principal's Desk",
+      date: new Date().toISOString().split('T')[0],
+      summary: '',
+      body: '',
+      image: 'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
+      pinned: false,
+      attachment: ''
+    });
+    setShowAdminModal(true);
+  };
 
-  const heroArticle = displayNews[0];
-  const gridArticles = displayNews.slice(1);
+  const handleOpenEditModal = (article, e) => {
+    if (e) e.stopPropagation();
+    setEditingArticle(article);
+    setFormData({
+      title: article.title || '',
+      kannadaTitle: article.kannadaTitle || '',
+      category: article.category || 'Circulars',
+      author: article.author || "St. Joseph Principal's Desk",
+      date: article.date || new Date().toISOString().split('T')[0],
+      summary: article.summary || '',
+      body: article.body || article.summary || '',
+      image: article.image || 'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
+      pinned: Boolean(article.pinned),
+      attachment: article.attachment || ''
+    });
+    setShowAdminModal(true);
+  };
+
+  const handleDeleteArticle = async (id, e) => {
+    if (e) e.stopPropagation();
+    if (!window.confirm('Are you sure you want to delete this announcement?')) return;
+
+    try {
+      const res = await fetchAPI(`/cms/news/${id}`, { method: 'DELETE' });
+      if (res.success) {
+        showToast('Announcement deleted successfully.');
+        loadData();
+        if (selectedArticle?.id === id) setSelectedArticle(null);
+      }
+    } catch (err) {
+      showToast('Failed to delete announcement.');
+    }
+  };
+
+  const handleSaveAnnouncement = async (e) => {
+    e.preventDefault();
+    if (!formData.title.trim() || !formData.summary.trim()) {
+      alert('Please provide both Title/Subject and Summary text.');
+      return;
+    }
+
+    try {
+      if (editingArticle) {
+        const res = await fetchAPI(`/cms/news/${editingArticle.id}`, {
+          method: 'PUT',
+          body: JSON.stringify(formData)
+        });
+        if (res.success) {
+          showToast('Announcement updated successfully.');
+          loadData();
+          setShowAdminModal(false);
+        }
+      } else {
+        const res = await fetchAPI('/cms/news', {
+          method: 'POST',
+          body: JSON.stringify(formData)
+        });
+        if (res.success) {
+          showToast('New announcement published successfully.');
+          loadData();
+          setShowAdminModal(false);
+        }
+      }
+    } catch (err) {
+      showToast('Error saving announcement.');
+    }
+  };
+
+  const toggleBookmark = (id, e) => {
+    if (e) e.stopPropagation();
+    setSavedArticles(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const handleAddToGoogleCalendar = (evt, e) => {
+    if (e) e.stopPropagation();
+    const title = encodeURIComponent(evt.title);
+    const details = encodeURIComponent(`School Event at St. Joseph English High School: ${evt.venue}`);
+    const location = encodeURIComponent("St. Joseph English High School, Hennur Bagalur Main Road, Kothanur, Bangalore - 560077");
+    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}`;
+    window.open(gcalUrl, '_blank');
+  };
+
+  const filteredNews = news.filter(n => 
+    selectedCategory === 'All Stories' || n.category === selectedCategory
+  );
+
+  const heroArticle = filteredNews.find(n => n.pinned) || filteredNews[0];
+  const streamArticles = filteredNews.filter(n => n.id !== heroArticle?.id);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 font-sans">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 pb-28">
       
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest border border-blue-100 shadow-sm">
-          <Bell weight="fill" className="w-4 h-4 text-amber-500" />
-          <span>Campus Happenings</span>
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight">
-          News & <span className="text-blue-600">Events</span>
-        </h1>
-        <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Stay updated with school accomplishments, notifications, upcoming celebrations, and parent circulars.
-        </p>
-      </div>
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-20 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-amber-500 flex items-center gap-3 text-xs font-bold"
+          >
+            <CheckCircle size={20} weight="fill" className="text-amber-500" />
+            <span>{toastMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {role === 'student' && (
-        <div className="bg-blue-50 border border-blue-100 p-6 rounded-[2rem] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 shrink-0 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-              <Bell weight="fill" className="w-6 h-6" />
+      <section className="pt-24 pb-8 px-4 sm:px-8 max-w-7xl mx-auto space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-slate-900 text-blue-600 text-[11px] font-bold uppercase tracking-widest border border-blue-500/20 mb-2">
+              <MegaphoneSimple weight="fill" size={14} />
+              <span>Official School Communications</span>
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-slate-900">Class 10-A Final Exam Schedule</h3>
-              <p className="text-sm text-slate-600">Pinned notice for your class</p>
-            </div>
-          </div>
-          <button className="px-5 py-2.5 bg-blue-600 text-white rounded-full text-sm font-bold shadow-sm hover:bg-blue-700 transition-colors shrink-0">
-            View Schedule
-          </button>
-        </div>
-      )}
-
-      {/* Main Content Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        
-        {/* Left Col: News & Magazine Layout */}
-        <div className="lg:col-span-8 space-y-8">
-          
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-3">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-slate-900 text-white shadow-md'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              News, Events &amp; Circulars
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Direct updates from the Principal's Desk, Examination Secretariat, and Sports Council.
+            </p>
           </div>
 
-          {/* Magazine Layout: Hero Story */}
-          {heroArticle && (
-            <div 
-              onClick={() => setSelectedArticle(heroArticle)}
-              className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col"
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsAdminMode(!isAdminMode)}
+              className={cn(
+                "px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border",
+                isAdminMode 
+                  ? "bg-amber-500 text-slate-950 border-amber-600 shadow-md" 
+                  : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:bg-slate-100"
+              )}
             >
-              <div className="relative h-72 sm:h-[400px] overflow-hidden w-full">
-                <img
-                  src={heroArticle.image}
-                  alt={heroArticle.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <span className="absolute top-5 left-5 bg-white/95 text-slate-900 text-xs font-black uppercase px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-sm">
-                  {heroArticle.category}
-                </span>
-              </div>
-              <div className="p-8 sm:p-10">
-                <div className="flex items-center gap-3 text-xs font-semibold text-slate-500 mb-3">
-                  <CalendarBlank className="w-4 h-4" />
-                  <span>{heroArticle.date}</span>
-                </div>
-                <h3 className="font-extrabold text-3xl sm:text-4xl text-slate-900 group-hover:text-blue-600 transition-colors mb-4 line-clamp-2 tracking-tight">
-                  {lang === 'kn' && heroArticle.kannadaTitle ? heroArticle.kannadaTitle : heroArticle.title}
-                </h3>
-                <p className="text-slate-600 line-clamp-2 text-base sm:text-lg leading-relaxed">
-                  {heroArticle.summary}
-                </p>
-              </div>
-            </div>
-          )}
+              <PencilSimple size={16} weight="bold" />
+              <span>{isAdminMode ? 'Exit Admin Mode' : 'Admin Announcement Mode'}</span>
+            </button>
 
-          {/* Magazine Layout: 2-Col Grid */}
-          {gridArticles.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {gridArticles.map(item => (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedArticle(item)}
-                  className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group flex flex-col"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <span className="absolute top-4 left-4 bg-white/95 text-slate-900 text-[10px] font-black uppercase px-3 py-1 rounded-full backdrop-blur-md shadow-sm">
-                      {item.category}
+            {isAdminMode && (
+              <button
+                onClick={handleOpenCreateModal}
+                className="px-4 py-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg"
+              >
+                <Plus size={16} weight="bold" />
+                <span>New Announcement</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 overflow-x-auto py-2 no-scrollbar">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={cn(
+                "px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all",
+                selectedCategory === cat
+                  ? "bg-slate-900 dark:bg-blue-600 text-white shadow-md"
+                  : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-8 space-y-6">
+            {heroArticle && (
+              <div 
+                onClick={() => setSelectedArticle(heroArticle)}
+                className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col"
+              >
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900">
+                  <SafeNewsImage
+                    src={heroArticle.image}
+                    alt={heroArticle.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    {heroArticle.pinned && (
+                      <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider shadow-md">
+                        Pinned Alert
+                      </span>
+                    )}
+                    <span className="px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-white/10">
+                      {heroArticle.category}
                     </span>
                   </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500 mb-2.5">
-                      <CalendarBlank className="w-3.5 h-3.5" />
-                      <span>{item.date}</span>
+                </div>
+
+                <div className="p-6 sm:p-8 space-y-3">
+                  <div className="flex items-center gap-3 text-xs text-slate-500 font-mono">
+                    <span className="font-bold text-blue-600">{heroArticle.author}</span>
+                    <span>•</span>
+                    <span>{heroArticle.date}</span>
+                  </div>
+
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 transition-colors">
+                    {heroArticle.title}
+                  </h2>
+
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+                    {heroArticle.summary}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+                    <span className="font-bold text-blue-600 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Read Full Announcement <ArrowRight size={14} weight="bold" />
+                    </span>
+
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={(e) => toggleBookmark(heroArticle.id, e)}
+                        className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"
+                        title="Bookmark Story"
+                      >
+                        <BookmarkSimple size={18} weight={savedArticles.includes(heroArticle.id) ? "fill" : "regular"} className={savedArticles.includes(heroArticle.id) ? "text-amber-500" : ""} />
+                      </button>
+
+                      {isAdminMode && (
+                        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+                          <button
+                            onClick={(e) => handleOpenEditModal(heroArticle, e)}
+                            className="p-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"
+                            title="Edit Announcement"
+                          >
+                            <PencilSimple size={15} weight="bold" />
+                          </button>
+                          <button
+                            onClick={(e) => handleDeleteArticle(heroArticle.id, e)}
+                            className="p-1.5 rounded-lg hover:bg-red-100 text-red-600"
+                            title="Delete Announcement"
+                          >
+                            <Trash size={15} weight="bold" />
+                          </button>
+                        </div>
+                      )}
                     </div>
-                    <h4 className="font-extrabold text-xl text-slate-900 group-hover:text-blue-600 transition-colors mb-2.5 line-clamp-2 leading-tight">
-                      {lang === 'kn' && item.kannadaTitle ? item.kannadaTitle : item.title}
-                    </h4>
-                    <p className="text-slate-500 text-sm line-clamp-2 leading-relaxed">
-                      {item.summary}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="space-y-4">
+              {streamArticles.map((article) => (
+                <div
+                  key={article.id}
+                  onClick={() => setSelectedArticle(article)}
+                  className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col sm:flex-row gap-5 items-start justify-between"
+                >
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center gap-2 text-[11px] text-slate-500 font-mono">
+                      <span className="font-bold text-blue-600">{article.author}</span>
+                      <span>•</span>
+                      <span>{article.date}</span>
+                      <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] font-semibold text-slate-600 dark:text-slate-400">
+                        {article.category}
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 transition-colors">
+                      {article.title}
+                    </h3>
+
+                    <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
+                      {article.summary}
                     </p>
+
+                    <div className="flex items-center justify-between pt-2 text-xs">
+                      <span className="font-semibold text-slate-400 group-hover:text-blue-600 transition-colors">
+                        View details →
+                      </span>
+
+                      <div className="flex items-center gap-2">
+                        <button 
+                          onClick={(e) => toggleBookmark(article.id, e)}
+                          className="p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"
+                        >
+                          <BookmarkSimple size={16} weight={savedArticles.includes(article.id) ? "fill" : "regular"} className={savedArticles.includes(article.id) ? "text-amber-500" : ""} />
+                        </button>
+
+                        {isAdminMode && (
+                          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+                            <button
+                              onClick={(e) => handleOpenEditModal(article, e)}
+                              className="p-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"
+                            >
+                              <PencilSimple size={14} weight="bold" />
+                            </button>
+                            <button
+                              onClick={(e) => handleDeleteArticle(article.id, e)}
+                              className="p-1.5 rounded-lg hover:bg-red-100 text-red-600"
+                            >
+                              <Trash size={14} weight="bold" />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full sm:w-36 aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <SafeNewsImage
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-        </div>
 
-        {/* Right Col: Events Calendar Placeholder & Sidebar */}
-        <div className="lg:col-span-4 space-y-6 mt-8 lg:mt-16">
-          
-          {/* Event Calendar Placeholder */}
-          <div className="bg-slate-900 rounded-[2rem] p-8 text-white relative overflow-hidden shadow-xl">
-            <div className="absolute -top-4 -right-4 p-6 opacity-[0.03]">
-              <CalendarBlank weight="fill" className="w-48 h-48" />
+              {filteredNews.length === 0 && (
+                <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-3">
+                  <Newspaper size={48} className="text-slate-400 mx-auto" />
+                  <h4 className="font-serif text-xl font-bold">No Announcements in this Category</h4>
+                  <p className="text-xs text-slate-500">Check back soon for new notices or select 'All Stories'.</p>
+                </div>
+              )}
             </div>
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-blue-200 text-[10px] font-bold uppercase tracking-widest mb-6">
-                <Clock className="w-3 h-3" />
-                <span>Upcoming</span>
+
+          </div>
+
+          {/* Right Column: Circulars Vault & Upcoming Events (4 Cols) */}
+          <div className="lg:col-span-4 space-y-8">
+            
+            {/* Quick Circulars Download Box */}
+            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+                <FileText size={20} className="text-blue-600" weight="duotone" />
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Official Circulars</h3>
               </div>
-              <h3 className="text-2xl font-extrabold mb-8 tracking-tight">Event Calendar</h3>
-              
-              <div className="space-y-5">
-                {[
-                  {d: '24', m: 'Aug', t: 'Annual Sports Meet', v: 'Main Ground'},
-                  {d: '05', m: 'Sep', t: 'Teacher\'s Day Celebration', v: 'Auditorium'},
-                  {d: '12', m: 'Sep', t: 'Science Fair 2026', v: 'Science Block'}
-                ].map((ev, i) => (
-                  <div key={i} className="flex gap-4 items-start group cursor-pointer">
-                    <div className="bg-blue-500/20 text-blue-300 rounded-2xl p-2.5 text-center min-w-[3.5rem] group-hover:bg-blue-500 group-hover:text-white transition-colors border border-blue-500/10">
-                      <div className="text-[10px] font-bold uppercase tracking-wide">{ev.m}</div>
-                      <div className="text-xl font-black leading-none mt-1">{ev.d}</div>
+
+              <div className="space-y-3">
+                <a 
+                  href="/documents/academic-calendar-2026-27.pdf"
+                  onClick={(e) => { e.preventDefault(); alert("Downloading CBSE Academic Year 2026-27 Schedule"); }}
+                  className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700/50 border border-slate-200/50 dark:border-slate-700 transition-colors group"
+                >
+                  <div className="min-w-0 pr-2">
+                    <h5 className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-blue-600">
+                      Annual Academic Calendar 2026-27
+                    </h5>
+                    <span className="text-[10px] text-slate-400">PDF • 220 Working Days</span>
+                  </div>
+                  <DownloadSimple size={16} className="text-blue-600 shrink-0" weight="bold" />
+                </a>
+
+                <a 
+                  href="/documents/cbse-assessment-guidelines-2026-27.pdf"
+                  onClick={(e) => { e.preventDefault(); alert("Downloading CBSE Assessment & Examination Framework 2026-27"); }}
+                  className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700/50 border border-slate-200/50 dark:border-slate-700 transition-colors group"
+                >
+                  <div className="min-w-0 pr-2">
+                    <h5 className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-blue-600">
+                      CBSE Assessment &amp; Exam Guidelines
+                    </h5>
+                    <span className="text-[10px] text-slate-400">PDF • CCE &amp; SAFAL Matrix</span>
+                  </div>
+                  <DownloadSimple size={16} className="text-blue-600 shrink-0" weight="bold" />
+                </a>
+
+                <a 
+                  href="/documents/rte-seat-matrix.pdf"
+                  onClick={(e) => { e.preventDefault(); alert("Downloading Govt of Karnataka RTE Seat Matrix"); }}
+                  className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700/50 border border-slate-200/50 dark:border-slate-700 transition-colors group"
+                >
+                  <div className="min-w-0 pr-2">
+                    <h5 className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate group-hover:text-blue-600">
+                      RTE 25% Seat Matrix & Guidelines
+                    </h5>
+                    <span className="text-[10px] text-slate-400">PDF • Govt Notification</span>
+                  </div>
+                  <DownloadSimple size={16} className="text-blue-600 shrink-0" weight="bold" />
+                </a>
+              </div>
+            </div>
+
+            {/* Upcoming Campus Events Calendar */}
+            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <CalendarBlank size={20} className="text-emerald-500" weight="duotone" />
+                  <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Upcoming Events</h3>
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 font-mono">2026-27</span>
+              </div>
+
+              <div className="space-y-3">
+                {events.map((evt) => (
+                  <div 
+                    key={evt.id}
+                    className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700 space-y-2 hover:border-emerald-500/40 transition-colors"
+                  >
+                    <div className="flex justify-between items-start gap-2">
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold">
+                        {evt.category}
+                      </span>
+                      <button
+                        onClick={(e) => handleAddToGoogleCalendar(evt, e)}
+                        className="text-[10px] font-bold text-blue-600 hover:underline flex items-center gap-1"
+                        title="Add to Google Calendar"
+                      >
+                        + G-Cal
+                      </button>
                     </div>
-                    <div className="pt-1">
-                      <h4 className="font-bold text-sm text-slate-100 group-hover:text-white transition-colors">{ev.t}</h4>
-                      <p className="text-xs text-slate-400 mt-1.5 flex items-center gap-1.5 font-medium">
-                        <MapPin className="w-3.5 h-3.5 text-amber-500" /> {ev.v}
-                      </p>
+
+                    <h5 className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
+                      {evt.title}
+                    </h5>
+
+                    <div className="space-y-1 text-[11px] text-slate-500 dark:text-slate-400">
+                      <div className="flex items-center gap-1.5">
+                        <Clock size={12} className="text-slate-400" />
+                        <span>{evt.date} • {evt.time}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin size={12} className="text-slate-400" />
+                        <span className="truncate">{evt.venue}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-              
-              <button className="w-full mt-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all hover:shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-2">
-                <span>View Full Calendar</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
             </div>
-          </div>
 
-          {/* Quick Links / Circulars Placeholder */}
-          <div className="bg-amber-50 rounded-[2rem] p-8 border border-amber-100/50">
-            <h3 className="text-xl font-extrabold text-amber-900 mb-6 flex items-center gap-2 tracking-tight">
-              <FileText weight="fill" className="w-6 h-6 text-amber-500" />
-              Important Circulars
-            </h3>
-            <div className="space-y-3">
-              {[
-                {t: 'Academic Calendar 2026-27', s: '1.4 MB'},
-                {t: 'School Uniform Policy', s: '850 KB'}
-              ].map((c, i) => (
-                <a key={i} href="#" className="block p-4 rounded-2xl bg-white border border-amber-100 hover:border-amber-300 hover:shadow-sm transition-all group">
-                  <div className="font-bold text-sm text-amber-950 group-hover:text-amber-700">{c.t}</div>
-                  <div className="text-xs text-amber-600/60 mt-2 flex items-center justify-between font-medium">
-                    <span>PDF • {c.s}</span>
-                    <span className="text-amber-600 font-bold text-[10px] uppercase opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                      Download <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
           </div>
 
         </div>
+
       </div>
 
-      {/* Article Detail Modal */}
-      {selectedArticle && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in">
-          <div className="bg-white rounded-[2rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-100">
-            <button
-              onClick={() => setSelectedArticle(null)}
-              className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-black/20 hover:bg-black/40 text-white backdrop-blur-md transition-all"
+      {/* ========================================================================= */}
+      {/* ARTICLE READING MODAL                                                     */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {selectedArticle && (
+          <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white dark:bg-slate-900 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl relative flex flex-col"
             >
-              <X className="w-5 h-5 font-bold" />
-            </button>
-            <div className="relative h-64 sm:h-[22rem]">
-              <img
-                src={selectedArticle.image}
-                alt={selectedArticle.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-8 sm:p-10 space-y-6">
-              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold">
-                <span className="px-3 py-1.5 rounded-full bg-slate-900 text-white uppercase tracking-wider">
-                  {selectedArticle.category}
-                </span>
-                <span className="text-slate-500 flex items-center gap-1.5">
-                  <CalendarBlank className="w-4 h-4" />
-                  {selectedArticle.date}
-                </span>
-                <span className="text-slate-300">•</span>
-                <span className="text-slate-500">{selectedArticle.author}</span>
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedArticle(null)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-slate-950 transition-colors shadow-lg"
+              >
+                <X size={20} weight="bold" />
+              </button>
+
+              {/* Modal Hero Image Container (Fixed Aspect Ratio 16:9) */}
+              <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900">
+                <SafeNewsImage
+                  src={selectedArticle.image}
+                  alt={selectedArticle.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 flex gap-2">
+                  <span className="px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-white/10">
+                    {selectedArticle.category}
+                  </span>
+                </div>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                {selectedArticle.title}
-              </h2>
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8 space-y-4">
+                <div className="flex items-center gap-3 text-xs text-slate-500 font-mono border-b border-slate-100 dark:border-slate-800 pb-3">
+                  <span className="font-bold text-blue-600">{selectedArticle.author}</span>
+                  <span>•</span>
+                  <span>Published on {selectedArticle.date}</span>
+                </div>
 
-              <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                {selectedArticle.summary}
-              </p>
-              
-              <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
-                <p>Detailed content for the news article will appear here. It covers all aspects of the event or circular in detail so parents and students are well informed.</p>
-                <p>Stay tuned for more updates from the school administration. We strive to provide the best environment for holistic development.</p>
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">
+                  {selectedArticle.title}
+                </h2>
+
+                {selectedArticle.kannadaTitle && (
+                  <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 italic">
+                    {selectedArticle.kannadaTitle}
+                  </p>
+                )}
+
+                <div className="prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300 space-y-4 pt-2">
+                  <p className="font-medium text-slate-800 dark:text-slate-200">
+                    {selectedArticle.summary}
+                  </p>
+                  {selectedArticle.body && selectedArticle.body !== selectedArticle.summary && (
+                    <p className="whitespace-pre-line">
+                      {selectedArticle.body}
+                    </p>
+                  )}
+                </div>
+
+                {/* Tags */}
+                {selectedArticle.tags && (
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+                    {selectedArticle.tags.map((tag, idx) => (
+                      <span key={idx} className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
+
+      {/* ========================================================================= */}
+      {/* ADMIN ANNOUNCEMENT CREATE & EDIT MODAL                                    */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {showAdminModal && (
+          <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-800 shadow-2xl p-6 sm:p-8 space-y-6"
+            >
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                <div>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                    {editingArticle ? 'Edit Announcement' : 'Create New Announcement'}
+                  </h3>
+                  <p className="text-xs text-slate-500">Publish notices, circulars, and event briefings to the school hub.</p>
+                </div>
+                <button
+                  onClick={() => setShowAdminModal(false)}
+                  className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <form onSubmit={handleSaveAnnouncement} className="space-y-4 text-xs">
+                
+                {/* Subject / Title */}
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Subject / Headline *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    placeholder="e.g. CBSE Term-1 Assessment Circular"
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                </div>
+
+                {/* Kannada Title */}
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Kannada Headline (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.kannadaTitle}
+                    onChange={(e) => setFormData({ ...formData, kannadaTitle: e.target.value })}
+                    placeholder="e.g. ಸಿಬಿಎಸ್ಇ ಮೊದಲ ಅವಧಿಯ ಪರೀಕ್ಷಾ ಸುತ್ತೋಲೆ"
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                </div>
+
+                {/* Category & Author Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      Category
+                    </label>
+                    <select
+                      value={formData.category}
+                      onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                    >
+                      <option value="Circulars">Circulars</option>
+                      <option value="Academics">Academics</option>
+                      <option value="Sports">Sports</option>
+                      <option value="Celebrations">Celebrations</option>
+                      <option value="Achievements">Achievements</option>
+                      <option value="General">General</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                      Publishing Authority
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.author}
+                      onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                      placeholder="e.g. Principal's Desk, Sports Dept"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                    />
+                  </div>
+                </div>
+
+                {/* Summary / Brief */}
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Short Summary (Displays on Google News cards) *
+                  </label>
+                  <textarea
+                    rows={2}
+                    required
+                    value={formData.summary}
+                    onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
+                    placeholder="Brief 2-3 line overview..."
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                </div>
+
+                {/* Full Body */}
+                <div>
+                  <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Full Announcement Text
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={formData.body}
+                    onChange={(e) => setFormData({ ...formData, body: e.target.value })}
+                    placeholder="Complete notification paragraphs..."
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+                </div>
+
+                {/* Image URL & Fixed-Ratio Preview */}
+                <div className="space-y-2">
+                  <label className="block font-bold text-slate-700 dark:text-slate-300">
+                    Image Attachment URL (Fixed Aspect Ratio: 16:9 / 4:3)
+                  </label>
+                  <input
+                    type="url"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    placeholder="https://..."
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-blue-600"
+                  />
+
+                  {formData.image && (
+                    <div className="w-40 aspect-[16/10] rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-sm">
+                      <SafeNewsImage
+                        src={formData.image}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Pinned Checkbox */}
+                <div className="flex items-center gap-2 pt-2">
+                  <input
+                    type="checkbox"
+                    id="pinnedCheck"
+                    checked={formData.pinned}
+                    onChange={(e) => setFormData({ ...formData, pinned: e.target.checked })}
+                    className="w-4 h-4 text-blue-600 rounded"
+                  />
+                  <label htmlFor="pinnedCheck" className="font-bold text-slate-700 dark:text-slate-300">
+                    Pin this announcement to Top Stories Banner
+                  </label>
+                </div>
+
+                {/* Submit & Cancel */}
+                <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => setShowAdminModal(false)}
+                    className="px-5 py-2.5 rounded-xl font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2.5 rounded-xl font-bold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg"
+                  >
+                    {editingArticle ? 'Save Changes' : 'Publish Announcement'}
+                  </button>
+                </div>
+
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
 }
+

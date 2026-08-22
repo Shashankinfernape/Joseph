@@ -26,9 +26,9 @@ const Footer = () => {
               </p>
             </div>
             <div className='text-sm font-sans text-brand-text-secondary space-y-1.5 flex flex-col'>
-              <p className='leading-relaxed text-slate-300'>Kothanur, Bengaluru<br />Karnataka, India</p>
-              <a href='tel:+918028445500' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>+91 80 2844 5500</a>
-              <a href='mailto:info@stjoseph.edu.in' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>info@stjoseph.edu.in</a>
+              <p className='leading-relaxed text-slate-300'>21/10, Hennur Bagalur Main Road<br />Kothanur, Bangalore – 560 077<br />Karnataka, India</p>
+              <a href='tel:+918296761288' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>+91 8296761288</a>
+              <a href='mailto:stjosephschoolkothanur@gmail.com' className='text-slate-300 hover:text-brand-blue-500 transition-colors'>stjosephschoolkothanur@gmail.com</a>
             </div>
           </div>
 
@@ -81,8 +81,8 @@ const Footer = () => {
 
         {/* Bottom bar */}
         <div className='border-t border-brand-navy-800 mt-16 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-brand-text-muted'>
-          <p>© {new Date().getFullYear()} St. Joseph English High School, Bengaluru. All rights reserved.</p>
-          <p>Designed with restraint.</p>
+          <p>© {new Date().getFullYear()} St. Joseph English High School, Bengaluru. CBSE Affiliation No. 830942 | School Code: 45891</p>
+          <p className='text-slate-400'>Run by the Sisters of the Congregation of the Immaculate Conception (CIC)</p>
         </div>
       </div>
     </footer>

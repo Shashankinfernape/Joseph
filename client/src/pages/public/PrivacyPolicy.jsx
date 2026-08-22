@@ -44,9 +44,9 @@ export default function PrivacyPolicy() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-bold text-cbse-navy dark:text-white font-serif">4. Purpose Limitation & Zero Advertising</h2>
+          <h2 className="text-base font-bold text-cbse-navy dark:text-white font-serif">4. Purpose Limitation &amp; Zero Advertising</h2>
           <p>
-            We strictly enforce that student and parent data is never monetized, traded, or shared with third-party advertising brokers. Data collected is solely utilized for academic evaluation, attendance logging, fee receipting, and emergency telematics (bus GPS).
+            We strictly enforce that student and parent data is never monetized, traded, or shared with third-party advertising brokers. Data collected is solely utilized for academic evaluation, attendance logging, scholastic certification, and emergency telematics (bus GPS).
           </p>
         </section>
 
@@ -54,9 +54,9 @@ export default function PrivacyPolicy() {
           <h2 className="text-base font-bold text-cbse-navy dark:text-white font-serif">5. Data Protection Officer (DPO) Contact</h2>
           <p>
             For any privacy inquiries or consent withdrawals, please contact:<br />
-            <strong>Office of Data Protection & Compliance</strong><br />
-            Email: <a href="mailto:dpo@vidyamandir-bengaluru.edu.in" className="text-cbse-blue underline">dpo@vidyamandir-bengaluru.edu.in</a><br />
-            St. Joseph English High School, Whitefield, Bengaluru - 560066.
+            <strong>Office of Data Protection &amp; Compliance</strong><br />
+            Email: <a href="mailto:stjosephschoolkothanur@gmail.com" className="text-cbse-blue underline">stjosephschoolkothanur@gmail.com</a><br />
+            St. Joseph English High School, Hennur Main Road, Kothanur, Bengaluru – 560077.
           </p>
         </section>
       </div>

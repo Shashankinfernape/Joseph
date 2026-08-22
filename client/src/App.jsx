@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 
 // Layout
 import Header from './components/layout/Header';
-
 import Footer from './components/layout/Footer';
 import PortalSidebar from './components/layout/PortalSidebar';
 import PortalRightRail from './components/layout/PortalRightRail';
@@ -67,13 +66,13 @@ function LayoutWrapper({ children }) {
 
   if (isDashboardMode) {
     return (
-      <div className="min-h-screen flex flex-col bg-white text-black font-sans">
+      <div className="min-h-screen flex flex-col bg-white text-black font-sans pt-16 md:pt-20">
         <div className="ambient-glow"></div>
         <Header />
         <div className="flex-1 flex w-full max-w-[1600px] mx-auto">
           <PortalSidebar />
-          <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 pb-24 lg:pb-12 overflow-x-hidden">
-            <div className="max-w-4xl mx-auto w-full">
+          <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 pb-24 lg:pb-12 overflow-x-hidden">
+            <div className="w-full">
               {children}
             </div>
           </main>

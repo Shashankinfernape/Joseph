@@ -1,38 +1,95 @@
 const express = require('express');
 const router = express.Router();
-const { getDB, updateCollection } = require('../data/dbService');
+const { getDB, updateCollection, saveDB } = require('../data/dbService');
 
-// Get news articles
+// Get news articles / announcements
 router.get('/news', (req, res) => {
   const db = getDB();
   res.json({ success: true, news: db.newsArticles || [] });
 });
 
-// Add news article (Admin)
+// Add news article / announcement (Admin)
 router.post('/news', (req, res) => {
-  const { title, category, author, summary, image, tags, kannadaTitle } = req.body;
-  if (!title || !summary) {
-    return res.status(400).json({ success: false, message: 'Title and Summary are required' });
+  const { title, category, author, summary, body, image, tags, kannadaTitle, pinned, attachment } = req.body;
+  if (!title || (!summary && !body)) {
+    return res.status(400).json({ success: false, message: 'Subject/Title and Body/Summary are required' });
   }
 
   const newArticle = {
-    id: `NEWS-2026-${Date.now().toString().slice(-3)}`,
+    id: `NEWS-${Date.now().toString().slice(-6)}`,
     title,
     kannadaTitle: kannadaTitle || title,
     category: category || "General",
     date: new Date().toISOString().split('T')[0],
-    author: author || "Office of Communications",
-    summary,
-    image: image || "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
-    tags: tags || ["School", "Updates"]
+    author: author || "St. Joseph Admin Office",
+    summary: summary || (body ? body.slice(0, 140) + '...' : ''),
+    body: body || summary,
+    image: image || "https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg",
+    tags: tags || ["School", "Announcement"],
+    pinned: Boolean(pinned),
+    attachment: attachment || null
   };
 
   updateCollection('newsArticles', (news) => {
-    news.unshift(newArticle);
+    if (newArticle.pinned) {
+      news.unshift(newArticle);
+    } else {
+      news.splice(1, 0, newArticle);
+    }
     return newArticle;
   });
 
   res.status(201).json({ success: true, article: newArticle });
+});
+
+// Update an existing news article / announcement (Admin)
+router.put('/news/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, category, author, summary, body, image, tags, kannadaTitle, pinned, attachment, date } = req.body;
+
+  const db = getDB();
+  const newsList = db.newsArticles || [];
+  const index = newsList.findIndex(n => n.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ success: false, message: 'Announcement not found' });
+  }
+
+  const updated = {
+    ...newsList[index],
+    title: title !== undefined ? title : newsList[index].title,
+    kannadaTitle: kannadaTitle !== undefined ? kannadaTitle : newsList[index].kannadaTitle,
+    category: category !== undefined ? category : newsList[index].category,
+    author: author !== undefined ? author : newsList[index].author,
+    summary: summary !== undefined ? summary : newsList[index].summary,
+    body: body !== undefined ? body : (newsList[index].body || newsList[index].summary),
+    image: image !== undefined ? image : newsList[index].image,
+    tags: tags !== undefined ? tags : newsList[index].tags,
+    pinned: pinned !== undefined ? Boolean(pinned) : newsList[index].pinned,
+    attachment: attachment !== undefined ? attachment : newsList[index].attachment,
+    date: date || newsList[index].date
+  };
+
+  newsList[index] = updated;
+  db.newsArticles = newsList;
+  saveDB(db);
+
+  res.json({ success: true, message: 'Announcement updated successfully', article: updated });
+});
+
+// Delete a news article / announcement (Admin)
+router.delete('/news/:id', (req, res) => {
+  const { id } = req.params;
+  const db = getDB();
+  const initialLength = (db.newsArticles || []).length;
+  db.newsArticles = (db.newsArticles || []).filter(n => n.id !== id);
+
+  if (db.newsArticles.length === initialLength) {
+    return res.status(404).json({ success: false, message: 'Announcement not found' });
+  }
+
+  saveDB(db);
+  res.json({ success: true, message: 'Announcement deleted successfully' });
 });
 
 // Get urgent alert banner
@@ -53,9 +110,7 @@ router.put('/urgent-alert', (req, res) => {
     link: link || db.urgentAlert?.link
   };
   
-  const { saveDB } = require('../data/dbService');
   saveDB(db);
-
   res.json({ success: true, message: 'Alert ticker updated', alert: db.urgentAlert });
 });
 
@@ -73,11 +128,11 @@ router.post('/events', (req, res) => {
   }
 
   const newEvent = {
-    id: `EVT-${Date.now().toString().slice(-3)}`,
+    id: `EVT-${Date.now().toString().slice(-4)}`,
     title,
     date,
     time: time || "09:00 AM",
-    venue: venue || "School Main Auditorium",
+    venue: venue || "School Main Campus",
     category: category || "General"
   };
 
@@ -87,6 +142,15 @@ router.post('/events', (req, res) => {
   });
 
   res.status(201).json({ success: true, event: newEvent });
+});
+
+// Delete upcoming event (Admin)
+router.delete('/events/:id', (req, res) => {
+  const { id } = req.params;
+  const db = getDB();
+  db.upcomingEvents = (db.upcomingEvents || []).filter(e => e.id !== id);
+  saveDB(db);
+  res.json({ success: true, message: 'Event removed' });
 });
 
 // Get gallery albums
@@ -121,3 +185,4 @@ router.post('/gallery', (req, res) => {
 });
 
 module.exports = router;
+

@@ -52,7 +52,7 @@ export default function PhilosophySection() {
           {/* CTAs */}
           <div className='mt-10 flex items-center gap-8'>
             <Link
-              to='/about'
+              to='/about-us'
               className='font-sans font-semibold text-[#0D0D0D] text-sm flex items-center gap-2 group'
             >
               <span>Our story</span>
@@ -71,7 +71,7 @@ export default function PhilosophySection() {
 
           {/* Meta footnote */}
           <p className='mt-10 font-sans text-[11px] tracking-[0.16em] uppercase text-neutral-300'>
-            Est. 1985 · CBSE Affiliated · Pune, India
+            Est. 1985 · CBSE Affiliated · Kothanur, Bengaluru, India
           </p>
         </motion.div>
 
@@ -86,8 +86,8 @@ export default function PhilosophySection() {
 
             <div className='relative z-10 group w-full aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-100 shadow-sm'>
               <img
-                src='https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&auto=format&fit=crop&q=80'
-                alt='Students engaged in collaborative learning at St. Joseph English High School, Pune'
+                src='https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg'
+                alt='Students engaged in collaborative learning at St. Joseph English High School, Bengaluru'
                 className='object-cover w-full h-full transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]'
                 loading='lazy'
                 decoding='async'
@@ -102,7 +102,7 @@ export default function PhilosophySection() {
                 Since 1985
               </p>
               <p className='font-accent text-base font-bold text-[#0D0D0D] leading-tight mt-0.5'>
-                38 Years of Legacy
+                41 Years of Legacy
               </p>
             </div>
           </div>

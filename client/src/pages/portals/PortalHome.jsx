@@ -93,7 +93,7 @@ export default function PortalHome() {
             </h3>
             
             <p className="text-xs text-[#5f6368] dark:text-[#9aa0a6] leading-relaxed">
-              Multi-child sibling switcher (Aarav & Ananya), real-time grade monitoring, fee payments with instant tax receipts, direct PTM meeting scheduler, and DPDP digital consent signing.
+              Multi-child sibling switcher (Aarav &amp; Ananya), real-time academic grade monitoring, direct PTM teacher interaction scheduler, and DPDP digital consent signing.
             </p>
 
             <div className="p-2.5 rounded-xl bg-[#F6F7F8] dark:bg-[#272729] text-[11px] font-mono text-[#787C7E]">
@@ -161,7 +161,7 @@ export default function PortalHome() {
             </h3>
             
             <p className="text-xs text-[#5f6368] dark:text-[#9aa0a6] leading-relaxed">
-              School command center, online admissions CRM with RTE 25% quota allotment, live CMS (publish news, urgent alerts & gallery), fee structure configurator, and CBSE statutory NOC monitor.
+              School command center, online admissions CRM with RTE 25% quota allotment, live CMS (publish news, urgent alerts &amp; gallery), timetable manager, and CBSE statutory NOC monitor.
             </p>
 
             <div className="p-2.5 rounded-xl bg-[#F6F7F8] dark:bg-[#272729] text-[11px] font-mono text-[#787C7E]">
