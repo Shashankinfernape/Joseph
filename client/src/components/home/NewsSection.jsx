@@ -53,9 +53,10 @@ const NewsSection = ({ news = [], events = [], lang = 'en' }) => {
               </div>
             ) : (
               news.map((item, index) => {
-                const dateObj = new Date(item.date || Date.now());
-                const day = dateObj.getDate();
-                const month = dateObj.toLocaleString(lang, { month: 'short' });
+                const dateObj = new Date(item.date);
+                const isValid = !isNaN(dateObj.getTime());
+                const day = isValid ? dateObj.getDate() : '—';
+                const month = isValid ? dateObj.toLocaleString(lang, { month: 'short' }) : 'NEWS';
 
                 return (
                   <motion.div 
@@ -118,9 +119,10 @@ const NewsSection = ({ news = [], events = [], lang = 'en' }) => {
               <div className="text-neutral-500 font-sans italic">No upcoming events.</div>
             ) : (
               events.map((event, index) => {
-                const dateObj = new Date(event.date || Date.now());
-                const day = dateObj.getDate();
-                const month = dateObj.toLocaleString(lang, { month: 'short' });
+                const dateObj = new Date(event.date);
+                const isValid = !isNaN(dateObj.getTime());
+                const day = isValid ? dateObj.getDate() : '—';
+                const month = isValid ? dateObj.toLocaleString(lang, { month: 'short' }) : 'EVENT';
 
                 return (
                   <motion.div 

@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  MapTrifold, 
   Books, 
   Flask, 
   Basketball, 
   Palette, 
-  VideoCamera, 
   ShieldCheck, 
   FirstAid, 
-  Plant,
+  Desktop, 
+  Drop, 
+  Bus, 
+  Buildings, 
+  CheckCircle, 
+  Eye, 
+  X, 
   Sparkle,
-  ChalkboardTeacher,
-  Desktop,
-  Drop,
-  Bus,
-  Buildings,
-  CheckCircle,
-  Eye,
-  X,
-  Compass,
-  TreeEvergreen,
-  WifiHigh
+  ArrowRight
 } from '@phosphor-icons/react';
 import { cn } from '../../lib/utils';
 
@@ -32,10 +26,10 @@ const SafeImage = ({ src, alt, className, fallbackText = 'St. Joseph Campus' }) 
 
   if (error || !src) {
     return (
-      <div className={cn("bg-gradient-to-br from-slate-900 via-cbse-navy to-slate-800 flex flex-col items-center justify-center text-white p-6 text-center", className)}>
-        <Buildings size={40} className="text-cbse-gold mb-2 opacity-80" weight="duotone" />
-        <span className="text-xs font-bold font-serif uppercase tracking-wider">{fallbackText}</span>
-        <span className="text-[10px] text-slate-400 mt-1">Hennur Main Road Campus, Bengaluru</span>
+      <div className={cn("bg-neutral-900 flex flex-col items-center justify-center text-white p-6 text-center border border-white/5", className)}>
+        <Buildings size={36} className="text-neutral-500 mb-2 opacity-80" weight="duotone" />
+        <span className="text-xs font-bold font-sans uppercase tracking-wider text-neutral-300">{fallbackText}</span>
+        <span className="text-[10px] text-neutral-500 mt-1">Kothanur Campus, Bengaluru</span>
       </div>
     );
   }
@@ -43,7 +37,7 @@ const SafeImage = ({ src, alt, className, fallbackText = 'St. Joseph Campus' }) 
   return (
     <div className="relative w-full h-full">
       {loading && (
-        <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
+        <div className="absolute inset-0 bg-neutral-900 animate-pulse" />
       )}
       <img
         src={src}
@@ -73,7 +67,7 @@ const FACILITIES = [
     category: 'Academic Blocks & Smart Labs',
     icon: Buildings,
     tag: 'Main Campus',
-    description: 'Spacious, well-ventilated, and naturally lit classrooms equipped with interactive audio-visual smartboards, ergonomic seating, and individual student lockers.',
+    description: 'Spacious, well-ventilated, and naturally lit classrooms equipped with interactive audio-visual smartboards, ergonomic seating, and individual student storage.',
     specs: ['Airy Classrooms with Natural Light', 'CBSE Smart Teaching Boards', 'Dual PA & Emergency Broadcast System', 'Dedicated Subject Faculty Rooms'],
     images: [
       'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg',
@@ -86,8 +80,8 @@ const FACILITIES = [
     title: 'Composite Science Laboratories',
     category: 'Science & Technology',
     icon: Flask,
-    tag: 'Experiential Learning',
-    description: 'Fully equipped Physics, Chemistry, and Biology demonstration stations with high-grade optical microscopes, chemical apparatus, safety eye-wash units, and fire dampeners.',
+    tag: 'Experiential Labs',
+    description: 'Fully equipped Physics, Chemistry, and Biology demonstration stations with high-grade optical microscopes, chemical apparatus, and safety eye-wash units.',
     specs: ['Physics & Mechanics Apparatus', 'Chemistry Safe-Fume Pods', 'Biological Specimen Observation Pods', 'Strict Safety & First-Aid Protocols'],
     images: [
       'https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/IMG_20240605_092945-scaled.jpg',
@@ -153,14 +147,14 @@ const FACILITIES = [
   }
 ];
 
-const FacilityCard = ({ facility, onSelectImage }) => {
+const FacilityCard = ({ facility }) => {
   const [activeImage, setActiveImage] = useState(0);
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-between group">
+    <div className="bg-[#0a0a0a] rounded-2xl border border-white/[0.08] hover:border-white/20 transition-all duration-300 overflow-hidden flex flex-col justify-between group shadow-lg">
       
       {/* Photo Showcase Container */}
-      <div className="relative w-full aspect-[16/10] overflow-hidden bg-slate-800">
+      <div className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-900">
         <SafeImage
           src={facility.images[activeImage]}
           alt={facility.title}
@@ -169,12 +163,12 @@ const FacilityCard = ({ facility, onSelectImage }) => {
         />
         
         {/* Top Badges */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
-          <span className="px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md text-cbse-gold text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+        <div className="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center pointer-events-none">
+          <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
             {facility.tag}
           </span>
-          <div className="w-10 h-10 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-cbse-navy dark:text-cbse-gold flex items-center justify-center shadow-md">
-            <facility.icon weight="duotone" className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-xl bg-black/80 backdrop-blur-md text-brand-blue-400 border border-white/10 flex items-center justify-center shadow-md">
+            <facility.icon weight="duotone" className="w-4 h-4" />
           </div>
         </div>
 
@@ -186,8 +180,8 @@ const FacilityCard = ({ facility, onSelectImage }) => {
               onClick={() => setActiveImage(idx)}
               aria-label={`View photo ${idx + 1}`}
               className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                activeImage === idx ? "bg-cbse-gold w-6" : "bg-white/60 w-1.5 hover:bg-white"
+                "h-1.5 rounded-full transition-all duration-300 cursor-pointer",
+                activeImage === idx ? "bg-brand-blue-500 w-5" : "bg-white/40 w-1.5 hover:bg-white"
               )}
             />
           ))}
@@ -195,24 +189,24 @@ const FacilityCard = ({ facility, onSelectImage }) => {
       </div>
 
       {/* Description & Technical Specs */}
-      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
         <div className="space-y-2">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue-500 font-mono">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue-400 font-sans">
             {facility.category}
           </span>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
+          <h3 className="font-sans text-lg sm:text-xl font-bold text-white leading-snug tracking-tight">
             {facility.title}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
             {facility.description}
           </p>
         </div>
 
         {/* Specs Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+        <div className="grid grid-cols-1 gap-2 pt-4 border-t border-white/[0.06] text-xs">
           {facility.specs.map((spec, i) => (
-            <div key={i} className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-              <CheckCircle size={15} weight="fill" className="text-emerald-500 shrink-0" />
+            <div key={i} className="flex items-center gap-2 text-neutral-300">
+              <CheckCircle size={14} weight="fill" className="text-brand-blue-400 shrink-0" />
               <span className="text-[11px] font-medium truncate">{spec}</span>
             </div>
           ))}
@@ -231,43 +225,51 @@ export default function Infrastructure() {
   );
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 pb-28">
+    <div className="bg-[#050505] min-h-screen text-neutral-100 font-sans selection:bg-brand-blue-600 selection:text-white pb-28">
       
+      {/* ── TOP ACCENT COLOR STRIP ── */}
+      <div className="h-1 w-full bg-gradient-to-r from-transparent via-brand-blue-600 to-transparent" />
+
+      {/* ── ARCHITECTURAL CREST WATERMARK ── */}
+      <div className="absolute top-20 right-[-5%] w-96 h-96 lg:w-[480px] lg:h-[480px] opacity-[0.03] pointer-events-none select-none overflow-hidden -z-0">
+        <img 
+          src="/images/school-crest-transparent.png" 
+          alt="" 
+          className="w-full h-full object-contain filter grayscale" 
+        />
+      </div>
+
       {/* Header Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-8 max-w-5xl mx-auto text-center space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface-blue dark:bg-brand-navy-900 text-brand-blue-500 text-xs font-bold uppercase tracking-widest border border-brand-blue-500/20">
-          <Sparkle weight="fill" size={15} />
-          <span>Campus &amp; Learning Spaces</span>
-        </div>
-        <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
-          State-of-the-Art Learning Spaces
+      <section className="pt-20 lg:pt-24 pb-12 px-4 sm:px-8 max-w-5xl mx-auto text-center space-y-4">
+        <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          Campus &amp; Learning Spaces
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          Explore the modern academic blocks, advanced innovation laboratories, spacious sports grounds, and safety-focused infrastructure at St. Joseph English High School, Kothanur.
+        <p className="text-sm sm:text-base text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          Explore the academic blocks, science laboratories, computer labs, athletic grounds, and safety-focused infrastructure at St. Joseph English High School, Kothanur.
         </p>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* ========================================================================= */}
         {/* 1. CAMPUS HERO CARD                                                       */}
         {/* ========================================================================= */}
-        <div className="relative rounded-3xl overflow-hidden bg-slate-900 shadow-2xl border border-slate-800">
-          <div className="relative w-full aspect-[21/9] min-h-[320px]">
+        <div className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/[0.08] shadow-2xl">
+          <div className="relative w-full aspect-[21/9] min-h-[300px]">
             <SafeImage
               src="https://stjosephschoolbangalore.org/wp-content/uploads/2024/08/DSC_0466-scaled.jpg"
               alt="St. Joseph Campus View"
-              className="w-full h-full object-cover opacity-60"
+              className="w-full h-full object-cover opacity-50"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent flex flex-col items-center justify-center p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-cbse-gold text-slate-950 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/20">
-                <Buildings weight="fill" className="w-8 h-8" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent flex flex-col items-center justify-center p-6 text-center space-y-3">
+              <div className="w-12 h-12 bg-white/10 text-white rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-md shadow-lg">
+                <Buildings weight="fill" className="w-6 h-6 text-brand-blue-400" />
               </div>
-              <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white max-w-2xl leading-tight">
+              <h2 className="font-sans text-2xl sm:text-4xl font-bold text-white max-w-2xl leading-tight tracking-tight">
                 Designed for Safety, Curiosity &amp; Excellence
               </h2>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-                Located on Hennur Bagalur Main Road, Kothanur, our campus combines serene green surroundings with 21st-century educational technology.
+              <p className="text-xs sm:text-sm text-neutral-400 max-w-xl leading-relaxed">
+                Located on Hennur Bagalur Main Road, Kothanur, our campus combines serene green surroundings with 21st-century educational facilities.
               </p>
             </div>
           </div>
@@ -277,12 +279,11 @@ export default function Infrastructure() {
         {/* 2. CATEGORY PILLS & FACILITIES GRID                                       */}
         {/* ========================================================================= */}
         <section className="space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-neutral-800 pb-4">
             <div>
-              <span className="text-[11px] uppercase tracking-wider text-brand-blue-500 font-extrabold font-mono">Infrastructure Overview</span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Campus Highlights</h2>
+              <h2 className="font-sans text-xl sm:text-2xl font-bold text-white tracking-tight">Campus Highlights</h2>
             </div>
-            <span className="text-xs font-bold text-slate-500">{filteredFacilities.length} Core Facilities</span>
+            <span className="text-xs font-semibold text-neutral-500">{filteredFacilities.length} Core Facilities</span>
           </div>
 
           {/* Category Filter Pills */}
@@ -292,10 +293,10 @@ export default function Infrastructure() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  "px-4 py-2.5 rounded-xl text-xs font-bold transition-all",
+                  "px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer",
                   selectedCategory === category
-                    ? "bg-cbse-navy text-white shadow-md"
-                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+                    ? "bg-brand-blue-600 text-white shadow-md border border-brand-blue-500"
+                    : "bg-white/[0.04] border border-white/[0.08] text-neutral-400 hover:text-white hover:bg-white/[0.08]"
                 )}
               >
                 {category}
@@ -304,7 +305,7 @@ export default function Infrastructure() {
           </div>
 
           {/* Facilities Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredFacilities.map(facility => (
               <FacilityCard key={facility.id} facility={facility} />
             ))}
@@ -314,40 +315,39 @@ export default function Infrastructure() {
         {/* ========================================================================= */}
         {/* 3. SAFETY, HEALTH & HYGIENE PILLARS                                      */}
         {/* ========================================================================= */}
-        <section className="space-y-6">
+        <section className="space-y-6 pt-6 border-t border-neutral-800">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[11px] uppercase tracking-wider text-brand-blue-500 font-extrabold font-mono">Campus Security &amp; Care</span>
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white">Student Safety Standards</h2>
-            <p className="text-xs sm:text-sm text-slate-500">Every measure in place to ensure a nurturing, protected environment for every student.</p>
+            <h2 className="font-sans text-2xl sm:text-3xl font-bold text-white tracking-tight">Student Safety Standards</h2>
+            <p className="text-xs sm:text-sm text-neutral-400">Every measure in place to ensure a nurturing, protected environment for every student.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-brand-blue-500 flex items-center justify-center">
-                <ShieldCheck size={26} weight="duotone" />
+            <div className="bg-[#0a0a0a] p-6 sm:p-7 rounded-2xl border border-white/[0.08] space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-blue-400 border border-blue-500/20 flex items-center justify-center">
+                <ShieldCheck size={22} weight="duotone" />
               </div>
-              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">24/7 Monitored Campus</h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h4 className="font-sans text-lg font-bold text-white">24/7 Monitored Campus</h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
                 High-definition CCTV coverage across all corridors, entry gates, laboratories, and perimeter boundaries with trained security officers on duty.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center">
-                <FirstAid size={26} weight="duotone" />
+            <div className="bg-[#0a0a0a] p-6 sm:p-7 rounded-2xl border border-white/[0.08] space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">
+                <FirstAid size={22} weight="duotone" />
               </div>
-              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">Infirmary &amp; Medical Desk</h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h4 className="font-sans text-lg font-bold text-white">Infirmary &amp; Medical Desk</h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
                 Equipped with emergency first-aid beds, regular health checkups, and immediate on-call emergency tie-ups with leading hospitals nearby.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 flex items-center justify-center">
-                <Drop size={26} weight="duotone" />
+            <div className="bg-[#0a0a0a] p-6 sm:p-7 rounded-2xl border border-white/[0.08] space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center">
+                <Drop size={22} weight="duotone" />
               </div>
-              <h4 className="font-serif text-xl font-bold text-slate-900 dark:text-white">RO Pure Water &amp; Sanitation</h4>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <h4 className="font-sans text-lg font-bold text-white">RO Pure Water &amp; Sanitation</h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
                 Multi-stage RO UV drinking water dispensing units on every floor, tested regularly, alongside sanitized, gender-segregated washroom facilities.
               </p>
             </div>

@@ -19,6 +19,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Home from './pages/public/Home';
 import AboutUs from './pages/public/AboutUs';
 import Academics from './pages/public/Academics';
+import ClassDetail from './pages/public/ClassDetail';
 import Admissions from './pages/public/Admissions';
 import Infrastructure from './pages/public/Infrastructure';
 import Faculty from './pages/public/Faculty';
@@ -66,12 +67,12 @@ function LayoutWrapper({ children }) {
 
   if (isDashboardMode) {
     return (
-      <div className="min-h-screen flex flex-col bg-white text-black font-sans pt-16 md:pt-20">
+      <div className="min-h-screen flex flex-col bg-white text-black font-sans pt-16 md:pt-20 pb-[60px] md:pb-0">
         <div className="ambient-glow"></div>
         <Header />
         <div className="flex-1 flex w-full max-w-[1600px] mx-auto">
           <PortalSidebar />
-          <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 pb-24 lg:pb-12 overflow-x-hidden">
+          <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 overflow-x-hidden">
             <div className="w-full">
               {children}
             </div>
@@ -82,7 +83,7 @@ function LayoutWrapper({ children }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-cbse-gold selection:text-cbse-navy">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-cbse-gold selection:text-cbse-navy pb-[60px] md:pb-0">
       <div className="ambient-glow"></div>
       <Header />
       <main className="flex-1">
@@ -94,6 +95,16 @@ function LayoutWrapper({ children }) {
 }
 
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <ThemeProvider>
@@ -101,12 +112,14 @@ export default function App() {
         <AuthProvider>
           <ToastProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <LayoutWrapper>
                 <Routes>
                   {/* Public Pages */}
                   <Route path="/" element={<Home />} />
                   <Route path="/about-us" element={<AboutUs />} />
                   <Route path="/academics" element={<Academics />} />
+                  <Route path="/academics/class/:gradeId" element={<ClassDetail />} />
                   <Route path="/admissions" element={<Admissions />} />
                   <Route path="/infrastructure" element={<Infrastructure />} />
                   <Route path="/faculty" element={<Faculty />} />
@@ -145,9 +158,18 @@ export default function App() {
                   <Route path="/admin/timetable" element={<ProtectedRoute requiredRole="admin"><AdminTimetable /></ProtectedRoute>} />
                   <Route path="/admin/users" element={<ProtectedRoute requiredRole="admin"><AdminUsers /></ProtectedRoute>} />
                   <Route path="/admin/cms" element={<ProtectedRoute requiredRole="admin"><AdminCMS /></ProtectedRoute>} />
-                  <Route path="/admin/compliance" element={<ProtectedRoute requiredRole="admin"><AdminCompliance /></ProtectedRoute>} />
-
-                  {/* Fallback for old portal routes to avoid 404s during migration */}
+                  {/* Fallback & Aliases for old/alternative portal routes */}
+                  <Route path="/student/grades" element={<Navigate to="/my/grades" replace />} />
+                  <Route path="/student/attendance" element={<Navigate to="/my/attendance" replace />} />
+                  <Route path="/student/timetable" element={<Navigate to="/my/timetable" replace />} />
+                  <Route path="/student/library" element={<Navigate to="/my/library" replace />} />
+                  <Route path="/student/transport" element={<Navigate to="/my/transport" replace />} />
+                  <Route path="/student/lms" element={<Navigate to="/my/lms" replace />} />
+                  <Route path="/teacher/attendance" element={<Navigate to="/teach/attendance" replace />} />
+                  <Route path="/teacher/gradebook" element={<Navigate to="/teach/gradebook" replace />} />
+                  <Route path="/teacher/assignments" element={<Navigate to="/teach/assignments" replace />} />
+                  <Route path="/parent/ptm" element={<Navigate to="/my/ptm" replace />} />
+                  <Route path="/parent/consent" element={<Navigate to="/my/consent" replace />} />
                   <Route path="/portals/*" element={<Navigate to="/dashboard" replace />} />
                 </Routes>
               </LayoutWrapper>
