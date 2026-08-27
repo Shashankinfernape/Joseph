@@ -67,7 +67,7 @@
   
   --lockup-gap: 12px;
   
-  --primary-size: 20.5px;
+  --primary-size: 21.5px;
   --primary-tracking: 0.165em;
   --primary-weight: 700;
   
@@ -173,7 +173,7 @@
     height: var(--crest-size-tablet);
   }
   .school-name-primary {
-    font-size: 18.5px;
+    font-size: 19.3px;
     letter-spacing: 0.16em;
   }
   .school-name-secondary {
@@ -188,7 +188,7 @@
     height: var(--crest-size-mobile);
   }
   .school-name-primary {
-    font-size: 16.5px;
+    font-size: 17.3px;
     letter-spacing: 0.155em;
   }
   .school-name-secondary {

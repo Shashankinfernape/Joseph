@@ -1,32 +1,36 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import SectionLabel from '../ui/SectionLabel';
 
 const achievements = [
-  { index: '01', category: 'Academic', title: 'CBSE Board 2024', description: '100% pass rate. School topper scored 97.4% aggregate.' },
-  { index: '02', category: 'Science', title: 'National Olympiad 2024', description: 'District gold. Three students in top-50 national rank.' },
-  { index: '03', category: 'Sports', title: 'Inter-school Athletics', description: 'State-level runners-up in track & field, 2024.' },
-  { index: '04', category: 'Recognition', title: 'Education Board Award', description: 'Best CBSE School, regional category, 2023.' },
+  { index: '01', category: 'Academic', title: 'CBSE Board Examinations', description: 'Consistent 100% pass result with distinction and top aggregate scores.' },
+  { index: '02', category: 'STEM', title: 'Science & Olympiad Distinctions', description: 'Top regional ranks in national mathematics and science talent competitions.' },
+  { index: '03', category: 'Athletics', title: 'Interschool Sports & Track Events', description: 'State-level representation in football, volleyball, and athletic track meets.' },
+  { index: '04', category: 'Values', title: 'Cultural & Moral Leadership', description: 'Holistic co-curricular achievements in debates, arts, and community service.' },
 ];
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
 };
 
 export default function AchievementsSection() {
   return (
-    <section className='bg-[#FFFBF5] py-24 lg:py-32'>
-      <div className='max-w-[1400px] mx-auto px-6 md:px-12'>
+    <section className="bg-[#080808] py-20 lg:py-32 border-b border-white/[0.08]">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         
-        <SectionLabel>Recognition</SectionLabel>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue-500" />
+          <span className="text-[11px] font-bold tracking-[0.25em] text-brand-blue-400 uppercase">
+            Recognition & Legacy
+          </span>
+        </div>
         
         {/* Staggered headline */}
         <motion.h2
-          className='font-accent font-bold text-[clamp(2.5rem,5vw,5rem)] text-[#0D0D0D] mt-4 leading-[1.05] tracking-[-0.025em]'
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, margin: '-100px' }}
+          className="font-sans font-bold text-[clamp(2.4rem,5vw,4.5rem)] text-white mt-4 leading-[1.08] tracking-tight"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ staggerChildren: 0.12 }}
         >
           {['Recognized.', 'Celebrated.', 'Proud.'].map((word, i) => (
@@ -35,40 +39,40 @@ export default function AchievementsSection() {
         </motion.h2>
 
         {/* Horizontal rule */}
-        <div className='border-t border-neutral-200 mt-14' />
+        <div className="border-t border-white/[0.08] mt-12" />
 
         {/* Achievement rows */}
         {achievements.map((item, idx) => (
           <motion.div
             key={idx}
-            className='border-b border-neutral-200 py-8 grid grid-cols-12 gap-4 md:gap-6 items-center group cursor-default'
+            className="border-b border-white/[0.08] py-7 grid grid-cols-12 gap-4 md:gap-6 items-center group cursor-default hover:bg-white/[0.02] px-2 transition-colors duration-300"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: idx * 0.08 }}
           >
             {/* Index */}
-            <div className='col-span-1 font-accent text-xl md:text-2xl font-bold text-neutral-200 select-none'>
+            <div className="col-span-2 sm:col-span-1 font-sans text-xl md:text-2xl font-extrabold text-neutral-700 select-none">
               {item.index}
             </div>
             
             {/* Category pill */}
-            <div className='col-span-2 md:col-span-2'>
-              <span className='inline-block text-[10px] uppercase tracking-[0.14em] font-semibold bg-neutral-100 group-hover:bg-[#0D0D0D] group-hover:text-white text-neutral-600 rounded-full px-3 py-1.5 transition-all duration-300'>
+            <div className="col-span-4 sm:col-span-2">
+              <span className="inline-block text-[10px] uppercase tracking-[0.16em] font-bold bg-white/[0.05] border border-white/10 group-hover:bg-brand-blue-600 group-hover:text-white group-hover:border-brand-blue-500 text-neutral-300 rounded-full px-3 py-1.5 transition-all duration-300">
                 {item.category}
               </span>
             </div>
 
             {/* Title */}
-            <div className='col-span-6 md:col-span-5'>
-              <h3 className='font-accent text-lg md:text-2xl font-semibold text-[#0D0D0D] leading-tight'>
+            <div className="col-span-6 sm:col-span-4 md:col-span-5">
+              <h3 className="font-sans text-base sm:text-lg md:text-xl font-bold text-white leading-tight tracking-tight">
                 {item.title}
               </h3>
             </div>
 
             {/* Description */}
-            <div className='col-span-3 md:col-span-4 text-right'>
-              <p className='font-sans text-sm text-neutral-500 leading-relaxed'>
+            <div className="col-span-12 sm:col-span-5 md:col-span-4 text-left sm:text-right pt-2 sm:pt-0">
+              <p className="font-sans text-xs sm:text-sm text-neutral-400 leading-relaxed">
                 {item.description}
               </p>
             </div>

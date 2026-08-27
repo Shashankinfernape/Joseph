@@ -1,50 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section
-      aria-label='Welcome to St. Joseph English High School'
-      className='w-full min-h-[90svh] md:min-h-0 bg-[#071A2B] relative flex items-center justify-center overflow-hidden'
+      aria-label="Welcome to St. Joseph English High School"
+      className="w-full h-[100svh] bg-[#050505] relative overflow-hidden"
     >
-      {/* Background Image - Responsive full cover on mobile, natural aspect ratio on desktop */}
-      <div className="w-full h-full min-h-[90svh] md:min-h-0 relative">
+      {/* ── SCHOOL PHOTO ── */}
+      <div className="absolute inset-0 z-0">
         <motion.img
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          src='/images/hero-campus-chatgpt.png'
-          alt='St. Joseph English High School campus'
-          loading='eager'
-          className='w-full h-full min-h-[90svh] md:min-h-0 md:h-auto object-cover object-center md:block'
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+          src="/images/hero-campus-chatgpt.png"
+          alt="St. Joseph English High School campus"
+          loading="eager"
+          className="w-full h-full object-cover object-center"
         />
 
-        {/* Improved Cinematic Overlay for better UI text contrast */}
+        {/* TOP gradient — darkens the sky so the white header is readable */}
         <div
-          className='absolute inset-0 z-10 pointer-events-none'
-          style={{
-            background: 'radial-gradient(circle at top, rgba(255, 255, 255, 0.1) 0%, rgba(5, 24, 43, 0.4) 100%)'
-          }}
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.18) 18%, transparent 40%)' }}
         />
 
+        {/* BOTTOM gradient — fades seamlessly into the #050505 section below */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #050505 0%, rgba(5,5,5,0.7) 12%, transparent 35%)' }}
+        />
+      </div>
 
-
-        {/* Action Button - Bottom Right */}
+      {/* ── BOTTOM-RIGHT: CTA Button + Location ── */}
+      <div className="absolute bottom-10 right-6 md:right-12 z-20 flex flex-col items-end gap-3">
         <motion.div
-          className='absolute bottom-6 right-6 md:bottom-10 md:right-10 z-40'
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-end gap-3"
         >
+          {/* Sharp white CTA — high contrast against dark blend */}
           <Link
-            to='/admissions'
-            className='bg-white text-black text-[12px] md:text-[14px] font-bold rounded-full px-8 py-3.5 md:px-10 md:py-4 hover:bg-brand-blue-600 hover:text-white shadow-2xl transition-all duration-300 uppercase tracking-widest block'
+            to="/admissions"
+            className="group inline-flex items-center gap-4 bg-white hover:bg-brand-blue-500 text-black hover:text-white px-8 py-4 rounded-sm transition-all duration-300 shadow-2xl"
           >
-            Apply for 2026–2027
+            <span className="font-sans font-bold text-[12px] tracking-[0.28em] uppercase">
+              Admissions 2026–27
+            </span>
+            {/* Arrow circle */}
+            <span className="w-6 h-6 rounded-full bg-black/10 group-hover:bg-white/20 flex items-center justify-center transition-colors duration-300 shrink-0">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
           </Link>
+
+          {/* Location tag */}
+          <span className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase text-white/40">
+            Kothanur · Bengaluru
+          </span>
         </motion.div>
       </div>
     </section>

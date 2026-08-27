@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import { fetchAPI } from '../../utils/api';
-import { Sparkle } from '@phosphor-icons/react';
 
-// New Components
+// Home Page Sections
 import HeroSection from '../../components/home/HeroSection';
 import IdentityRibbon from '../../components/home/IdentityRibbon';
 import PhilosophySection from '../../components/home/PhilosophySection';
@@ -14,8 +13,6 @@ import AchievementsSection from '../../components/home/AchievementsSection';
 import TestimonialsSection from '../../components/home/TestimonialsSection';
 import NewsSection from '../../components/home/NewsSection';
 import AdmissionsCTA from '../../components/home/AdmissionsCTA';
-
-
 
 export default function Home() {
   const { lang } = useLanguage();
@@ -33,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-surface">
+    <div className="min-h-screen bg-[#050505] text-neutral-100 selection:bg-brand-blue-600 selection:text-white overflow-hidden">
       <HeroSection />
       <IdentityRibbon />
       <PhilosophySection />

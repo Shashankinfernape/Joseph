@@ -147,7 +147,7 @@ export default function Header() {
                   to={link.path}
                   className={`text-[11px] lg:text-[13px] font-bold tracking-[0.08em] lg:tracking-[0.1em] uppercase transition-colors relative group whitespace-nowrap ${
                     active 
-                      ? (isScrolled ? 'text-brand-blue-600' : 'text-brand-blue-400')
+                      ? (isScrolled ? 'text-brand-blue-600' : 'text-white')
                       : linkTextColor
                   }`}
                 >
