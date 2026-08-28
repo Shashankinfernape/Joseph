@@ -1,33 +1,23 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  MapPin,
-  Phone,
-  EnvelopeSimple,
-  ArrowUpRight
-} from '@phosphor-icons/react';
+import { MapPin, Phone, EnvelopeSimple, ArrowUpRight } from '@phosphor-icons/react';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#050505] border-t border-white/[0.08] text-neutral-100 overflow-hidden font-sans selection:bg-brand-blue-600 selection:text-white">
-      
-      {/* ── ARCHITECTURAL FAINT CREST WATERMARK ── */}
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 opacity-[0.025] pointer-events-none select-none overflow-hidden -z-0">
-        <img 
-          src="/images/school-crest-transparent.png" 
-          alt="" 
-          className="w-full h-full object-contain filter grayscale" 
-        />
-      </div>
+    <footer className="bg-[#050505] text-white border-t border-white/[0.05] relative overflow-hidden">
+      {/* "?"? Subtle Gradient Overlays for Depth "?"? */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-blue-900/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-brand-blue-800/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-28 md:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10">
-
-          {/* Column 1: School Identity (5 cols on lg) */}
-          <div className="lg:col-span-5 flex flex-col space-y-6">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-full bg-white/[0.05] border border-white/10 p-1 flex items-center justify-center shrink-0">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-20 pb-10 relative z-10">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-12 lg:gap-8">
+          
+          {/* Column 1: Brand & About (3 cols on lg) */}
+          <div className="lg:col-span-3 flex flex-col space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center p-1.5 border border-white/10">
                   <img src="/images/school-crest-transparent.png" alt="Crest" className="w-full h-full object-contain" />
                 </div>
                 <div>
@@ -41,7 +31,7 @@ const Footer = () => {
               </div>
 
               <p className="text-xs text-neutral-400 leading-relaxed max-w-sm mt-3">
-                CBSE Affiliated co-educational institution nurturing academic excellence, moral integrity, and lifelong curiosity. Classes I – XII. Est. 1985.
+                CBSE Affiliated co-educational institution nurturing academic excellence, moral integrity, and lifelong curiosity. Classes I - XII. Est. 1985.
               </p>
             </div>
 
@@ -50,7 +40,7 @@ const Footer = () => {
                 <MapPin size={16} className="text-neutral-400 shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
                   21/10, Hennur Bagalur Main Road, Kothanur<br />
-                  Bangalore – 560 077, Karnataka, India
+                  Bangalore - 560 077, Karnataka, India
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
@@ -152,10 +142,10 @@ const Footer = () => {
 
         </div>
 
-        {/* ── BOTTOM COPYRIGHT BAR ── */}
+        {/* "?"? BOTTOM COPYRIGHT BAR "?"? */}
         <div className="border-t border-white/[0.07] mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500 font-sans">
           <p className="text-center md:text-left">
-            © {new Date().getFullYear()} St. Joseph English High School, Bengaluru. CBSE Affiliation No. 830942 | School Code: 45891
+            C 2026 St. Joseph English High School, Bengaluru. CBSE Affiliation No. 830942 | School Code: 45891
           </p>
           <p className="text-neutral-400 text-center md:text-right font-medium">
             Run by the Sisters of the Congregation of the Immaculate Conception (CIC)

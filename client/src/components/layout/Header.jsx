@@ -20,7 +20,8 @@ export default function Header() {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const isHomePage = location.pathname === '/';
-  const [isScrolled, setIsScrolled] = useState(!isHomePage);
+  const isInfrastructurePage = location.pathname === '/infrastructure';
+  const [isScrolled, setIsScrolled] = useState(!(isHomePage || isInfrastructurePage));
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
@@ -28,19 +29,25 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    if (!isHomePage) {
+    if (!isHomePage && !isInfrastructurePage) {
       setIsScrolled(true);
       return;
     }
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      if (isHomePage) {
+        setIsScrolled(window.scrollY > 30);
+      } else if (isInfrastructurePage) {
+        // The horizontal cinematic section is 700vh tall (7 scenes).
+        // Keep header transparent until the user scrolls past it.
+        setIsScrolled(window.scrollY > window.innerHeight * 7 - 50);
+      }
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage, location.pathname]);
+  }, [isHomePage, isInfrastructurePage, location.pathname]);
 
   const handleLogout = () => {
     if (logout) logout();
@@ -58,7 +65,7 @@ export default function Header() {
   // Clean Header State
   const headerStateClass = isScrolled
     ? 'header-scrolled bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
-    : 'header-transparent bg-transparent border-transparent shadow-none';
+    : 'header-transparent bg-black/40 backdrop-blur-md border-b border-white/10 shadow-none';
 
   const linkTextColor = isScrolled
     ? 'text-black hover:text-brand-blue-600'
