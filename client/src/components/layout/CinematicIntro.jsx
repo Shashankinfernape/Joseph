@@ -171,9 +171,9 @@ export default function CinematicIntro({ onComplete }) {
           <svg viewBox={vb} className="w-full h-full" style={{ overflow: "visible" }}>
             <defs>
               <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stopColor="#f250ff" />
-                <stop offset="50%"  stopColor="#8112ff" />
-                <stop offset="100%" stopColor="#ff9800" />
+                <stop offset="0%"   stopColor="#1d4ed8" />
+                <stop offset="50%"  stopColor="#2563eb" />
+                <stop offset="100%" stopColor="#f59e0b" />
               </linearGradient>
             </defs>
 
