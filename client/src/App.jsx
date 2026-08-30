@@ -10,6 +10,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import PortalSidebar from './components/layout/PortalSidebar';
 import PortalRightRail from './components/layout/PortalRightRail';
+import CinematicIntro from './components/layout/CinematicIntro';
 
 // Auth Components
 import Login from './pages/public/Login';
@@ -106,12 +107,20 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const [showIntro, setShowIntro] = React.useState(true);
+
+  const handleIntroComplete = () => {
+    // sessionStorage.setItem('intro_seen', '1');
+    setShowIntro(false);
+  };
+
   return (
     <ThemeProvider>
       <LanguageProvider>
         <AuthProvider>
           <ToastProvider>
             <BrowserRouter>
+              {showIntro && <CinematicIntro onComplete={handleIntroComplete} />}
               <ScrollToTop />
               <LayoutWrapper>
                 <Routes>
