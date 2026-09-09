@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
+
+export const IntroContext = createContext({ introActive: true });
 
 // Layout
 import Header from './components/layout/Header';
@@ -119,14 +121,15 @@ export default function App() {
       <LanguageProvider>
         <AuthProvider>
           <ToastProvider>
-            <BrowserRouter>
-              {showIntro && <CinematicIntro onComplete={handleIntroComplete} />}
-              <ScrollToTop />
-              <LayoutWrapper>
-                <Routes>
-                  {/* Public Pages */}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about-us" element={<AboutUs />} />
+            <IntroContext.Provider value={{ introActive: showIntro }}>
+              <BrowserRouter>
+                {showIntro && <CinematicIntro onComplete={handleIntroComplete} />}
+                <ScrollToTop />
+                <LayoutWrapper>
+                  <Routes>
+                    {/* Public Pages */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about-us" element={<AboutUs />} />
                   <Route path="/academics" element={<Academics />} />
                   <Route path="/academics/class/:gradeId" element={<ClassDetail />} />
                   <Route path="/admissions" element={<Admissions />} />
@@ -180,9 +183,10 @@ export default function App() {
                   <Route path="/parent/ptm" element={<Navigate to="/my/ptm" replace />} />
                   <Route path="/parent/consent" element={<Navigate to="/my/consent" replace />} />
                   <Route path="/portals/*" element={<Navigate to="/dashboard" replace />} />
-                </Routes>
-              </LayoutWrapper>
-            </BrowserRouter>
+                  </Routes>
+                </LayoutWrapper>
+              </BrowserRouter>
+            </IntroContext.Provider>
           </ToastProvider>
         </AuthProvider>
       </LanguageProvider>

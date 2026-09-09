@@ -4,15 +4,57 @@ const morgan = require('morgan');
 const path = require('path');
 const dotenv = require('dotenv');
 
+// Security dependencies
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
+
+const connectDB = require('./config/db');
+
 dotenv.config();
+
+// Connect to Database (Commented out for local UI testing)
+// connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+// ==========================================
+// SECURITY MIDDLEWARE (OWASP Layer)
+// ==========================================
+// 1. Set Security HTTP Headers
+app.use(helmet());
+
+// 2. Cross-Origin Resource Sharing
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:5173', // Adjust in production
+  credentials: true
+}));
+
+// 3. Rate Limiting (100 requests per 15 mins)
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
+  message: 'Too many requests from this IP, please try again after 15 minutes'
+});
+app.use('/api', limiter);
+
+// 4. Body Parser (limit payload size)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(cookieParser());
+
+// 5. Data Sanitization
+app.use(mongoSanitize()); // Prevent NoSQL Injection
+app.use(xss()); // Prevent Cross-Site Scripting (XSS)
+
+// 6. Prevent Parameter Pollution
+app.use(hpp());
+
+// Logging
 app.use(morgan('dev'));
 
 // Static mock documents & uploads folder

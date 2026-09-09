@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { IntroContext } from '../../App';
 
 export default function HeroSection() {
+  const { introActive } = useContext(IntroContext);
+
   return (
     <section
       aria-label="Welcome to St. Joseph English High School"
@@ -35,13 +38,18 @@ export default function HeroSection() {
 
       {/* ── BOTTOM-RIGHT: CTA Button + Location ── */}
       <div className="absolute bottom-10 right-6 md:right-12 z-20 flex flex-col items-end gap-3">
+        {/* Sharp white CTA — high contrast against dark blend */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-end gap-3"
+          initial={{ opacity: 0, y: 40 }}
+          animate={introActive ? { opacity: 0, y: 40 } : { opacity: 1, y: 0 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 20, 
+            mass: 1.2,
+            delay: 0.3 
+          }}
         >
-          {/* Sharp white CTA — high contrast against dark blend */}
           <Link
             to="/admissions"
             className="group inline-flex items-center gap-4 bg-white hover:bg-brand-blue-500 text-black hover:text-white px-8 py-4 rounded-sm transition-all duration-300 shadow-2xl"
@@ -56,12 +64,23 @@ export default function HeroSection() {
               </svg>
             </span>
           </Link>
-
-          {/* Location tag */}
-          <span className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase text-white/40">
-            Kothanur · Bengaluru
-          </span>
         </motion.div>
+
+        {/* Location tag */}
+        <motion.span 
+          initial={{ opacity: 0, y: 20 }}
+          animate={introActive ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 20, 
+            mass: 1.2,
+            delay: 0.45 
+          }}
+          className="font-sans text-[10px] font-semibold tracking-[0.25em] uppercase text-white/40"
+        >
+          Kothanur · Bengaluru
+        </motion.span>
       </div>
     </section>
   );

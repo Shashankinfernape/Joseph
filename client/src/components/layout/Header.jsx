@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { IntroContext } from '../../App';
 import { List, X, Bell, User, DotsNine, House, BookOpen, SquaresFour, ClipboardText, CalendarBlank, Laptop, GraduationCap, Users, FileText, UserCheck, BookBookmark, UsersThree, Globe, ArrowUpRight, ArrowRight, ArrowLeft } from '@phosphor-icons/react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import {
@@ -13,6 +14,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
+  const { introActive } = useContext(IntroContext);
   const { currentUser, role, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,6 +62,7 @@ export default function Header() {
     { path: '/academics', label: 'Academics' },
     { path: '/admissions', label: 'Admissions' },
     { path: '/infrastructure', label: 'Campus Life' },
+    { path: '/gallery', label: 'Gallery' },
   ];
 
   // Clean Header State
@@ -122,7 +125,18 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${headerStateClass}`}>
+      <motion.header 
+        initial={{ y: -100, opacity: 0 }}
+        animate={introActive ? { y: -100, opacity: 0 } : { y: 0, opacity: 1 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 300, 
+          damping: 20, 
+          mass: 1.2,
+          delay: 0.1 
+        }}
+        className={`fixed top-0 left-0 w-full z-50 pt-[100px] -mt-[100px] transition-colors duration-300 ease-in-out ${headerStateClass}`}
+      >
         <div className="w-full px-3 sm:px-4 md:px-6 flex items-center justify-between h-14 md:h-16">
           
           {/* Left Column (Corner Logo & Typographic Lockup) */}
@@ -303,7 +317,7 @@ export default function Header() {
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* ── ELITE EDITORIAL NAVIGATION MENU (z-[9999], sits cleanly above bottom bar) ── */}
       <AnimatePresence>

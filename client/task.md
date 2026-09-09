@@ -1,0 +1,19 @@
+﻿- [x] Create Editorial Split Hero Section
+  - [x] Build left white strip with vertical text
+  - [x] Build right dark panel with animated serif text
+- [x] Create Full Color Principal Section
+  - [x] Implement full-bleed left-to-right wipe image reveal
+  - [x] Ensure image is vivid full color
+  - [x] Build staggered quote block on the right
+- [x] Create Color Block Vision/Mission
+  - [x] Build pure white Vision section with massive text
+  - [x] Build brand blue Mission section with massive text
+  - [x] Implement unmask text animations
+- [x] Create Brutalist Stats Wall
+  - [x] Build 2x2 grid with giant 15vw typography
+  - [x] Keep the `useInView` count-up functionality
+  - [x] Add background flash hover effect
+- [x] Create Sticky Panel Leadership Section
+  - [x] Build list of leaders on the left
+  - [x] Build fixed sticky image display on the right
+  - [x] Implement crossfade image swapping on row hover

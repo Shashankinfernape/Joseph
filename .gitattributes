@@ -1,0 +1,6 @@
+client/dist/** linguist-vendored
+server/node_modules/** linguist-vendored
+client/node_modules/** linguist-vendored
+*.lock linguist-vendored
+package-lock.json linguist-vendored
+client/public/** linguist-vendored
