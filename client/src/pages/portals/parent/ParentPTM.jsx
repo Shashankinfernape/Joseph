@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, CheckCircle2, User, Send } from 'lucide-react';
 import { fetchAPI } from '../../../utils/api';
 import { useToast } from '../../../context/ToastContext';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
+import { Button } from '../../../components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../../../components/ui/dialog';
 
 export default function ParentPTM() {

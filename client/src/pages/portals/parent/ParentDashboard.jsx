@@ -8,8 +8,8 @@ import {
   UserCircle, Info, CalendarPlus, GraduationCap
 } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
+import { Button } from '../../../components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '../../../components/ui/avatar';
 
 const containerVariants = {
