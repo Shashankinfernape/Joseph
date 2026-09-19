@@ -16,8 +16,8 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
-// Connect to Database (Commented out for local UI testing)
-// connectDB();
+// Connect to Database
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -81,16 +81,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Start Server locally if not running in Google Cloud Functions
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`====================================================`);
-    console.log(` Vidya Mandir CBSE Platform API Server Running!`);
-    console.log(` Port: http://localhost:${PORT}`);
-    console.log(` Health: http://localhost:${PORT}/api/health`);
-    console.log(`====================================================`);
-  });
-}
+// Start Server
+app.listen(PORT, () => {
+  console.log(`====================================================`);
+  console.log(` Vidya Mandir CBSE Platform API Server Running!`);
+  console.log(` Port: ${PORT}`);
+  console.log(` Health: /api/health`);
+  console.log(`====================================================`);
+});
 
 // Export for Google Cloud Functions
 exports.api = app;
