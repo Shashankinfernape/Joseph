@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Books, Flask, Basketball, Desktop, Bus, Buildings, ShieldCheck, FirstAid, Drop, CheckCircle, Image
@@ -95,7 +95,7 @@ const CinematicFacilityCard = ({ facility, index }) => {
             onLoad={() => setImgLoaded(true)}
             onError={() => setImgError(true)}
             className={cn(
-              "w-full h-full object-cover transition-all duration-[2s] group-hover:scale-105",
+              "w-full h-full object-cover transition-all duration-1000 group-hover:scale-105",
               imgLoaded ? "opacity-100" : "opacity-0"
             )}
           />
